@@ -1,0 +1,52 @@
+Week 1:
+
+Week 2:
+    Data: 
+        Check the time of the flight in .srt file:
+            The flight time in the static video is: 2020-06-30 13:36:16,718,274
+            The flight time in the moving video is: 2020-06-30 13:36:27,932,417
+
+        Check whether the static and moving drones were flying at the same time +- 1 min diff:
+            The time roughly matches; there are a few seconds of offset that were corrected with the data_time_processing script, which aligns the timestamps of the different frames
+
+    Literature Review:
+	characteristics of yolo11 model:
+	
+	OBB : Oriented bounding boxes:
+
+    Yolo11 to test:
+	weights:
+		yolo11n-obb:
+			A few parameters
+		yolo11m-obb:
+			A bit more
+		yolo11l-obb:
+			Even more
+		yolo11x-obb:
+			Always more
+		Check on which public datasets they have been pretrained:
+			They were all pretrained on DOTAv1
+
+		Basically, the only thing that changes is the number of parameters. This has a fairly large impact on the number of computations and, consequently, on the speed of the algorithm. It is possible to notice some changes in the results, particularly with trucks, which are sometimes detected and sometimes not
+
+    Patch inference for small objects:
+	Example:
+		The example does not support YOLO OBB, so this is problematic
+	
+	Check whether Ultralytics has in-house patch inference function:
+		Ultralytics also does not have an in-house patch inference function, this is very problematic. I'll come back in a few hours…
+
+	Compare between without and with patch inference:
+		A few hours later…
+
+		without:
+			For the moving video there isn’t much of a problem, as the cars and trucks are large enough to be detected. Occasionally, a car or a truck is not detected...
+			For the static video, however, more than half are missing. The video is taken from too high up, which makes the cars too small for the algorithm to detect them.
+	
+		with:
+			For the moving video, applying patching makes it possible to detect the few cars that were previously missing, but it becomes harder to detect trucks. The same trucks as before are still not detected, so I wonder if this issue comes directly from the algorithm rather than from the image. Also, sometimes duplicates are created on the same frame if too much patching is applied, and if patching is increased even further, detection precision starts to decrease
+			For the static video, however, patching is essential. Thanks to it, up to four times more vehicles can be detected 
+
+		So, for the moving video, patching is not necessarily required; I think a good parameter search may be sufficient, or perhaps just light patching. For the static video, however, patching is important, but the optimized parameters still need to be defined (number of patches, scaling, model)
+
+			
