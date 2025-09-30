@@ -1,18 +1,27 @@
 import cv2
 
-# Path to your video
-video_path = "input.mp4"
+# chemin de la vidéo
+video_path = "Dataset/Galatsi_Data_Semester_Project_archive/DJI_0004.MP4"
+# chemin de sortie pour l'image
+output_path = "frame_301_static.png"
 
-# Open the video
-cap = cv2.VideoCapture("Dataset/Galatsi_Data_Semester_Project_archive/DJI_0808.MOV")
+# ouvrir la vidéo
+cap = cv2.VideoCapture(video_path)
 
-# Read the first frame
+if not cap.isOpened():
+    print("Could not read frame")
+    exit()
+
+# aller directement à la 281ème frame (attention : index = 280 car ça commence à 0)
+frame_index = 300
+cap.set(cv2.CAP_PROP_POS_FRAMES, frame_index)
+
+# lire la frame
 ret, frame = cap.read()
 
 if ret:
-    # Save the first frame as an image
-    cv2.imwrite("first_frame_moving.png", frame)
-    print("First frame saved as first_frame_moving.png")
+    cv2.imwrite(output_path, frame)
+    print(f"Frame {frame_index+1} save as {output_path}")
 else:
     print("Could not read frame")
 

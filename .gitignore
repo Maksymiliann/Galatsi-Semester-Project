@@ -3,6 +3,9 @@ Dataset/
 venv/
 .venv/
 
+# Ignore the LightGlue folder
+LightGlue/
+
 
 # Ignore video files
 *.mp4
