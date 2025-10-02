@@ -670,15 +670,15 @@ if __name__ == "__main__":
         reset_ref_every=0,
         device="0",
         do_tracking=True,
-        draw_traces=True,
+        draw_traces=False,
         # ByteTrack tuning
         track_thresh=0.25,   # start tracks from this conf
         match_thresh=0.8,    # association strictness
         track_buffer=30,      # keep IDs this many frames when briefly lost
         # ---- mouvement vs arrêt (fenêtre + hystérèse) ----
         nb_frames_moving = 5,      # fenêtre de comparaison (frames)
-        stop_speed_thresh = 0.2, # px/frame : <= STOP (vert)
-        move_speed_thresh = 0.7, # px/frame : >= MOVING (rouge) ; doit être > stop_speed_thresh
+        stop_speed_thresh = 0.5, # px/frame : <= STOP (vert)
+        move_speed_thresh = 1.0, # px/frame : >= MOVING (rouge) ; doit être > stop_speed_thresh
         use_hysteresis = True,    # activer l’hystérèse
         ema_alpha = 0.8,          # 0.0=off ; >0 pour lisser la vitesse (EMA), 1 pour pas de lissage
         # ---- export TXT par frame ----
