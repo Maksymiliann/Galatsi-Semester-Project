@@ -654,9 +654,9 @@ def patch_infer_video(
 if __name__ == "__main__":
     # VIDEO example
     patch_infer_video(
-        video_path="Dataset/Galatsi_Data_Semester_Project_archive/DJI_0004.MP4",
+        video_path="Dataset/Galatsi_Data_Semester_Project_archive/DJI_0319_D2_S5_S1.MP4",
         model_path="yolo11m-obb.pt",
-        output_path="Results/Video/tracking_color12.mp4",
+        output_path="Results/Video/tracking_color_0319_D2_S5_S1.mp4",
         imgsz=1280,
         conf=0.35,
         tiles=(4, 3),
@@ -682,7 +682,7 @@ if __name__ == "__main__":
         use_hysteresis = True,    # activer l’hystérèse
         ema_alpha = 0.8,          # 0.0=off ; >0 pour lisser la vitesse (EMA), 1 pour pas de lissage
         # ---- export TXT par frame ----
-        export_txt_dir = "Results/TXT12",   
+        export_txt_dir = "Results/TXT_0319_D2_S5_S1",   
         export_txt = True      # <--- interrupteur global on/off
     )
 

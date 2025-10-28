@@ -1,9 +1,9 @@
 import cv2
 
 # chemin de la vidéo
-video_path = "Dataset/Galatsi_Data_Semester_Project_archive/DJI_0004.MP4"
+video_path = "Dataset/Galatsi_Data_Semester_Project_archive/DJI_0319_D2_S5_S1.MP4"
 # chemin de sortie pour l'image
-output_path = "frame_301_static.png"
+output_path = "frame_1_0319.png"
 
 # ouvrir la vidéo
 cap = cv2.VideoCapture(video_path)
@@ -13,7 +13,7 @@ if not cap.isOpened():
     exit()
 
 # aller directement à la 281ème frame (attention : index = 280 car ça commence à 0)
-frame_index = 300
+frame_index = 0
 cap.set(cv2.CAP_PROP_POS_FRAMES, frame_index)
 
 # lire la frame

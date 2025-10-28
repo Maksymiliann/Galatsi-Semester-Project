@@ -197,8 +197,8 @@ def run_parking_dwell_state(
 
 # Exemple d'utilisation directe depuis ton IDE:
 if __name__ == "__main__":
-    TXT_DIR = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT12"       # dossier 0001.txt ... N.txt
-    IMAGE   = r"C:/Users/makss/Git/Galatsi-Semester-Project/first_frame_static.png"  # image drone correspondante
+    TXT_DIR = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0319_D2_S5_S1"       # dossier 0001.txt ... N.txt
+    IMAGE   = r"C:/Users/makss/Git/Galatsi-Semester-Project/frame_1_0319.png"  # image drone correspondante
 
     run_parking_dwell_state(
         txt_dir=TXT_DIR,
@@ -211,5 +211,5 @@ if __name__ == "__main__":
         gaussian_sigma=1.5,# lissage visuel
         alpha_overlay=0.6,
         thr = 0.9,
-        out_prefix="Results/parking_detection/dwell/test6/parking_dwell_state"
+        out_prefix="Results/parking_detection/dwell/0319/parking_dwell_state"
     )

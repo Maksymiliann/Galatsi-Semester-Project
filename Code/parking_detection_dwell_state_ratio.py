@@ -165,12 +165,12 @@ if __name__ == "__main__":
         txt_dir=TXT_DIR,
         image_path=IMAGE,
         fps=25.0,
-        cell=10,
+        cell=20,
         conf_min=0.0,
         use_time=False,       # mets True pour ratio en secondes
-        move_weight=1.0,      # >1 pour pénaliser plus le MOVE
+        move_weight=4.0,      # >1 pour pénaliser plus le MOVE
         gaussian_sigma=1.5,
         alpha_overlay=0.6,
         thr=0.90,             # garde seulement les zones très "stop-dominant"
-        out_prefix="Results/parking_detection/dwell_ratio/test1/parking_ratio"
+        out_prefix="Results/parking_detection/dwell_ratio/test3/parking_ratio"
     )
