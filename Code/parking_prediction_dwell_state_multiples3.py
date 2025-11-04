@@ -1,4 +1,5 @@
 import re
+import math
 from pathlib import Path
 import numpy as np
 import cv2
@@ -119,79 +120,183 @@ def estimate_homography(img_ref_bgr, img_bgr,
     return H.astype(np.float32), int(inl.sum()), err
 
 
-def boost_parking_lines(score_img,          # float32, [0..1], taille image
-                        mask_img,           # uint8, {0,1}, taille image (issu de ton threshold actuel, image 4)
-                        ref_img_bgr=None,   # pour overlays (optionnel)
-                        min_line_len_px=80, # longueur mini des segments Hough (px)
-                        max_line_gap_px=20, # gap maxi entre segments (px)
-                        canny1=50, canny2=150,  # seuils Canny
-                        line_thick_px=6,    # épaisseur (px) des lignes “boostées”
-                        boost_sigma=5.0,    # flou gaussien pour étaler le boost (px)
-                        boost_gain=0.25,    # poids ajouté à score_img (0..1)
-                        alpha_overlay=0.6,
-                        out_prefix="parking_lines_boost"):
+def gap_weighted_boost(score_img,           # float32 [0..1], taille image
+                       mask_seed,            # uint8 {0,1}, seed permissif (ex: score_img >= thr*0.8)
+                       ref_img_bgr=None,     # pour overlays (optionnel)
+                       move_hits_grid=None,  # (hG,wG) float32, facultatif (pénalise routes)
+                       cell=4,               # pour upsampler move_hits_grid -> image
+                       # --- détection segments ---
+                       canny1=30, canny2=90,
+                       rho=1, theta_deg=1.0, votes=40,
+                       min_len=60, max_gap=25,
+                       angle_bin_deg=10, merge_dist_px=25,
+                       # --- scoring / géométrie des ponts ---
+                       band_width_px=6,         # demi-largeur pour tester/peindre le pont
+                       endpoint_win_px=15,      # voisinage des extrémités pour "context_stop"
+                       blur_sigma=5.0,
+                       gain=0.25,               # gain global max du boost
+                       alpha_overlay=0.6,
+                       out_prefix=None):
     """
-    Renforce la carte score_img le long des “lignes de parking” estimées depuis mask_img.
-    Retourne: boosted_score_img, heatmap_boosted, overlay_boosted, lines_debug
-    Sauvegarde: *_lines.png, *_boostmap.png, *_score_map_boosted.png, *_overlay_boosted.png, *_mask_boosted.png
+    Crée des ponts entre segments colinéaires et attribue un boost pondéré :
+       boost_line = gain * context_stop * (1 - move_penalty) * dist_weight
+    où:
+      - context_stop : moyenne(score_img) autour des extrémités du pont
+      - move_penalty : moyenne(move_map_norm) le long de la bande (routes -> élevé)
+      - dist_weight  : décroît avec la longueur quand pas assez de support
+    Retourne: boosted_score, debug_img (lignes), boost_map
     """
 
     H, W = score_img.shape
-    # 1) Edges sur le mask (plus stable que sur la heatmap)
-    #    On dilate un chouïa le mask pour relier les points discontinus
-    kern = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
-    mask_dil = cv2.dilate((mask_img*255).astype(np.uint8), kern, iterations=1)
-    edges = cv2.Canny(mask_dil, canny1, canny2)
+    # 0) carte de trafic (si fournie)
+    move_map = None
+    if move_hits_grid is not None:
+        # upsample -> image + normalisation robuste [0..1]
+        move_map = cv2.resize(move_hits_grid.astype(np.float32), (W, H), interpolation=cv2.INTER_CUBIC)
+        flat = move_map.ravel()
+        lo = np.percentile(flat, 5)
+        hi = np.percentile(flat, 95)
+        if hi > lo:
+            move_map = np.clip((move_map - lo) / (hi - lo), 0, 1)
+        else:
+            move_map = np.zeros_like(move_map, np.float32)
 
-    # 2) Hough probabiliste
-    #    rho=1px, theta=1deg; adapte si tu veux plus de rigidité angulaire
-    lines = cv2.HoughLinesP(edges, rho=5, theta=np.deg2rad(5.0),
-                            threshold=50, minLineLength=min_line_len_px,
-                            maxLineGap=max_line_gap_px)
-    # 3) Boost map (on dessine les segments puis on floute)
+    # 1) edges sur seed dilaté (connectivité)
+    seed_u8 = (mask_seed.astype(np.uint8) * 255)
+    dil = cv2.dilate(seed_u8, cv2.getStructuringElement(cv2.MORPH_RECT, (3,3)), 1)
+    edges = cv2.Canny(dil, canny1, canny2)
+
+    # 2) HoughP -> segments
+    lines = cv2.HoughLinesP(edges, rho=rho, theta=np.deg2rad(theta_deg),
+                            threshold=votes, minLineLength=min_len, maxLineGap=max_gap)
+    if lines is None:
+        # rien à booster
+        return score_img, np.zeros((H,W,3), np.uint8), np.zeros((H,W), np.float32)
+
+    segs = [(l[0][0], l[0][1], l[0][2], l[0][3]) for l in lines]
+
+    # 3) regrouper par angle grossier
+    def seg_angle(s):
+        x1,y1,x2,y2 = s
+        return (math.degrees(math.atan2(y2-y1, x2-x1)) + 180.0) % 180.0
+
+    bins = {}
+    for s in segs:
+        a = seg_angle(s)
+        key = int(round(a / angle_bin_deg))
+        bins.setdefault(key, []).append(s)
+
     boost = np.zeros((H, W), np.float32)
-    line_img = np.zeros((H, W, 3), np.uint8)  # pour visu
+    dbg   = np.zeros((H, W, 3), np.uint8)
 
-    if lines is not None:
-        for l in lines:
-            x1,y1,x2,y2 = l[0]
-            cv2.line(boost, (x1,y1), (x2,y2), color=1.0, thickness=line_thick_px)
-            cv2.line(line_img, (x1,y1), (x2,y2), color=(0,0,255), thickness=2)
+    # utilitaires
+    def line_points(p1, p2, thickness):
+        """ Génère des pixels de la bande épaisse entre p1 et p2 (rectangle dilaté). """
+        x1,y1 = map(int, p1); x2,y2 = map(int, p2)
+        band = np.zeros((H,W), np.uint8)
+        cv2.line(band, (x1,y1), (x2,y2), 1, thickness=thickness)
+        ys, xs = np.where(band > 0)
+        return xs, ys
 
-    if boost_sigma and boost_sigma > 0:
-        ksize = int(max(3, 2*int(3*boost_sigma)+1))
-        boost = cv2.GaussianBlur(boost, (ksize, ksize), boost_sigma)
+    def local_mean(img, x, y, r):
+        x0, x1 = max(0, x-r), min(W, x+r+1)
+        y0, y1 = max(0, y-r), min(H, y+r+1)
+        if x1<=x0 or y1<=y0: return 0.0
+        roi = img[y0:y1, x0:x1]
+        return float(roi.mean()) if roi.size else 0.0
 
-    # normalise boost à [0..1]
+    # 4) pour chaque bin, clusteriser par proximité et fitter une ligne unique
+    for _, group in bins.items():
+        if len(group) < 2:
+            continue
+
+        # points d'extrémités
+        pts = []
+        for (x1,y1,x2,y2) in group:
+            pts.append((x1,y1)); pts.append((x2,y2))
+        pts = np.array(pts, np.float32)
+
+        used = np.zeros(len(pts), bool)
+        for i in range(len(pts)):
+            if used[i]: continue
+            cluster_idx = [i]; used[i] = True
+            changed = True
+            while changed:
+                changed = False
+                for j in range(len(pts)):
+                    if used[j]: continue
+                    if np.min(np.linalg.norm(pts[cluster_idx] - pts[j], axis=1)) <= merge_dist_px:
+                        cluster_idx.append(j); used[j] = True; changed = True
+
+            cl = pts[cluster_idx]
+            if len(cl) < 2: 
+                continue
+
+            # fit PCA 2D
+            m = cl.mean(axis=0)
+            U, S, Vt = cv2.SVDecomp((cl - m).astype(np.float32))
+            dirv = Vt[0,:]
+            dirv = dirv / (np.linalg.norm(dirv) + 1e-9)
+
+            t = (cl - m) @ dirv
+            tmin, tmax = t.min(), t.max()
+            p1 = (m + tmin*dirv).astype(int)
+            p2 = (m + tmax*dirv).astype(int)
+
+            # 5) calcul du poids de pont
+            #    - contexte "stop" aux extrémités (moyenne score_img)
+            c1 = local_mean(score_img, int(p1[0]), int(p1[1]), endpoint_win_px)
+            c2 = local_mean(score_img, int(p2[0]), int(p2[1]), endpoint_win_px)
+            context_stop = max(0.0, (c1 + c2) * 0.5)  # [0..1]
+
+            #    - pénalité trafic (si move_map dispo) le long de la bande
+            xs, ys = line_points(p1, p2, thickness=band_width_px)
+            if xs.size == 0:
+                continue
+            if move_map is not None:
+                move_penalty = float(move_map[ys, xs].mean())  # [0..1]
+            else:
+                move_penalty = 0.0
+
+            #    - poids de distance: si pont très long, mais peu de contexte, on réduit
+            length = max(1.0, float(np.hypot(*(p2 - p1))))
+            # densité seed le long de la bande (proportion de pixels seed dans la bande)
+            seed_density = float(mask_seed[ys, xs].mean())
+            # plus la bande est "justifiée" par du seed, plus on accepte la longueur
+            dist_weight = float(np.clip(seed_density * (min(300.0, length) / 300.0), 0.0, 1.0))
+
+            bridge_weight = gain * context_stop * (1.0 - move_penalty) * dist_weight
+            if bridge_weight <= 1e-4:
+                continue
+
+            # 6) peindre la bande pondérée dans boost
+            tmp = np.zeros((H,W), np.float32)
+            cv2.line(tmp, (int(p1[0]),int(p1[1])), (int(p2[0]),int(p2[1])), 1.0, thickness=band_width_px)
+            boost = np.maximum(boost, tmp * float(bridge_weight))
+
+            # debug
+            cv2.line(dbg, (int(p1[0]),int(p1[1])), (int(p2[0]),int(p2[1])), (0,0,255), 2)
+
+    # 7) lisser et normaliser la boost map
+    if blur_sigma and blur_sigma > 0:
+        k = int(max(3, 2*int(3*blur_sigma)+1))
+        boost = cv2.GaussianBlur(boost, (k,k), blur_sigma)
     if boost.max() > 1e-6:
         boost = boost / boost.max()
 
-    # 4) Applique le renforcement
-    boosted_score = np.clip(score_img + boost_gain * boost, 0.0, 1.0)
+    boosted_score = np.clip(score_img + boost, 0.0, 1.0)  # boost déjà borné par gain
 
-    # 5) Heatmap + overlay (boosted)
-    score_u8 = (boosted_score*255).astype(np.uint8)
-    heatmap_boosted = cv2.applyColorMap(score_u8, cv2.COLORMAP_JET)
+    # 8) sorties debug
+    if out_prefix:
+        cv2.imwrite(f"{out_prefix}_bridges_dbg.png", dbg)
+        cv2.imwrite(f"{out_prefix}_boostmap.png", (boost*255).astype(np.uint8))
+        hm = cv2.applyColorMap((boosted_score*255).astype(np.uint8), cv2.COLORMAP_JET)
+        cv2.imwrite(f"{out_prefix}_score_map_boosted.png", hm)
+        if ref_img_bgr is not None:
+            ov = cv2.addWeighted(ref_img_bgr, 1.0, hm, alpha_overlay, 0)
+            cv2.imwrite(f"{out_prefix}_overlay_boosted.png", ov)
 
-    if ref_img_bgr is not None:
-        overlay_boosted = cv2.addWeighted(ref_img_bgr, 1.0, heatmap_boosted, alpha_overlay, 0)
-    else:
-        overlay_boosted = None
-
-    # 6) Re-threshold + mask
-    #    NB: tu peux réutiliser ton 'thr' habituel ici
-    thr = 0.85
-    mask_boosted = (boosted_score >= thr).astype(np.uint8)
-
-    # 7) Sauvegardes utiles
-    cv2.imwrite(f"{out_prefix}_lines.png", line_img)                                # segments trouvés
-    cv2.imwrite(f"{out_prefix}_boostmap.png", (boost*255).astype(np.uint8))         # carte de boost
-    cv2.imwrite(f"{out_prefix}_score_map_boosted.png", heatmap_boosted)             # heatmap boostée
-    if overlay_boosted is not None:
-        cv2.imwrite(f"{out_prefix}_overlay_boosted.png", overlay_boosted)           # overlay boostée
-    cv2.imwrite(f"{out_prefix}_mask_boosted.png", (mask_boosted*255).astype(np.uint8))
-
-    return boosted_score, heatmap_boosted, overlay_boosted, line_img, mask_boosted
+    return boosted_score, dbg, boost
 
 # -----------------------------
 # Core (multi-dossiers + registration)
@@ -306,6 +411,33 @@ def run_parking_dwell_state_multi_registered(
     cv2.imwrite(f"{out_prefix}_overlay.png",    overlay_bgr)
     print(f"[OK] Saved score map & overlay.")
 
+
+    # seed permissif (un peu sous ton thr final)
+    thr_seed = max(0.5, float(thr) - 0.10)
+    mask_seed = (score_img >= thr_seed).astype(np.uint8)
+
+    # si tu as move_hits (grille hG×wG) et cell disponibles ici, passe-les :
+    # move_hits vient de ta boucle d'accumulation; garde-le côté image de ref.
+    try:
+        move_hits_grid_here = move_hits  # (hG,wG) float32
+    except NameError:
+        move_hits_grid_here = None
+
+    score_img, dbg_lines, boost_map = gap_weighted_boost(
+        score_img=score_img,
+        mask_seed=mask_seed,
+        ref_img_bgr=img_ref,
+        move_hits_grid=move_hits_grid_here,
+        cell=cell,
+        min_len=80, max_gap=50,
+        band_width_px=20,
+        endpoint_win_px=25,
+        blur_sigma=5.0,
+        gain=0.25,  # ↑/↓ l’impact global du comblement pondéré
+        out_prefix=f"{out_prefix}_gapboost",
+        alpha_overlay=alpha_overlay
+)
+
     # 7) threshold sur heatmap normalisée (comme avant, pour visu)
     mask = (score_img >= float(thr)).astype(np.uint8)
     mask3 = np.dstack([mask]*3)
@@ -318,26 +450,6 @@ def run_parking_dwell_state_multi_registered(
     # 8) mask for parking location
     mask_img = (score_img >= thr).astype(np.uint8)
     cv2.imwrite(f"{out_prefix}_parking_location_mask.png", (mask_img*255).astype(np.uint8))
-
-    # 9) Boosting lines
-    boosted_score, heatmap_boosted, overlay_boosted, lines_dbg, mask_boosted = boost_parking_lines(
-    score_img=score_img,
-    mask_img=mask_img,
-    ref_img_bgr=img_ref,                 # pour overlay
-    min_line_len_px=40,                  # 80
-    max_line_gap_px=20,                    # 20
-    line_thick_px=10,                       # 6
-    boost_sigma=5.0,                       # 5
-    boost_gain=0.25,                     # 0.25
-    alpha_overlay=alpha_overlay,
-    out_prefix=f"{out_prefix}_lines"
-)
-
-    # Remplace ensuite tes sorties par la version boostée si tu veux
-    score_img = boosted_score
-    heatmap_bgr = heatmap_boosted
-    overlay_bgr = overlay_boosted if overlay_boosted is not None else overlay_bgr
-    mask = mask_boosted
 
     return score_img.astype(np.float32), overlay_bgr, heatmap_bgr, H_list, score_grid_brut
 
@@ -375,6 +487,6 @@ if __name__ == "__main__":
         gaussian_sigma=1.5, #1.5
         alpha_overlay=0.6,  #0.6
         thr=0.85,   #0.9
-        out_prefix="Results/parking_detection/dwell_mult/test4_thr_0.85/parking_dwell_state_MULTI_REG",
+        out_prefix="Results/parking_detection/dwell_mult_3/test2_thr_0.85/parking_dwell_state_MULTI_REG",
         save_reg_debug=True
     )

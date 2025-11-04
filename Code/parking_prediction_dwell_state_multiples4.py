@@ -118,81 +118,6 @@ def estimate_homography(img_ref_bgr, img_bgr,
 
     return H.astype(np.float32), int(inl.sum()), err
 
-
-def boost_parking_lines(score_img,          # float32, [0..1], taille image
-                        mask_img,           # uint8, {0,1}, taille image (issu de ton threshold actuel, image 4)
-                        ref_img_bgr=None,   # pour overlays (optionnel)
-                        min_line_len_px=80, # longueur mini des segments Hough (px)
-                        max_line_gap_px=20, # gap maxi entre segments (px)
-                        canny1=50, canny2=150,  # seuils Canny
-                        line_thick_px=6,    # épaisseur (px) des lignes “boostées”
-                        boost_sigma=5.0,    # flou gaussien pour étaler le boost (px)
-                        boost_gain=0.25,    # poids ajouté à score_img (0..1)
-                        alpha_overlay=0.6,
-                        out_prefix="parking_lines_boost"):
-    """
-    Renforce la carte score_img le long des “lignes de parking” estimées depuis mask_img.
-    Retourne: boosted_score_img, heatmap_boosted, overlay_boosted, lines_debug
-    Sauvegarde: *_lines.png, *_boostmap.png, *_score_map_boosted.png, *_overlay_boosted.png, *_mask_boosted.png
-    """
-
-    H, W = score_img.shape
-    # 1) Edges sur le mask (plus stable que sur la heatmap)
-    #    On dilate un chouïa le mask pour relier les points discontinus
-    kern = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
-    mask_dil = cv2.dilate((mask_img*255).astype(np.uint8), kern, iterations=1)
-    edges = cv2.Canny(mask_dil, canny1, canny2)
-
-    # 2) Hough probabiliste
-    #    rho=1px, theta=1deg; adapte si tu veux plus de rigidité angulaire
-    lines = cv2.HoughLinesP(edges, rho=5, theta=np.deg2rad(5.0),
-                            threshold=50, minLineLength=min_line_len_px,
-                            maxLineGap=max_line_gap_px)
-    # 3) Boost map (on dessine les segments puis on floute)
-    boost = np.zeros((H, W), np.float32)
-    line_img = np.zeros((H, W, 3), np.uint8)  # pour visu
-
-    if lines is not None:
-        for l in lines:
-            x1,y1,x2,y2 = l[0]
-            cv2.line(boost, (x1,y1), (x2,y2), color=1.0, thickness=line_thick_px)
-            cv2.line(line_img, (x1,y1), (x2,y2), color=(0,0,255), thickness=2)
-
-    if boost_sigma and boost_sigma > 0:
-        ksize = int(max(3, 2*int(3*boost_sigma)+1))
-        boost = cv2.GaussianBlur(boost, (ksize, ksize), boost_sigma)
-
-    # normalise boost à [0..1]
-    if boost.max() > 1e-6:
-        boost = boost / boost.max()
-
-    # 4) Applique le renforcement
-    boosted_score = np.clip(score_img + boost_gain * boost, 0.0, 1.0)
-
-    # 5) Heatmap + overlay (boosted)
-    score_u8 = (boosted_score*255).astype(np.uint8)
-    heatmap_boosted = cv2.applyColorMap(score_u8, cv2.COLORMAP_JET)
-
-    if ref_img_bgr is not None:
-        overlay_boosted = cv2.addWeighted(ref_img_bgr, 1.0, heatmap_boosted, alpha_overlay, 0)
-    else:
-        overlay_boosted = None
-
-    # 6) Re-threshold + mask
-    #    NB: tu peux réutiliser ton 'thr' habituel ici
-    thr = 0.85
-    mask_boosted = (boosted_score >= thr).astype(np.uint8)
-
-    # 7) Sauvegardes utiles
-    cv2.imwrite(f"{out_prefix}_lines.png", line_img)                                # segments trouvés
-    cv2.imwrite(f"{out_prefix}_boostmap.png", (boost*255).astype(np.uint8))         # carte de boost
-    cv2.imwrite(f"{out_prefix}_score_map_boosted.png", heatmap_boosted)             # heatmap boostée
-    if overlay_boosted is not None:
-        cv2.imwrite(f"{out_prefix}_overlay_boosted.png", overlay_boosted)           # overlay boostée
-    cv2.imwrite(f"{out_prefix}_mask_boosted.png", (mask_boosted*255).astype(np.uint8))
-
-    return boosted_score, heatmap_boosted, overlay_boosted, line_img, mask_boosted
-
 # -----------------------------
 # Core (multi-dossiers + registration)
 # -----------------------------
@@ -319,25 +244,131 @@ def run_parking_dwell_state_multi_registered(
     mask_img = (score_img >= thr).astype(np.uint8)
     cv2.imwrite(f"{out_prefix}_parking_location_mask.png", (mask_img*255).astype(np.uint8))
 
-    # 9) Boosting lines
-    boosted_score, heatmap_boosted, overlay_boosted, lines_dbg, mask_boosted = boost_parking_lines(
-    score_img=score_img,
-    mask_img=mask_img,
-    ref_img_bgr=img_ref,                 # pour overlay
-    min_line_len_px=40,                  # 80
-    max_line_gap_px=20,                    # 20
-    line_thick_px=10,                       # 6
-    boost_sigma=5.0,                       # 5
-    boost_gain=0.25,                     # 0.25
-    alpha_overlay=alpha_overlay,
-    out_prefix=f"{out_prefix}_lines"
-)
+    # === 9) combler les "trous entre places" et créer des zones de parking ===
+    # Idées clés:
+    # - cand_band : bande candidate où des places sont plausibles (score moyen/haut)
+    # - seeds     : graines => tes places fortes (mask_img)
+    # - gaps      : pixels proches des graines, dans la bande, mais non détectés (les "trous")
+    # - on booste le score dans gaps proportionnellement à la proximité des graines
 
-    # Remplace ensuite tes sorties par la version boostée si tu veux
-    score_img = boosted_score
-    heatmap_bgr = heatmap_boosted
-    overlay_bgr = overlay_boosted if overlay_boosted is not None else overlay_bgr
-    mask = mask_boosted
+    # Paramètres (à ajuster selon l'échelle de tes images)
+    low_thr      = 0.45   # seuil bas pour définir la "bande routière" candidate
+    gap_px       = 12     # taille max du trou à combler (en pixels image)
+    bonus_scale  = 0.35   # combien on ajoute au score dans les gaps (0..1)
+    close_len_px = 9      # fermeture morphologique pour lier les segments (px)
+
+    # 9.1) bande candidate (zones de route/parking plausibles)
+    cand_band = (score_img >= float(low_thr)).astype(np.uint8)
+
+    # 9.2) graines = tes détections fortes
+    seeds = (mask_img > 0).astype(np.uint8)
+
+    # # 9.3) gaps: dilatation des graines pour attraper les inter-espaces proches
+    # k_disk = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2*gap_px+1, 2*gap_px+1))
+    # seeds_dil = cv2.dilate(seeds, k_disk)
+    # gaps = ((seeds_dil > 0) & (cand_band > 0) & (seeds == 0)).astype(np.uint8)
+
+    # 9.3) dilatation ORIENTÉE par composante (suivant l'axe long de chaque seed)
+    def line_kernel(L, angle_deg, thickness=1):
+        k = np.zeros((L, L), np.uint8)
+        c = L // 2
+        rad = np.deg2rad(angle_deg)
+        dx, dy = int(np.cos(rad)*c), int(np.sin(rad)*c)
+        cv2.line(k, (c-dx, c-dy), (c+dx, c+dy), 1, thickness)
+        return k
+
+    def component_oriented_dilate(seeds_bin, gap_px, cand_band_bin, snap=None, thickness=1):
+        """
+        Dilate chaque composante connexe de 'seeds_bin' uniquement le long de son axe principal.
+        snap: si donné (ex. 15, 30, 45, 90), l'angle est arrondi au multiple le plus proche.
+        """
+        L = 2*gap_px + 1
+        # labels: 0 arrière-plan, 1..N composantes
+        num, labels = cv2.connectedComponents(seeds_bin, connectivity=8)
+        out = np.zeros_like(seeds_bin)
+
+        for lbl in range(1, num):
+            comp = (labels == lbl).astype(np.uint8)
+            # contour principal
+            cnts, _ = cv2.findContours(comp, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            if not cnts:
+                continue
+            cnt = max(cnts, key=cv2.contourArea)
+            (cx, cy), (w, h), ang = cv2.minAreaRect(cnt)  # ang in (-90,0]
+            if w < 1 or h < 1:
+                continue
+
+            # orienter selon l'AXE LONG de la boîte
+            if w < h:
+                ang = ang + 90.0  # convertit l'angle OpenCV pour pointer l'axe long
+
+            # option: arrondir l’angle (stabilise)
+            if snap and snap > 0:
+                ang = round(ang / snap) * snap
+
+            # kernel linéaire aligné + dilatation seulement pour cette composante
+            k_line = line_kernel(L, ang, thickness=thickness)
+            dil = cv2.dilate(comp, k_line)
+
+            # union des dilatations
+            out = np.maximum(out, dil)
+
+        out = (out > 0).astype(np.uint8)
+        # contraindre à la bande candidate
+        out = (out & cand_band_bin).astype(np.uint8)
+        return out
+
+    # --- appel : dilatation orientée + définition des gaps
+    seeds_dil = component_oriented_dilate(seeds, gap_px=gap_px, cand_band_bin=cand_band,
+                                          snap=15,   # mets None si tu veux l'angle exact
+                                          thickness=1)
+    gaps = ((seeds_dil > 0) & (cand_band > 0) & (seeds == 0)).astype(np.uint8)
+
+    # === Debug visuel des gaps et du mask dilaté ORIENTÉ ===
+    cv2.imwrite(f"{out_prefix}_mask_dilated_oriented.png", (seeds_dil * 255).astype(np.uint8))
+    cv2.imwrite(f"{out_prefix}_gaps_oriented.png", (gaps * 255).astype(np.uint8))
+    debug_overlay = img_ref.copy()
+    debug_overlay[gaps > 0] = (0, 0, 255)          # gaps en rouge
+    debug_overlay[seeds_dil > 0] = (0, 255, 0)     # dilatation orientée en vert
+    cv2.imwrite(f"{out_prefix}_overlay_gaps_oriented.png", debug_overlay)
+
+    # === Debug visuel des gaps et du mask dilaté ===
+    cv2.imwrite(f"{out_prefix}_mask_dilated.png", (seeds_dil * 255).astype(np.uint8))
+    cv2.imwrite(f"{out_prefix}_gaps.png", (gaps * 255).astype(np.uint8))
+
+    debug_overlay = img_ref.copy()
+    debug_overlay[gaps > 0] = (0, 0, 255)          # gaps en rouge
+    debug_overlay[seeds_dil > 0] = (0, 255, 0)     # mask dilaté en vert
+    cv2.imwrite(f"{out_prefix}_overlay_gaps_debug.png", debug_overlay)
+
+    # 9.4) bonus proportionnel à la proximité (distance transform sur les NON-seeds)
+    nonseeds = (seeds == 0).astype(np.uint8)
+    # distance euclidienne jusqu'à la détection la plus proche
+    dist = cv2.distanceTransform(nonseeds, distanceType=cv2.DIST_L2, maskSize=3)
+    # pondération décroissante avec la distance, bornée à gap_px
+    with np.errstate(divide='ignore', invalid='ignore'):
+        w = np.clip((gap_px - dist) / max(1e-6, gap_px), 0.0, 1.0)
+    gap_weight = (w * (gaps > 0)).astype(np.float32)
+
+    # 9.5) boost du score (dans [0,1]) + re-seuillage optionnel
+    score_img_boost = np.clip(score_img + bonus_scale * gap_weight, 0.0, 1.0)
+
+    # 9.6) fermer / relier pour obtenir des "zones"
+    k_close = cv2.getStructuringElement(cv2.MORPH_RECT, (close_len_px, close_len_px))
+    zone_mask = cv2.morphologyEx((score_img_boost >= thr).astype(np.uint8), cv2.MORPH_CLOSE, k_close)
+    # option: un léger élargissement pour un rendu en zones
+    zone_mask = cv2.dilate(zone_mask, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5,5)), iterations=1)
+
+    # 9.7) exports
+    cv2.imwrite(f"{out_prefix}_score_boost.png", (score_img_boost*255).astype(np.uint8))
+    cv2.imwrite(f"{out_prefix}_zones_mask.png", (zone_mask*255).astype(np.uint8))
+
+    # visu overlay zones
+    zones_bgr = cv2.cvtColor((zone_mask*255).astype(np.uint8), cv2.COLOR_GRAY2BGR)
+    zones_bgr[:, :, 1:] = 0  # rouge
+    overlay_zones = cv2.addWeighted(overlay_bgr, 1.0, zones_bgr, 0.5, 0)
+    cv2.imwrite(f"{out_prefix}_overlay_zones.png", overlay_zones)
+
 
     return score_img.astype(np.float32), overlay_bgr, heatmap_bgr, H_list, score_grid_brut
 
@@ -375,6 +406,6 @@ if __name__ == "__main__":
         gaussian_sigma=1.5, #1.5
         alpha_overlay=0.6,  #0.6
         thr=0.85,   #0.9
-        out_prefix="Results/parking_detection/dwell_mult/test4_thr_0.85/parking_dwell_state_MULTI_REG",
+        out_prefix="Results/parking_detection/dwell_mult_4/test2_thr_0.85/parking_dwell_state_MULTI_REG",
         save_reg_debug=True
     )
