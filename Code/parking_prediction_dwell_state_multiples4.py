@@ -253,7 +253,7 @@ def run_parking_dwell_state_multi_registered(
 
     # Paramètres (à ajuster selon l'échelle de tes images)
     low_thr      = 0.45   # seuil bas pour définir la "bande routière" candidate
-    gap_px       = 12     # taille max du trou à combler (en pixels image)
+    gap_px       = 20     # taille max du trou à combler (en pixels image)
     bonus_scale  = 0.35   # combien on ajoute au score dans les gaps (0..1)
     close_len_px = 9      # fermeture morphologique pour lier les segments (px)
 
@@ -406,6 +406,6 @@ if __name__ == "__main__":
         gaussian_sigma=1.5, #1.5
         alpha_overlay=0.6,  #0.6
         thr=0.85,   #0.9
-        out_prefix="Results/parking_detection/dwell_mult_4/test2_thr_0.85/parking_dwell_state_MULTI_REG",
+        out_prefix="Results/parking_detection/dwell_mult_4/test6_thr_0.85/parking_dwell_state_MULTI_REG",
         save_reg_debug=True
     )

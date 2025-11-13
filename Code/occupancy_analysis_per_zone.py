@@ -11,9 +11,9 @@ from concurrent.futures import ProcessPoolExecutor
 ###########################################################
 MASK_PATH   = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_closed.png"
 FOLDER      = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0004"
-ZONES_PATH  = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_zones_id.png"  # ex: r"C:/.../mask_closed_zones_id.png"  # si None => zones = composantes connexes du MASK_PATH
+ZONES_PATH  = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_zones_id.png"
 
-out_dir = "Results/occupancy_analysis/per_zones/test1/"
+out_dir = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test1"
 
 OVERLAP_THR = 0.7  # % du polygone véhicule dans parking pour compter “garé”
 
@@ -22,7 +22,7 @@ MIN_ZONE_AREA = 4000
 
 # --- Execution mode ---
 USE_PARALLEL = True      # True = ProcessPoolExecutor, False = séquentiel
-MAX_WORKERS  = 4      # None -> os.cpu_count(); sinon mets un int (ex: 4)
+MAX_WORKERS  = None        # None -> os.cpu_count(); sinon mets un int (ex: 4)
 
 ###########################################################
 # GLOBALS FOR WORKERS
@@ -68,56 +68,26 @@ def quick_candidate_check(poly_xy):
     local_mask = mask_bin_global[y0:y1+1, x0:x1+1]
     return np.any(local_mask == 1)
 
-def compute_overlap_ratio(poly_xy):
+def rasterize_poly(poly_xy):
+    """
+    Rasterise le polygone UNE SEULE FOIS et renvoie:
+    (xmin_c, xmax_c, ymin_c, ymax_c, veh_local_mask)
+    """
     xmin_c, xmax_c, ymin_c, ymax_c = fast_bbox(poly_xy)
     if xmax_c < xmin_c or ymax_c < ymin_c:
-        return 0.0
+        return None
+
     shifted = poly_xy.copy()
-    shifted[:, 0] -= xmin_c; shifted[:, 1] -= ymin_c
+    shifted[:, 0] -= xmin_c
+    shifted[:, 1] -= ymin_c
     shifted = shifted.astype(np.int32)
-    roi_w = xmax_c - xmin_c + 1; roi_h = ymax_c - ymin_c + 1
+
+    roi_w = xmax_c - xmin_c + 1
+    roi_h = ymax_c - ymin_c + 1
     veh_local = np.zeros((roi_h, roi_w), dtype=np.uint8)
     cv2.fillPoly(veh_local, [shifted], 1)
-    mask_roi = mask_bin_global[ymin_c:ymax_c+1, xmin_c:xmax_c+1]
-    veh_px = int(np.sum(veh_local))
-    if veh_px == 0:
-        return 0.0
-    overlap_px = int(np.sum((veh_local == 1) & (mask_roi == 1)))
-    return overlap_px / veh_px
 
-def rasterize_into_union(poly_xy, union_mask):
-    xmin_c, xmax_c, ymin_c, ymax_c = fast_bbox(poly_xy)
-    if xmax_c < xmin_c or ymax_c < ymin_c:
-        return
-    shifted = poly_xy.copy()
-    shifted[:, 0] -= xmin_c; shifted[:, 1] -= ymin_c
-    shifted = shifted.astype(np.int32)
-    roi_w = xmax_c - xmin_c + 1; roi_h = ymax_c - ymin_c + 1
-    temp = np.zeros((roi_h, roi_w), dtype=np.uint8)
-    cv2.fillPoly(temp, [shifted], 1)
-    union_mask[ymin_c:ymax_c+1, xmin_c:xmax_c+1] |= temp
-
-def assign_zone_for_vehicle(poly_xy):
-    """Renvoie l'id de zone majoritaire sous le polygone (0 si aucune)."""
-    xmin_c, xmax_c, ymin_c, ymax_c = fast_bbox(poly_xy)
-    if xmax_c < xmin_c or ymax_c < ymin_c:
-        return 0
-    shifted = poly_xy.copy()
-    shifted[:, 0] -= xmin_c; shifted[:, 1] -= ymin_c
-    shifted = shifted.astype(np.int32)
-    roi_w = xmax_c - xmin_c + 1; roi_h = ymax_c - ymin_c + 1
-
-    temp = np.zeros((roi_h, roi_w), dtype=np.uint8)
-    cv2.fillPoly(temp, [shifted], 1)
-
-    lab_roi = labels_global[ymin_c:ymax_c+1, xmin_c:xmax_c+1]
-    values = lab_roi[temp == 1]
-    if values.size == 0:
-        return 0
-    # majoritaire hors bg (0)
-    counts = np.bincount(values, minlength=labels_global.max()+1)
-    counts[0] = 0
-    return int(np.argmax(counts)) if counts.sum() > 0 else 0
+    return xmin_c, xmax_c, ymin_c, ymax_c, veh_local
 
 ###########################################################
 # PER-FRAME WORKER
@@ -143,16 +113,41 @@ def process_one_frame(txt_path):
         ], dtype=np.float32)
 
         total_count += 1
+
         if not quick_candidate_check(poly_xy):
             continue
 
-        ratio = compute_overlap_ratio(poly_xy)
+        # --- RASTERISATION UNIQUE DU POLYGONE ---
+        res = rasterize_poly(poly_xy)
+        if res is None:
+            continue
+        xmin_c, xmax_c, ymin_c, ymax_c, veh_local = res
+
+        # --- CALCUL DU RATIO D'OVERLAP ---
+        mask_roi = mask_bin_global[ymin_c:ymax_c+1, xmin_c:xmax_c+1]
+        veh_px = int(np.sum(veh_local))
+        if veh_px == 0:
+            continue
+
+        overlap_px = int(np.sum((veh_local == 1) & (mask_roi == 1)))
+        ratio = overlap_px / veh_px
+
         if ratio > overlap_thr_global:
             parked_count += 1
-            rasterize_into_union(poly_xy, union_total)
-            zid = assign_zone_for_vehicle(poly_xy)
-            if zid in z_vehicle_counts:
-                z_vehicle_counts[zid] += 1
+
+            # --- MISE À JOUR DU UNION MASK ---
+            union_total[ymin_c:ymax_c+1, xmin_c:xmax_c+1] |= veh_local
+
+            # --- ASSIGNATION DE ZONE AVEC LE MÊME MASK ---
+            lab_roi = labels_global[ymin_c:ymax_c+1, xmin_c:xmax_c+1]
+            values = lab_roi[veh_local == 1]
+            if values.size > 0:
+                counts = np.bincount(values, minlength=labels_global.max()+1)
+                counts[0] = 0
+                if counts.sum() > 0:
+                    zid = int(np.argmax(counts))
+                    if zid in z_vehicle_counts:
+                        z_vehicle_counts[zid] += 1
 
     # area per zone: use labels on union_total∩mask
     covered = (union_total == 1) & (mask_bin_global == 1)
@@ -171,8 +166,10 @@ def process_one_frame(txt_path):
     parking_area_used_pct = 100.0 * covered_pixels / parking_area_global if parking_area_global > 0 else 0.0
 
     # per-zone pct
-    z_area_pct = {z: (100.0 * z_area_px[z] / zone_areas_global[z] if zone_areas_global[z] > 0 else 0.0)
-                  for z in zone_ids_global}
+    z_area_pct = {
+        z: (100.0 * z_area_px[z] / zone_areas_global[z] if zone_areas_global[z] > 0 else 0.0)
+        for z in zone_ids_global
+    }
 
     return {
         "frame": frame_name,
@@ -202,56 +199,67 @@ if __name__ == "__main__":
         lab_img = cv2.imread(ZONES_PATH, cv2.IMREAD_GRAYSCALE)
         if lab_img is None:
             raise FileNotFoundError(ZONES_PATH)
-        labels = lab_img.astype(np.int32)               # 0..N, même format que le script de zones
-        labels[mask_bin == 0] = 0                       # clamp hors parking
+        labels = lab_img.astype(np.int32)
+        # clamp hors parking
+        labels[mask_bin == 0] = 0
     else:
         # fallback: composantes connexes du mask
         num, lab = cv2.connectedComponents(mask_bin, connectivity=8)
         labels = lab.astype(np.int32)
 
-    # filtre des petites zones (optionnel)
+    # --------- FILTRE DES PETITES ZONES (bincount au lieu de (labels==z).sum()) ----------
     if MIN_ZONE_AREA and MIN_ZONE_AREA > 0:
-        num = int(labels.max())
-        keep = np.zeros(num+1, np.uint8); keep[0] = 1
-        for z in range(1, num+1):
-            area = int((labels == z).sum())
-            if area >= MIN_ZONE_AREA:
+        vals = labels.ravel()
+        counts = np.bincount(vals)  # counts[z] = nb de pixels dans la zone z
+        num = len(counts) - 1
+
+        keep = np.zeros(num + 1, np.uint8)
+        keep[0] = 1  # background toujours gardé
+
+        for z in range(1, num + 1):
+            if counts[z] >= MIN_ZONE_AREA:
                 keep[z] = 1
-        remap = np.zeros(num+1, np.int32); nid = 0
-        for z in range(num+1):
+
+        remap = np.zeros(num + 1, np.int32)
+        nid = 0
+        for z in range(num + 1):
             if keep[z]:
                 remap[z] = nid
                 nid += 1
+
         labels = remap[labels]
-        # re-clamp hors parking
         labels[mask_bin == 0] = 0
 
-    # zones meta
-    zone_ids = [z for z in np.unique(labels) if z != 0]
-    zone_areas = {int(z): int((labels == z).sum()) for z in zone_ids}
+    # --------- ZONES META (bincount de nouveau après remap) ----------
+    vals = labels.ravel()
+    counts = np.bincount(vals)
+    zone_ids = [z for z in range(1, len(counts)) if counts[z] > 0]
+    zone_areas = {int(z): int(counts[z]) for z in zone_ids}
 
     # Collect frames
     frames = sorted(glob.glob(os.path.join(FOLDER, "*.txt")))
-    # frames = frames[::5]  # dev mode
+    # frames = frames[::5]  # dev mode si tu veux
 
-    # Parallel
     results = []
+
     if USE_PARALLEL:
-    # Init des workers + exécution en parallèle
-        with ProcessPoolExecutor(max_workers=MAX_WORKERS,
-                                initializer=init_worker,
-                                initargs=(mask_bin, labels, zone_ids, zone_areas, OVERLAP_THR)) as pool:
-            for frame_stats in tqdm(pool.map(process_one_frame, frames),
-                                    total=len(frames),
-                                    desc="Processing frames in parallel"):
+        with ProcessPoolExecutor(
+            max_workers=MAX_WORKERS,
+            initializer=init_worker,
+            initargs=(mask_bin, labels, zone_ids, zone_areas, OVERLAP_THR)
+        ) as pool:
+            for frame_stats in tqdm(
+                pool.map(process_one_frame, frames),
+                total=len(frames),
+                desc="Processing frames in parallel"
+            ):
                 results.append(frame_stats)
     else:
-        # Exécution séquentielle (même code, mais dans le process principal)
-        init_worker(mask_bin, labels, zone_ids, zone_areas, OVERLAP_THR)  # initialise les globals
+        init_worker(mask_bin, labels, zone_ids, zone_areas, OVERLAP_THR)
         for fp in tqdm(frames, total=len(frames), desc="Processing frames sequentially"):
             results.append(process_one_frame(fp))
 
-    # -------- Global dataframe (comme avant) --------
+    # -------- Global dataframe --------
     df = pd.DataFrame([{
         "frame": r["frame"],
         "total_vehicles": r["total_vehicles"],
@@ -261,7 +269,6 @@ if __name__ == "__main__":
         "parking_area_used_pixels": r["parking_area_used_pixels"],
     } for r in results])
 
-    # Summary global identique
     idx_max = df["parking_area_used_%"].idxmax()
     idx_min = df["parking_area_used_%"].idxmin()
     row_max = df.loc[idx_max]; row_min = df.loc[idx_min]
@@ -313,12 +320,14 @@ if __name__ == "__main__":
     ).reset_index()
     dz_summary["zone_area_px"] = dz_summary["zone_id"].map(zone_areas)
 
-    # -------- Exports --------
-    df.to_csv("f{out_dir}_global_results.csv", index=False)
-    dz.to_csv("f{out_dir}_per_zone_per_frame.csv", index=False)
-    dz_summary.to_csv("f{out_dir}_per_zone_summary.csv", index=False)
+    # -------- Exports (fix f-strings + dossier) --------
+    os.makedirs(out_dir, exist_ok=True)
+
+    df.to_csv(os.path.join(out_dir, "global_results.csv"), index=False)
+    dz.to_csv(os.path.join(out_dir, "per_zone_per_frame.csv"), index=False)
+    dz_summary.to_csv(os.path.join(out_dir, "per_zone_summary.csv"), index=False)
 
     print("Saved:")
-    print("f{out_dir}_global_results.csv")
-    print("f{out_dir}_per_zone_per_frame.csv")
-    print("f{out_dir}_per_zone_summary.csv")
+    print(os.path.join(out_dir, "global_results.csv"))
+    print(os.path.join(out_dir, "per_zone_per_frame.csv"))
+    print(os.path.join(out_dir, "per_zone_summary.csv"))
