@@ -13,7 +13,7 @@ MASK_PATH   = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_an
 FOLDER      = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0004"
 ZONES_PATH  = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_zones_id.png"
 
-out_dir = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test1"
+out_dir = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test2"
 
 OVERLAP_THR = 0.7  # % du polygone véhicule dans parking pour compter “garé”
 
@@ -331,3 +331,55 @@ if __name__ == "__main__":
     print(os.path.join(out_dir, "global_results.csv"))
     print(os.path.join(out_dir, "per_zone_per_frame.csv"))
     print(os.path.join(out_dir, "per_zone_summary.csv"))
+
+    # -------- Visualization: per-zone occupancy heatmaps --------
+    # We will create an image where each pixel in a zone has the
+    # average (or max) occupancy percentage of that zone,
+    # then convert it to a colored heatmap.
+
+    # --- Average occupancy heatmap ---
+    occ_map_avg = np.zeros_like(labels, dtype=np.float32)
+
+    for _, row in dz_summary.iterrows():
+        z = int(row["zone_id"])
+        pct = float(row["avg_area_pct"])  # 0–100
+        occ_map_avg[labels == z] = pct
+
+    # Normalize to [0, 255] for colormap
+    max_pct_avg = dz_summary["avg_area_pct"].max()
+    if max_pct_avg > 0:
+        norm_avg = (occ_map_avg / max_pct_avg * 255).astype(np.uint8)
+    else:
+        norm_avg = occ_map_avg.astype(np.uint8)
+
+    # Apply color map (JET = blue→red)
+    heat_avg_color = cv2.applyColorMap(norm_avg, cv2.COLORMAP_JET)
+
+    # Set non-parking pixels to black
+    heat_avg_color[mask_bin == 0] = 0
+
+    # Save image
+    avg_heat_path = os.path.join(out_dir, "per_zone_avg_occupancy_heatmap.png")
+    cv2.imwrite(avg_heat_path, heat_avg_color)
+    print("Saved heatmap:", avg_heat_path)
+
+    # --- Max occupancy heatmap (optional, same idea) ---
+    occ_map_max = np.zeros_like(labels, dtype=np.float32)
+
+    for _, row in dz_summary.iterrows():
+        z = int(row["zone_id"])
+        pct = float(row["max_area_pct"])  # 0–100
+        occ_map_max[labels == z] = pct
+
+    max_pct_max = dz_summary["max_area_pct"].max()
+    if max_pct_max > 0:
+        norm_max = (occ_map_max / max_pct_max * 255).astype(np.uint8)
+    else:
+        norm_max = occ_map_max.astype(np.uint8)
+
+    heat_max_color = cv2.applyColorMap(norm_max, cv2.COLORMAP_JET)
+    heat_max_color[mask_bin == 0] = 0
+
+    max_heat_path = os.path.join(out_dir, "per_zone_max_occupancy_heatmap.png")
+    cv2.imwrite(max_heat_path, heat_max_color)
+    print("Saved heatmap:", max_heat_path)
