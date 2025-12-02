@@ -13,12 +13,12 @@ MASK_PATH   = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_an
 FOLDER      = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0004"
 ZONES_PATH  = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_zones_id.png"
 
-out_dir = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test2"
+out_dir = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test3"
 
 OVERLAP_THR = 0.7  # % du polygone véhicule dans parking pour compter “garé”
 
 # (optionnel) filtrer les toutes petites zones
-MIN_ZONE_AREA = 4000
+MIN_ZONE_AREA = 5000
 
 # --- Execution mode ---
 USE_PARALLEL = True      # True = ProcessPoolExecutor, False = séquentiel

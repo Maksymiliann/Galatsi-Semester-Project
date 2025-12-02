@@ -6,8 +6,8 @@ from pathlib import Path
 import random
 
 # ========= CONFIG =========
-INPUT_MASK = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/zone/mask_closed.png"   # binaire 0/255 (ton image)
-OUT_PREFIX = "Results/parking_detection/zone/test1/mask"
+INPUT_MASK = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/zone/mask_closed_cleaned.png"   # binaire 0/255 (ton image)
+OUT_PREFIX = "Results/parking_detection/zone/test2/mask"
 
 # Nettoyage / pré-segmentation
 DO_OPENING = True

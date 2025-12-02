@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 # =========================
 # CONFIG – CHANGE PATHS HERE
 # =========================
-PER_ZONE_PER_FRAME_CSV = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test1/per_zone_per_frame.csv"
-PER_ZONE_SUMMARY_CSV   = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test1/per_zone_summary.csv"
-GLOBAL_RESULTS_CSV     = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test1/global_results.csv"
+PER_ZONE_PER_FRAME_CSV = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test0314/per_zone_per_frame.csv"
+PER_ZONE_SUMMARY_CSV   = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test0314/per_zone_summary.csv"
+GLOBAL_RESULTS_CSV     = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/test0314/global_results.csv"
 
 
 # =========================
@@ -41,6 +41,15 @@ def read_csv_safely(path, expected_cols):
 # =========================
 # LOADING + PREPROCESSING
 # =========================
+def print_estimated_vehicles(per_zone_summary):
+    print("\n=== Estimated number of parking places per zone ===")
+    df = per_zone_summary.copy()
+    df["zone_id"] = df["zone_id"].astype(int)
+    df = df.sort_values("zone_id")
+
+    for _, row in df.iterrows():
+        print(f"Zone {int(row['zone_id'])}: ~{row['est_capacity_linear_rounded']} places")
+
 def load_data():
     per_zone_per_frame = read_csv_safely(
         PER_ZONE_PER_FRAME_CSV,
@@ -161,6 +170,8 @@ def plot_zone_summary_bar(per_zone_summary):
 
 if __name__ == "__main__":
     per_zone_per_frame, per_zone_summary, global_results = load_data()
+
+    print_estimated_vehicles(per_zone_summary)
 
     # 1) Plot occupancy over time for a specific zone
     plot_zone_occupancy_over_time(per_zone_per_frame, zone_id=1)
