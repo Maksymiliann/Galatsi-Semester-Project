@@ -143,7 +143,7 @@ def infer_obb_tiled(
 
 
 save_path, dets, num_objects, counts = infer_obb_tiled(
-    img_path="first_frame_moving.png",
+    img_path="first_frame_static.png",
     model_path="yolo11l-obb.pt",
     tile=1280,
     overlap=0.25,
