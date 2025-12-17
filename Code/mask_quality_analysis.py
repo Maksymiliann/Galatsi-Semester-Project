@@ -5,7 +5,7 @@ import numpy as np
 # PATHS
 # -----------------
 GT_PATH   = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_ids_color.png"
-MASK_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_closed_cleaned.png"
+MASK_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/cleaned_bw.png"
 #MASK_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/dwell_mult_4/test4_thr_0.85/parking_dwell_state_MULTI_REG_zones_mask.png"
 
 # (optionnel) image de fond pour visualiser (satellite / frame)
