@@ -104,6 +104,16 @@ Galatsi-Semester-Project/
    - takes the csv as input
    - read them and plot some graphs
 
+## Results
+In the `results` folder, you will find all outputs generated throughout the project. 
+The folder is organized by project components, such as feature matching, parking detection, 
+and occupancy analysis. Each component contains separate subfolders for the different 
+algorithms that were tested.
+
+The `results` folder also includes images produced by the scripts, as well as images 
+required as inputs for certain processing steps. In addition, it contains the manually 
+created ground truth data and the transcription of all videos used in the project, stored 
+as TXT files.
 
 ## Acknowledgements & Third-Party Code
 
