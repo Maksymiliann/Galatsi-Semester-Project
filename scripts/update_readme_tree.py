@@ -14,6 +14,7 @@ DEPTH_OVERRIDES = {
     "Main code": 2,      # keep it readable
     "Results": 2,        # Results is huge -> stay shallow
     "runs": 1,           # but...
+    "Dataset": 2,
     #"runs/obb": 2,       # ...limit obb a bit (optional)
 }
 

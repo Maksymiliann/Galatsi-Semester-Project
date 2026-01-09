@@ -8,6 +8,9 @@
 Galatsi-Semester-Project/
 ├── .github/
 ├── Dataset/
+│   ├── Galatsi_Data_Semester_Project_archive/
+│   ├── Galatsi_Data_Semester_Project_processing/
+│   └── Galatsi_Data_Semester_Project_archive.zip
 ├── LightGlue/
 ├── Main code/
 │   ├── 1_tracking.py
