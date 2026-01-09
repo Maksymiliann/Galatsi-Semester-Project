@@ -7,10 +7,6 @@
 ```text
 Galatsi-Semester-Project/
 ├── .github/
-├── Dataset/
-│   ├── Galatsi_Data_Semester_Project_archive/
-│   ├── Galatsi_Data_Semester_Project_processing/
-│   └── Galatsi_Data_Semester_Project_archive.zip
 ├── LightGlue/
 ├── Main code/
 │   ├── 1_tracking.py
@@ -43,8 +39,7 @@ Galatsi-Semester-Project/
 │   ├── TXT_0314_D2_S4_S1/
 │   ├── TXT_0314_D2_S4_S1_padded/
 │   ├── TXT_0319_D2_S5_S1/
-│   ├── TXT_0319_D2_S5_S1_padded/
-│   └── Video/
+│   └── TXT_0319_D2_S5_S1_padded/
 ├── runs/
 ├── scripts/
 ├── Src/
@@ -53,12 +48,7 @@ Galatsi-Semester-Project/
 ├── EPFL_Report_Semester_Project_2_compressed.pdf
 ├── logs.txt
 ├── README.md
-├── requirements.txt
-├── yolo11l-obb.pt
-├── yolo11m-obb.pt
-├── yolo11n-obb.pt
-├── yolo11x-obb.pt
-└── yolo11x.pt
+└── requirements.txt
 ```
 
 <!-- TREE_END -->
