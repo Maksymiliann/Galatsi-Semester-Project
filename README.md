@@ -53,6 +53,8 @@ Galatsi-Semester-Project/
 
 <!-- TREE_END -->
 
+## Main Code
+
 1) tracking.py
   - takes a video or image as input as well as the desired YOLO model 
   - stabilizes the video
