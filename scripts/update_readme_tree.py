@@ -4,8 +4,19 @@ from pathlib import Path
 START = "<!-- TREE_START -->"
 END = "<!-- TREE_END -->"
 
-# Adjust these to your taste
-MAX_DEPTH = 4
+# Default depth for everything
+DEFAULT_DEPTH = 3
+
+# Custom depth rules (relative to repo root)
+# Use folder names exactly as they are in your repo (case + spaces!)
+DEPTH_OVERRIDES = {
+    "Src": 1,            # show more files in Src
+    "Main code": 1,      # keep it readable
+    "Results": 1,        # Results is huge -> stay shallow
+    "runs": 1,           # but...
+    "runs/obb": 1,       # ...limit obb a bit (optional)
+}
+
 IGNORE_DIRS = {".git", "__pycache__", ".venv", "venv", "node_modules", ".idea", ".vscode"}
 IGNORE_FILES = {".DS_Store"}
 
@@ -22,16 +33,35 @@ def should_ignore(path: Path) -> bool:
     return False
 
 
-def build_tree(root: Path, max_depth: int) -> str:
+def get_allowed_depth(relative_path: str) -> int:
+    """
+    Return max depth allowed under a given relative path (folder).
+    If no override exists, return DEFAULT_DEPTH.
+    Longest matching prefix wins.
+    """
+    best = None
+    best_len = -1
+    for key, depth in DEPTH_OVERRIDES.items():
+        if relative_path == key or relative_path.startswith(key + "/"):
+            if len(key) > best_len:
+                best = depth
+                best_len = len(key)
+    return best if best is not None else DEFAULT_DEPTH
+
+
+def build_tree(root: Path) -> str:
     lines: list[str] = [f"{root.name}/"]
 
-    def walk(dir_path: Path, prefix: str, depth: int):
-        if depth >= max_depth:
+    def walk(dir_path: Path, prefix: str, depth_from_root: int):
+        # Determine allowed depth for this subtree
+        rel = dir_path.relative_to(root).as_posix()
+        allowed = get_allowed_depth(rel) if rel != "." else DEFAULT_DEPTH
+
+        if depth_from_root >= allowed:
             return
 
         entries = [p for p in dir_path.iterdir() if not should_ignore(p)]
-        # dirs first, then files; alphabetical
-        entries.sort(key=lambda p: (p.is_file(), p.name.lower()))
+        entries.sort(key=lambda p: (p.is_file(), p.name.lower()))  # dirs first then files
 
         for i, p in enumerate(entries):
             is_last = i == len(entries) - 1
@@ -40,7 +70,7 @@ def build_tree(root: Path, max_depth: int) -> str:
 
             if p.is_dir():
                 extension = "    " if is_last else "│   "
-                walk(p, prefix + extension, depth + 1)
+                walk(p, prefix + extension, depth_from_root + 1)
 
     walk(root, "", 0)
     return "\n".join(lines)
@@ -48,7 +78,6 @@ def build_tree(root: Path, max_depth: int) -> str:
 
 def inject_into_readme(readme_path: Path, tree_text: str) -> None:
     content = readme_path.read_text(encoding="utf-8")
-
     if START not in content or END not in content:
         raise RuntimeError(f"README.md must contain {START} and {END} markers.")
 
@@ -69,6 +98,6 @@ def inject_into_readme(readme_path: Path, tree_text: str) -> None:
 
 
 if __name__ == "__main__":
-    tree = build_tree(REPO_ROOT, MAX_DEPTH)
+    tree = build_tree(REPO_ROOT)
     inject_into_readme(README, tree)
     print("README.md updated with project tree.")
