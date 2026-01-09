@@ -1,5 +1,9 @@
 # Galatsi-Semester-Project
+This project aims to automatically analyze parking availability and traffic dynamics from drone video footage. By leveraging the wide field of view provided by drones, the system detects and tracks vehicles over time to understand both road usage and parking behavior in complex urban environments.
 
+The pipeline processes raw drone videos using deep learning–based vehicle detection, multi-object tracking, and spatial–temporal analysis. Vehicle trajectories are reconstructed to compensate for drone motion and maintain consistent identities across frames. These trajectories are then analyzed to infer parking regions, estimate occupancy, and study the temporal evolution of parking demand.
+
+The ultimate objective is to identify occupied and available parking spaces, highlight high-demand zones, and analyze parking inflow and outflow patterns. Such insights can support smarter parking management, reduce congestion caused by parking search, and potentially assist autonomous or connected vehicles in navigating toward optimal parking areas.
 ## Project structure
 
 <!-- TREE_START -->
