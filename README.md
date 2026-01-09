@@ -73,8 +73,7 @@ Galatsi-Semester-Project/
 3) post_precessing2.py
    - takes the mask as input
    - close the small gaps
-   - 
-4) cleaning.py
+4) cleaning.py or post_processing3
    - takes the mask as input and removes the small parking locations
 
 5) zones3.py
@@ -87,8 +86,8 @@ Galatsi-Semester-Project/
 
 (Optional) 
   Padding.py
-  - takes the txt files as input
-  - does a padding on parked vehicles to have a better analysis later
+   - takes the txt files as input
+   - does a padding on parked vehicles to have a better analysis later
 
 7) occupancy_analysis_per_zones3.py
    - takes the txt files as well as the mask and the ID mask, and a reference frame and the first frame on the analyzed video
