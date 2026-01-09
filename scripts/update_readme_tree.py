@@ -4,7 +4,7 @@ START = "<!-- TREE_START -->"
 END = "<!-- TREE_END -->"
 
 # Matches `tree -L 2`
-MAX_LEVEL = 1  # 1 = only root children, 2 = children + grandchildren
+MAX_LEVEL = 2  # 1 = only root children, 2 = children + grandchildren
 
 IGNORE_DIRS = {
     ".git", "__pycache__", ".venv", "venv",
