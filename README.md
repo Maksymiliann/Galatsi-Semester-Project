@@ -7,13 +7,124 @@
 ```text
 Galatsi-Semester-Project/
 ├── .github/
+│   └── workflows/
 ├── Dataset/
+│   ├── Galatsi_Data_Semester_Project_archive/
+│   ├── Galatsi_Data_Semester_Project_processing/
+│   └── Galatsi_Data_Semester_Project_archive.zip
 ├── LightGlue/
+│   ├── .github/
+│   ├── assets/
+│   ├── lightglue/
+│   ├── lightglue.egg-info/
+│   ├── .flake8
+│   ├── .gitattributes
+│   ├── .gitignore
+│   ├── benchmark.py
+│   ├── demo.ipynb
+│   ├── LICENSE
+│   ├── pyproject.toml
+│   ├── README.md
+│   └── requirements.txt
 ├── Main code/
+│   ├── 1_tracking.py
+│   ├── 2_parking_prediction_dwell_state_multiples4.py
+│   ├── 3_post_processing2.py
+│   ├── 4_cleaning.py
+│   ├── 4_post_processing3.py
+│   ├── 5_zones3.py
+│   ├── 6_1_optional_padding.py
+│   ├── 6_zones.py
+│   ├── 7_occupancy_analysis_per_zone3.py
+│   ├── 8_csv_reader.py
+│   └── EPFL_Report_Semester_Project_2_compressed.pdf
 ├── Results/
+│   ├── feature_matching/
+│   ├── Ground_truth/
+│   ├── Images/
+│   ├── occupancy_analysis/
+│   ├── parking_detection/
+│   ├── TXT/
+│   ├── TXT10/
+│   ├── TXT_0004/
+│   ├── TXT_0004_padded/
+│   ├── TXT_0005/
+│   ├── TXT_0005_padded/
+│   ├── TXT_0006/
+│   ├── TXT_0006_padded/
+│   ├── TXT_0312_D2_S3_S1/
+│   ├── TXT_0312_D2_S3_S1_padded/
+│   ├── TXT_0314_D2_S4_S1/
+│   ├── TXT_0314_D2_S4_S1_padded/
+│   ├── TXT_0319_D2_S5_S1/
+│   ├── TXT_0319_D2_S5_S1_padded/
+│   └── Video/
 ├── runs/
+│   └── obb/
 ├── scripts/
+│   └── update_readme_tree.py
 ├── Src/
+│   ├── cleaning.py
+│   ├── csv_reader.py
+│   ├── data_analysis.ipynb
+│   ├── data_time_processing.py
+│   ├── feature_matching_image.py
+│   ├── feature_matching_image_openCV.py
+│   ├── feature_matching_image_openCV2.py
+│   ├── feature_matching_lightglue.py
+│   ├── feature_matching_lightglue2.py
+│   ├── feature_matching_video.py
+│   ├── mask_quality_analysis.py
+│   ├── new_test_clean_density.py
+│   ├── occupancy_analyis_per_zone2.py
+│   ├── occupancy_analysis.py
+│   ├── occupancy_analysis_fast.py
+│   ├── occupancy_analysis_faster.py
+│   ├── occupancy_analysis_mult.py
+│   ├── occupancy_analysis_per_zone.py
+│   ├── occupancy_analysis_per_zone3.py
+│   ├── occupancy_analysis_very_fast.py
+│   ├── occupancy_analysis_with_feature_tracking.py
+│   ├── padding.py
+│   ├── parking_detection_dwell_state_ratio.py
+│   ├── parking_detection_gauss_splat.py
+│   ├── parking_prediction_dwell_mix.py
+│   ├── parking_prediction_dwell_state.py
+│   ├── parking_prediction_dwell_state_clip.py
+│   ├── parking_prediction_dwell_state_multiples.py
+│   ├── parking_prediction_dwell_state_multiples2.py
+│   ├── parking_prediction_dwell_state_multiples3.py
+│   ├── parking_prediction_dwell_state_multiples4.py
+│   ├── parking_prediction_dwell_test.py
+│   ├── parking_prediction_GMM_EM.py
+│   ├── parking_prediction_GMM_EM_fast.py
+│   ├── patch_inference.ipynb
+│   ├── patch_inference_model.py
+│   ├── patch_inference_model_test_myself.py
+│   ├── post_processing.py
+│   ├── post_processing2.py
+│   ├── post_processing3.py
+│   ├── read_json.py
+│   ├── see_id.py
+│   ├── see_id2.py
+│   ├── take_frame.py
+│   ├── test.ipynb
+│   ├── test_line.py
+│   ├── test_parking.py
+│   ├── test_patch_counting.py
+│   ├── test_patch_not_counting.py
+│   ├── test_txt_record.py
+│   ├── tracking.py
+│   ├── yolo11m-obb.pt
+│   ├── yolo11m.pt
+│   ├── yolo11n-obb.pt
+│   ├── yolo11n.pt
+│   ├── yolo11x-obb.pt
+│   ├── yolo11x.pt
+│   ├── zones.py
+│   ├── zones2.py
+│   ├── zones3.py
+│   └── zones4.py
 ├── .gitattributes
 ├── .gitignore
 ├── EPFL_Report_Semester_Project_2_compressed.pdf
