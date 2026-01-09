@@ -5,28 +5,28 @@
 <!-- TREE_START -->
 
 ```text
-Galatsi-Semester-Project/
-├── .github/
-├── LightGlue/
-├── Main code/
-│   ├── 1_tracking.py
-│   ├── 2_parking_prediction_dwell_state_multiples4.py
-│   ├── 3_post_processing2.py
-│   ├── 4_cleaning.py
-│   ├── 4_post_processing3.py
-│   ├── 5_zones3.py
-│   ├── 6_1_optional_padding.py
-│   ├── 6_zones.py
-│   ├── 7_occupancy_analysis_per_zone3.py
-│   ├── 8_csv_reader.py
-│   └── EPFL_Report_Semester_Project_2_compressed.pdf
-├── Results/
-│   ├── feature_matching/
-│   ├── Ground_truth/
-│   ├── Images/
-│   ├── occupancy_analysis/
-│   ├── parking_detection/
-│   ├── TXT/
+Galatsi-Semester-Project/                                      
+├── .github/                                                  # Folder for the workflow
+├── LightGlue/                                                # LightGlue git
+├── Main code/                                                # Scripts used in the pipeline, they represent all the necessaries scripts of this project
+│   ├── 1_tracking.py                                         # Detects and tracks vehicles
+│   ├── 2_parking_prediction_dwell_state_multiples4.py        # Predicts the parking locations and already does a bit of processing 
+│   ├── 3_post_processing2.py                                 # More processing, mostly gaps filling
+│   ├── 4_cleaning.py                                         # Removes small parking places
+│   ├── 4_post_processing3.py                                 # Removes small and isolated parking places
+│   ├── 5_zones3.py                                           # Defines the zones
+│   ├── 6_1_optional_padding.py                               # can be used to do padding on the TXT folders
+│   ├── 6_zones.py                                            # Associates an ID to each zone
+│   ├── 7_occupancy_analysis_per_zone3.py                     # Analyses a video based on parking zones
+│   ├── 8_csv_reader.py                                       # Reads the analysis
+│   └── EPFL_Report_Semester_Project_2_compressed.pdf         # Compressed report
+├── Results/                                                  # Here are all the results obtained troughout the project
+│   ├── feature_matching/                                     # Results for the feature matching
+│   ├── Ground_truth/                                         # Ground truth used for analysis
+│   ├── Images/                                               # Images needed for some scripts or given as an output for visualization
+│   ├── occupancy_analysis/                                   # Results for the occupancy analysis
+│   ├── parking_detection/                                    # Results for the parking detection, inside, each algorithm as it's own result folder
+│   ├── TXT/                                                  # Converted video into TXt files
 │   ├── TXT10/
 │   ├── TXT_0004/
 │   ├── TXT_0004_padded/
@@ -40,13 +40,13 @@ Galatsi-Semester-Project/
 │   ├── TXT_0314_D2_S4_S1_padded/
 │   ├── TXT_0319_D2_S5_S1/
 │   └── TXT_0319_D2_S5_S1_padded/
-├── runs/
-├── scripts/
-├── Src/
+├── runs/                                                    # Some tests done with the tracking
+├── scripts/                                                 # Script to automate the update of this beautiful tree
+├── Src/                                                     # Every script that was used or only tested for this project
 ├── .gitattributes
 ├── .gitignore
-├── EPFL_Report_Semester_Project_2_compressed.pdf
-├── logs.txt
+├── EPFL_Report_Semester_Project_2_compressed.pdf            # Compressed report
+├── logs.txt                                                 # Logs I forgot about...
 ├── README.md
 └── requirements.txt
 ```
