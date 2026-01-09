@@ -121,7 +121,20 @@ The `Src` folder contains all scripts used throughout the project. If you want t
 scripts that are not part of the main pipeline, a short description explaining their usage 
 is provided at the beginning of each script.
 
-## Acknowledgements & Third-Party Code
+## Report
+The report presents the complete story of the project, explaining not only what was done, 
+but also why each decision was made. It guides the reader through the motivation behind the 
+work, the challenges encountered along the way, and the results that were ultimately achieved.
+
+Beyond the technical implementation, the report discusses the reasoning behind key design 
+choices, highlights the strengths and limitations of the different algorithms explored, and 
+reflects on the trade-offs involved. Together, these elements provide a coherent narrative 
+that connects raw drone footage to meaningful insights about parking behavior and urban mobility.
+
+## Acknowledgements
+I would like to sincerely thank Yura Tak, my project supervisor, for giving me the opportunity to work on this project and for her constant support throughout the semester. Her guidance and insightful feedback were invaluable at every stage of the project, from defining the initial direction to refining the final results. Working under her supervision was both motivating and enriching.
+
+## Third-Party Code
 
 This repository uses and builds upon several open-source projects. Some parts of the codebase, models, or algorithms **do not originate from this repository** and are included or adapted in accordance with their respective licenses. Full credit is given to the original authors.
 
