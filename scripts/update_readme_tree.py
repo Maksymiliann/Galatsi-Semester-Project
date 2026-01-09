@@ -102,3 +102,4 @@ if __name__ == "__main__":
     tree = build_tree(REPO_ROOT)
     inject_into_readme(README, tree)
     print("README.md updated with project tree.")
+    # this make a beautiful tree
