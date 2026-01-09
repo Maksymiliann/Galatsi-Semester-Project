@@ -98,3 +98,18 @@ Galatsi-Semester-Project/
 8) csv_reader.py
    - takes the csv as input
    - read them and plot some graphs
+
+
+## Acknowledgements & Third-Party Code
+
+This repository uses and builds upon several open-source projects. Some parts of the codebase, models, or algorithms **do not originate from this repository** and are included or adapted in accordance with their respective licenses. Full credit is given to the original authors.
+
+The following third-party projects are used in this work:
+
+- **Stabilo** — https://github.com/rfonod/stabilo  
+- **Ultralytics (YOLO)** — https://github.com/ultralytics/ultralytics  
+- **ByteTrack** — https://github.com/FoundationVision/ByteTrack  
+- **LightGlue** — https://github.com/cvg/LightGlue  
+
+All third-party code remains the property of its respective authors. Please refer to the original repositories for license information and detailed documentation.
+
