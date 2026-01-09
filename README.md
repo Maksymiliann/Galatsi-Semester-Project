@@ -56,11 +56,11 @@ Galatsi-Semester-Project/
 ## Main Code
 
 1) tracking.py
-  - takes a video or image as input as well as the desired YOLO model 
-  - stabilizes the video
-  - detects and track the different vehicles
-  - assignes their state (parked, driving)
-  - exports a txt file with the OBB position, state, class, confidence score and ID
+    - takes a video or image as input as well as the desired YOLO model 
+    - stabilizes the video
+    - detects and track the different vehicles
+    - assignes their state (parked, driving)
+    - exports a txt file with the OBB position, state, class, confidence score and ID
 
 2) parking_prediction_dwell_state_multiples4.py
    - takes txt files and first frame as input as well as some parameters
