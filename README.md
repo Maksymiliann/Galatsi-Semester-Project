@@ -4,6 +4,7 @@ This project aims to automatically analyze parking availability and traffic dyna
 The pipeline processes raw drone videos using deep learning–based vehicle detection, multi-object tracking, and spatial–temporal analysis. Vehicle trajectories are reconstructed to compensate for drone motion and maintain consistent identities across frames. These trajectories are then analyzed to infer parking regions, estimate occupancy, and study the temporal evolution of parking demand.
 
 The ultimate objective is to identify occupied and available parking spaces, highlight high-demand zones, and analyze parking inflow and outflow patterns. Such insights can support smarter parking management, reduce congestion caused by parking search, and potentially assist autonomous or connected vehicles in navigating toward optimal parking areas.
+
 ## Project structure
 
 <!-- TREE_START -->
@@ -105,15 +106,20 @@ Galatsi-Semester-Project/
    - read them and plot some graphs
 
 ## Results
-In the `results` folder, you will find all outputs generated throughout the project. 
+In the `Results` folder, you will find all outputs generated throughout the project. 
 The folder is organized by project components, such as feature matching, parking detection, 
 and occupancy analysis. Each component contains separate subfolders for the different 
 algorithms that were tested.
 
-The `results` folder also includes images produced by the scripts, as well as images 
+The `Results` folder also includes images produced by the scripts, as well as images 
 required as inputs for certain processing steps. In addition, it contains the manually 
 created ground truth data and the transcription of all videos used in the project, stored 
 as TXT files.
+
+## Src
+The `Src` folder contains all scripts used throughout the project. If you want to test 
+scripts that are not part of the main pipeline, a short description explaining their usage 
+is provided at the beginning of each script.
 
 ## Acknowledgements & Third-Party Code
 
