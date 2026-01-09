@@ -55,6 +55,7 @@ Galatsi-Semester-Project/
 
 ## Main Code
 
+### This is the main pipeline of the project. You can start from any image or video and run the different scripts in the following order:
 1) tracking.py
     - takes a video or image as input as well as the desired YOLO model 
     - stabilizes the video
