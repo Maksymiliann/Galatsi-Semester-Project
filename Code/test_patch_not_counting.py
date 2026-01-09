@@ -2,6 +2,18 @@ from ultralytics import YOLO
 import cv2, math
 import numpy as np
 
+"""
+Runs tiled YOLO-OBB inference on a large image and draws all oriented detections.
+
+The image is split into overlapping tiles, YOLO OBB predictions are run per tile, and each detection is shifted
+back into global image coordinates. Angles are converted to degrees when needed, and the resulting oriented
+bounding boxes are drawn on the full image (optionally with class/conf labels). The annotated image is saved,
+and the list of detections is returned.
+"""
+
+
+
+
 def tile_coords(W, H, tile=1280, overlap=0.2):
     step = int(tile * (1 - overlap))
     xs = list(range(0, max(W - tile, 0) + 1, step)) or [0]
@@ -114,11 +126,11 @@ def infer_obb_tiled(
 save_path, dets = infer_obb_tiled(
     img_path="first_frame_static.png",
     model_path="yolo11x-obb.pt",
-    tile=640,         # ou 960/1024/1536 selon ta VRAM
+    tile=640,         # ou 960/1024/1536 selon la VRAM
     overlap=0.25,      # 25% de chevauchement
     conf_thres=0.35,
-    device=None,       # "cuda:0" si tu veux forcer GPU
+    device=None,       # "cuda:0" pour forcer GPU
     save_path="out_obb_tiled.jpg",
-    draw_labels=False  # True si tu veux afficher (classe:conf)
+    draw_labels=False  # True pour veux afficher (classe:conf)
 )
 print("Saved:", save_path, "Detections:", len(dets))

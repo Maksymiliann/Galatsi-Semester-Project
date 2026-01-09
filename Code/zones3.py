@@ -4,6 +4,16 @@ from sklearn.cluster import DBSCAN
 import matplotlib.pyplot as plt
 import os
 
+"""
+Runs DBSCAN clustering on the white pixels of a binary mask to segment it into spatial zones.
+
+It loads the mask, extracts (x, y) coordinates of all foreground pixels, optionally subsamples them for speed,
+then sweeps over a grid of DBSCAN parameters (eps, min_samples). For each parameter pair, it clusters the points,
+colors each cluster (noise stays black), and saves a visualization image to OUT_DIR. Optional Matplotlib display
+can be enabled with SHOW_PLOTS.
+"""
+
+
 # -------- CONFIG ---------
 IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/mask_closed.png"
 

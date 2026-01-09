@@ -9,6 +9,27 @@ try:
 except:
     def tqdm(x, **k): return x  # fallback silencieux
 
+"""
+This script builds a “parking likelihood” heatmap from one detection folder by accumulating STOP dwell time
+and penalizing MOVE activity.
+
+It parses semicolon-separated TXT detections to extract (vehicle_id, 4-corner OBB polygon, confidence, state).
+Each polygon is rasterized onto a downsampled grid (cell pixels per cell) for speed. Over all frames:
+- STOP detections add +dt seconds to dwell_stop on covered grid cells
+- MOVE detections add +1 hit to move_hits on covered grid cells
+
+A signed score is then computed per cell:
+    score = w_stop * dwell_stop - w_move * move_hits
+The score is normalized to [0,1] using robust percentiles (2–98%), upsampled back to full image resolution,
+and optionally smoothed with a Gaussian blur for visualization.
+
+Outputs:
+- *_score_map.png and *_overlay.png: JET heatmap and overlay on the reference image
+- *_score_map_thresh.png and *_overlay_thresh.png: same heatmap masked below the threshold (thr)
+The function returns the final score image (float32), overlay, and heatmap.
+"""
+
+
 # -----------------------------
 # Parsing utils
 # -----------------------------

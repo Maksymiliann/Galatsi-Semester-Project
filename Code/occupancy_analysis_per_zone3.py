@@ -6,6 +6,25 @@ from pathlib import Path
 from tqdm import tqdm
 from concurrent.futures import ProcessPoolExecutor
 
+"""
+This script computes global and per-zone parking occupancy for a video whose detections are in a different
+image coordinate system than the reference parking mask.
+
+It first estimates a homography (SRC_IMG_PATH → REF_IMG_PATH) using SIFT (or ORB fallback) so that detection
+polygons from the TXT files can be reprojected into the reference frame where MASK_PATH and ZONES_PATH are defined.
+Each vehicle polygon is transformed with cv2.perspectiveTransform, then tested for parking overlap.
+
+Only vehicles with state == "stop" are considered “parked” (overlap > OVERLAP_THR). A union footprint of parked
+polygons is used to estimate parking surface usage (pixels and %), and each parked vehicle is assigned to a zone
+by majority vote of zone labels under its polygon.
+
+Processing can run in parallel (ProcessPoolExecutor) with shared global arrays initialized per worker.
+Outputs include global_results.csv, per_zone_per_frame.csv, per_zone_summary.csv, a simple per-zone capacity
+estimate via linear regression, and average/max occupancy heatmaps saved in out_dir.
+"""
+
+
+
 ###########################################################
 # CONFIG
 ###########################################################
@@ -24,7 +43,7 @@ MIN_ZONE_AREA = 5000
 USE_PARALLEL = True      # True = ProcessPoolExecutor, False = séquentiel
 MAX_WORKERS  = None      # None -> os.cpu_count(); sinon mets un int (ex: 4)
 
-### NEW : chemins images pour l’homographie ###
+### chemins images pour l’homographie ###
 # Image de référence (celle qui correspond au MASK)
 REF_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/frame_1_0004.png"
 # Image sur laquelle sont basés les TXT du dossier FOLDER
@@ -42,7 +61,7 @@ labels_global = None           # int32, 0=bg, 1..K=zones
 zone_ids_global = None         # liste des ids >0
 zone_areas_global = None       # dict id->aire en px
 
-### NEW : homographie globale (SRC -> REF) ###
+### homographie globale (SRC -> REF) ###
 H_mat_global = None
 
 
@@ -387,7 +406,7 @@ if __name__ == "__main__":
 
     # Collect frames
     frames = sorted(glob.glob(os.path.join(FOLDER, "*.txt")))
-    # frames = frames[::5]  # dev mode si tu veux
+    # frames = frames[::5] 
 
     results = []
 

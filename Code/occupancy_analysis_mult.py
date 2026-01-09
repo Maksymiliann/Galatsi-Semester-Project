@@ -7,6 +7,29 @@ from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 import matplotlib.pyplot as plt
 
+"""
+This script compares parking occupancy across multiple videos by mapping one reference parking mask into each
+video’s coordinate system and then running the same per-frame occupancy computation.
+
+For each dataset (TXT_DIR + first-frame image):
+1) A homography from the current video frame to the reference frame is estimated (SIFT if available, else ORB).
+2) The reference parking mask is warped into the current video view (nearest-neighbor), producing a per-video
+   binary parking mask and its total parking area in pixels.
+3) Each frame’s detection file is processed (in parallel) to count vehicles and “parked” vehicles based on
+   polygon overlap with the parking mask (OVERLAP_THR), and to estimate global parking surface usage using a
+   union footprint of parked polygons.
+
+The script exports per-video CSV files, then concatenates all results to compute:
+- a summary table with average % parked and average % parking area used per video
+- bar plots comparing average usage across videos
+- min/max occupancy per video using a 5-minute rolling mean (window size derived from FPS), plus plots
+  (min/max bars and an optional boxplot of rolling occupancy distributions)
+
+Outputs are written to OUT_DIR as CSV summaries and PNG figures.
+"""
+
+
+
 ###########################################################
 # CONFIGURATION
 ###########################################################

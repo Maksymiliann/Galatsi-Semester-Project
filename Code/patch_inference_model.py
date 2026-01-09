@@ -36,6 +36,20 @@ from patched_yolo_infer import (
     visualize_results,
 )
 
+"""
+Patch-based YOLOv8 segmentation with detection merging.
+
+- Load an image and a YOLOv8 segmentation model.
+- Run two inference passes:
+  1) Tiled inference (small overlapping crops, low conf) to catch small/edge objects.
+  2) Full-image inference (single crop, higher conf) for strong global detections.
+- Merge both results with NMS using CombineDetections.
+- Visualize the final merged segmentation masks (optionally without boxes/labels).
+
+Goal: improve segmentation robustness on difficult images by combining local + global passes.
+"""
+
+
 # Load the image
 img_path = '/content/difficult.jpg'
 img = cv2.imread(img_path)

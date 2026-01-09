@@ -8,6 +8,51 @@ try:
 except:
     def tqdm(x, **k): return x
 
+"""
+This script builds a parking heatmap from multiple detection folders by registering all views into a single
+reference image, then post-processes the result to (1) fill small gaps between adjacent parking spots and
+(2) produce a smoother “parking zones” mask.
+
+Pipeline:
+1) Multi-view registration:
+   - image_paths[0] is the reference view.
+   - For each other view, a homography H_k (image_k → image_ref) is estimated with SIFT (ORB fallback) + RANSAC.
+   - Optional debug outputs save warped images and overlays to verify alignment.
+
+2) Stop/move accumulation in the reference frame:
+   - Each TXT line is parsed into (vehicle_id, 4-corner OBB polygon, confidence, state).
+   - Polygons are warped into the reference frame with cv2.perspectiveTransform(H_k), rasterized on a coarse grid
+     (cell pixels per cell), and accumulated:
+       STOP → dwell_stop += dt seconds
+       MOVE → move_hits  += 1 hit (can be changed to += dt if needed)
+   - A signed score is computed: score = w_stop * dwell_stop − w_move * move_hits,
+     then normalized to [0,1] using robust percentiles (2–98%), upsampled to image resolution, smoothed, and
+     saved as a JET heatmap + overlay. A binary parking_location_mask (score >= thr) is also exported.
+
+3) Gap filling between parking spots (seed-based boosting):
+   - cand_band: permissive candidate band where parking is plausible (score >= low_thr).
+   - seeds: strong detections from the thresholded mask (score >= thr).
+   - seeds are dilated to cover nearby “inter-spot” gaps, but the dilation is done *per connected component*
+     and *oriented along the component’s main axis* (minAreaRect), producing seeds_dil.
+   - gaps are defined as pixels inside the candidate band and the oriented dilation, but not already in seeds.
+
+4) Distance-weighted score boost:
+   - A distance transform gives each gap pixel a weight based on how close it is to an existing seed
+     (closer = larger weight, limited by gap_px).
+   - score_img is boosted inside gaps by bonus_scale * weight, then clipped back to [0,1].
+
+5) Zone mask generation:
+   - The boosted score is thresholded again (>= thr), then morphologically closed (and slightly dilated) to create
+     a smoother “zones” mask that merges nearby spots into continuous parking regions.
+
+Outputs (with out_prefix):
+- Heatmaps/overlays: *_score_map.png, *_overlay.png, *_score_map_thresh.png, *_overlay_thresh.png
+- Binary masks: *_parking_location_mask.png, *_score_boost.png, *_zones_mask.png
+- Debug images for oriented dilation and gaps: *_mask_dilated_oriented.png, *_gaps_oriented.png, *_overlay_*_debug.png
+- *_overlay_zones.png: visualization of the final zones mask on top of the heatmap overlay
+"""
+
+
 # -----------------------------
 # Parsing utils (inchangé)
 # -----------------------------

@@ -5,6 +5,25 @@ import glob, os
 from tqdm import tqdm
 from concurrent.futures import ProcessPoolExecutor
 
+"""
+This script computes global parking occupancy metrics over time from per-frame vehicle detection polygons.
+
+It loads a binary parking mask and processes all detection files (.txt) in a folder. For each vehicle polygon,
+it quickly checks whether the vehicle center falls near the parking area, then computes the polygon overlap ratio
+with the mask using a bounding-box ROI. A vehicle is counted as “parked” if overlap > OVERLAP_THR.
+
+For each frame, the script outputs:
+- total detected vehicles
+- number and percentage of vehicles counted as parked
+- parking surface usage, estimated by rasterizing all parked polygons into a union mask and counting covered
+  parking pixels (pixels and % of total parking mask area)
+
+Frames are processed in parallel with ProcessPoolExecutor, and a summary is printed including average occupancy
+and the most/least occupied frames.
+"""
+
+
+
 ###########################################################
 # CONFIG (EDIT THESE PATHS)
 ###########################################################

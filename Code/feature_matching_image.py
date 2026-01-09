@@ -3,9 +3,23 @@ import cv2
 import numpy as np
 import os
 
+"""
+This script estimates a homography to reproject img2 onto img1 and checks the alignment quality.
+
+It detects and matches features between the two images (using SIFT if available, otherwise ORB),
+filters matches with Lowe’s ratio test, and estimates a robust homography (RANSAC / MAGSAC).
+The reprojection error on inlier matches is computed as a quantitative quality measure.
+
+Finally, img2 is warped into img1’s coordinate system and several diagnostics are saved:
+- inlier feature matches
+- the warped image
+- a blended overlay for visual inspection
+"""
+
+
 # ========= Chemins (à adapter) =========
 IMG1_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/first_frame_static_aligned.png"   # img1 = RÉFÉRENCE (prise de plus haut)
-IMG2_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/first_frame_moving_aligned.png"   # img2 = À REPROJETER sur img1
+IMG2_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/another_video.png"   # img2 = À REPROJETER sur img1
 OUT_PREFIX = "out_img2_to_img1"
 
 # ========= Réglages =========

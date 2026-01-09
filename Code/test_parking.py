@@ -7,6 +7,28 @@ from sklearn.mixture import GaussianMixture
 from sklearn.preprocessing import StandardScaler
 from tqdm import tqdm
 
+"""
+Parking heatmap estimation with an EM/GMM model, extended with “anti-traffic-light” features.
+
+The script rasterizes STOP and MOVE detections onto a coarse grid and accumulates base signals:
+- G: STOP presence count per cell
+- R: MOVE presence count per cell (weighted by move_weight)
+- D: STOP dwell time per cell (seconds)
+
+It then adds extra features designed to reduce false positives from traffic lights / intersections:
+- D_long: long continuous STOP dwell (run-length >= T_long)
+- Burst: frames where many STOP pixels appear locally (box-filter neighborhood >= N_burst)
+- S2M: STOP→MOVE transition indicator using a sliding window of recent STOP masks (W_move seconds)
+
+These features (plus ratios/log terms) are standardized and fed to a 2-component GaussianMixture (EM). Posterior
+probabilities are optionally smoothed with a temperature parameter, and the “parking” component is selected as the
+cluster with higher average stop_ratio + long-dwell score.
+
+The final parking probability map is written back to an image-sized heatmap (JET) and an overlay is saved.
+"""
+
+
+
 def parse_line_semicolon(line):
     parts = [p.strip() for p in line.strip().split(';') if p.strip() != ""]
     if len(parts) < 11: return None

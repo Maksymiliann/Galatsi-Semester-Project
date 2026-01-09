@@ -6,6 +6,36 @@ from pathlib import Path
 from tqdm import tqdm
 from concurrent.futures import ProcessPoolExecutor
 
+"""
+This script computes parking occupancy statistics over time from per-frame vehicle detections and a parking-zone mask.
+
+Inputs:
+- A binary parking mask (MASK_PATH) defining the global parking area
+- A zone label mask (ZONES_PATH) assigning a zone id to each parking pixel (or connected-components fallback)
+- A folder of per-frame detection files (*.txt) containing vehicle polygons and a "state" field
+
+For each frame, it:
+- counts all detected vehicles, but only analyzes vehicles with state == "stop"
+- rasterizes each stopped vehicle polygon once, computes its overlap ratio with the parking mask,
+  and marks it as “parked” if overlap > OVERLAP_THR
+- builds a union footprint of parked vehicles to estimate global covered parking area (pixels and %)
+- assigns each parked vehicle to a zone using majority vote of zone ids under its polygon
+- computes per-zone vehicle counts and per-zone covered area (% of that zone)
+
+The pipeline can run sequentially or in parallel (ProcessPoolExecutor), using global shared arrays
+in worker processes for speed.
+
+Outputs (saved in out_dir):
+- global_results.csv: per-frame global metrics (vehicles, % parked, % area used, pixels covered)
+- per_zone_per_frame.csv: per-frame metrics per zone (vehicles, area px, area %)
+- per_zone_summary.csv: aggregated per-zone stats (avg/max vehicles, avg/max area %) + a rough capacity estimate
+  based on a linear regression vehicles ≈ a * area% (capacity ≈ a * 100)
+
+It also generates two heatmaps showing average and maximum occupancy per zone, mapped back to image space.
+"""
+
+
+
 ###########################################################
 # CONFIG
 ###########################################################
@@ -280,7 +310,7 @@ if __name__ == "__main__":
 
     # Collect frames
     frames = sorted(glob.glob(os.path.join(FOLDER, "*.txt")))
-    # frames = frames[::5]  # dev mode si tu veux
+    # frames = frames[::5] 
 
     results = []
 

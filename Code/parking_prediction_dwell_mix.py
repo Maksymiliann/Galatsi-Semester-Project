@@ -10,6 +10,29 @@ except:
     def tqdm(x, **k): return x  # fallback silencieux
 
 
+"""
+This script builds a parking “stop-dwell” heatmap from detection TXT files by combining two signals:
+(1) a popularity score (STOP dwell time minus MOVE activity) and (2) a stop/(stop+move) ratio map.
+
+It parses semicolon-separated detections to extract (vehicle_id, 4-corner OBB polygon, confidence, state).
+Detections are accumulated on a coarse grid (cell pixels per grid cell) for speed:
+- dwell_stop: adds +dt seconds on cells covered by STOP polygons
+- move_hits:  adds +1 hit on cells covered by MOVE polygons
+
+To avoid one long-stopped vehicle dominating the map, the script also builds a per-(vehicle_id, cell) dwell table
+using only the polygon centroid, then caps the dwell per vehicle per cell (per_id_stop_cap_sec). The capped STOP
+map is mixed with the classic polygon-based STOP dwell map using mix_id_cap_weight.
+
+Two maps are then computed:
+- popularity_norm = normalized( w_stop * dwell_mixed - w_move * move_activity )
+- ratio_grid      = dwell_mixed / (dwell_mixed + w_move_ratio * move_activity + eps)
+
+The final score is a convex combination of both (ratio_weight), upsampled back to image resolution, optionally
+Gaussian-smoothed for visualization, and saved as a JET heatmap + overlay. A thresholded version (thr) is also
+exported with identical colors/opacities.
+"""
+
+
 # -----------------------------
 # Parsing utils
 # -----------------------------

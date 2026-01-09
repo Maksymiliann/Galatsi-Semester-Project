@@ -1,5 +1,12 @@
 import cv2
 
+"""
+Extracts a specific frame from a video file and saves it as an image.
+Here, it grabs the first frame (index 0) and writes it to disk for later use
+(e.g., reference image, annotation, or alignment).
+"""
+
+
 # chemin de la vidéo
 video_path = "Dataset/Galatsi_Data_Semester_Project_archive/DJI_0319_D2_S5_S1.MP4"
 # chemin de sortie pour l'image

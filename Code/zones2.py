@@ -5,8 +5,13 @@ import matplotlib.pyplot as plt
 import os
 
 """
-K-Means
+Segments a binary parking mask into K spatial clusters using K-Means.
+
+It loads a binary image, extracts the (x, y) coordinates of all white pixels, and runs K-Means for K in
+[K_MIN, K_MAX]. For each K, pixels are colored by their assigned cluster and the resulting cluster map is
+saved as an image in OUT_DIR.
 """
+
 # -------- CONFIG ---------
 IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/mask_closed.png"   # your binary image
 K_MIN = 2                      # minimum number of clusters

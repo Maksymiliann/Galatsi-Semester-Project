@@ -4,6 +4,25 @@ import pandas as pd
 import glob, os
 from tqdm import tqdm
 
+"""
+This script computes parking occupancy over time from per-frame vehicle polygons and a binary parking mask.
+
+For each detection file (.txt), it builds a vehicle polygon, computes its overlap ratio with the parking mask,
+and counts the vehicle as “parked” if the ratio exceeds overlap_thr. The same logic is applied to three groups:
+- total: all vehicles
+- cars: det_class == 10
+- big:  det_class == 9
+
+To speed up processing, polygons are rasterized only inside their bounding-box ROI (instead of the full image),
+both for overlap computation and for updating a per-class union mask of parked vehicles. The union mask is used
+to estimate how much of the parking area is covered (pixels and % of the total parking mask).
+
+After processing all frames, results are stored in a DataFrame and the script prints, per group:
+average % of parked vehicles, average % of parking area covered, and the most/least occupied frames with details.
+"""
+
+
+
 # === CONFIG ===
 mask_path = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/dwell_mult/test2_thr_0.8_2/parking_dwell_state_MULTI_REG_parking_location_mask.png"
 folder    = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0004"

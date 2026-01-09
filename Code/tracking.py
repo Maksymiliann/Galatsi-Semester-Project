@@ -11,6 +11,22 @@ from supervision.tracker.byte_tracker.core import ByteTrack
 from collections import defaultdict, deque
 import os
 
+"""
+Tiled YOLO-OBB detection + optional video stabilization + ByteTrack tracking, with per-frame TXT export.
+
+Each frame is optionally stabilized, split into overlapping tiles, and passed through a YOLO OBB model in batch.
+Tile detections are mapped back to full-frame coordinates and merged with fast class-wise NMS (torchvision).
+
+If tracking is enabled, ByteTrack assigns persistent IDs. Track motion is classified as STOP/MOVE using centroid
+speed over a sliding window with optional hysteresis and EMA smoothing (used to color boxes: green=stop, red=move).
+
+Optional outputs:
+- Annotated video with tracked IDs (output_path)
+- One TXT file per processed frame (0001.txt, 0002.txt, ...) containing:
+  vehicle_id; 4 box corners (OBB or AABB fallback); det_class; conf_score; state
+"""
+
+
 
 # ---------- TXT export helpers ----------
 TXT_HEADER = (

@@ -1,6 +1,16 @@
 import cv2
 import numpy as np
 
+"""
+This script aligns two images by estimating a homography from SIFT feature matches, then warps img2 onto img1.
+
+It detects SIFT keypoints/descriptors in both images, matches descriptors from img2 to img1 using k-NN matching
+and Lowe’s ratio test to keep reliable correspondences, and estimates a robust homography (img2 → img1) with RANSAC.
+img2 is then reprojected into img1’s coordinate system with warpPerspective, and a blended overlay is displayed
+and saved for visual verification.
+"""
+
+
 # --- 1. Charger les images ---
 img1 = cv2.imread("first_frame_static_aligned.png")   # référence (vue plus haute)
 img2 = cv2.imread("first_frame_moving_aligned.png")    # à reprojeter sur img1

@@ -5,6 +5,28 @@ from shapely.geometry import Polygon
 import glob, os
 from tqdm import tqdm   # <- make sure you have `pip install tqdm`
 
+"""
+This script estimates parking occupancy from per-frame detection polygons and a binary parking mask.
+
+It loads a grayscale parking mask, binarizes it, and treats white pixels as valid parking area. For each frame
+(.txt file), it reads vehicle detections and builds a 4-corner polygon for each vehicle. The polygon is rasterized
+into a temporary mask to measure how many vehicle pixels overlap the parking mask. A vehicle is counted as “parked”
+if the overlap ratio (overlap_pixels / vehicle_pixels) exceeds overlap_thr.
+
+The same computation is repeated for three detection groups:
+- total: all detections
+- cars: det_class == 10
+- big:  det_class == 9
+
+For each group, a union mask of all parked vehicles is built to estimate the total parking surface covered
+(pixels and % of total parking mask area), avoiding double-counting overlaps between vehicles.
+
+After processing all frames with a progress bar (tqdm), the script summarizes average occupancy and reports the
+most/least occupied frames (based on % parking area used) with detailed metrics.
+"""
+
+
+
 # === CONFIGURATION ===
 mask_path = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/dwell_mult/test2_thr_0.8_2/parking_dwell_state_MULTI_REG_parking_location_mask.png"
 folder = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0004"

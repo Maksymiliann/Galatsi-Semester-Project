@@ -5,6 +5,14 @@ import base64
 import cv2
 import numpy as np
 
+"""
+Converts polygon annotations from a LabelMe-style JSON into a pixel mask.
+Each label is assigned a unique integer ID and its polygon is filled in the mask.
+Also generates a visualization overlay with colored outlines and label names.
+Outputs a uint16 ID mask and a PNG overlay, and prints the label → ID mapping.
+"""
+
+
 
 # =========================
 # CONFIG

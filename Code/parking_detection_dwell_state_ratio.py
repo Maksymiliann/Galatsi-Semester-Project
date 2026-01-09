@@ -8,6 +8,32 @@ try:
 except:
     def tqdm(x, **k): return x  # fallback silencieux
 
+"""
+This script builds a “stop-dominance” heatmap from a folder of detection TXT files by comparing STOP vs MOVE
+occupancy over space.
+
+It parses each TXT line (semicolon-separated) to extract: vehicle_id, the 4-corner polygon, confidence score,
+and the motion state (defaulting to "stop" if missing). Each polygon is rasterized onto a coarse grid
+(cell x cell pixels) to speed up accumulation.
+
+Two accumulators are built on that grid:
+- stop_acc: how often (or how long) polygons labeled STOP cover each cell
+- move_acc: how often (or how long) polygons labeled MOVE cover each cell
+If use_time=True, contributions are weighted by 1/fps (seconds). Otherwise they are simple “hit” counts.
+MOVE can be penalized more in the denominator using move_weight.
+
+The final score is a per-cell ratio in [0,1]:
+    score = stop_acc / (stop_acc + move_weight * move_acc + eps)
+It is then upsampled to full image resolution, optionally smoothed with a Gaussian blur, converted to a JET
+colormap, and overlaid on the reference image.
+
+Outputs:
+- *_score_map.png and *_overlay.png (continuous ratio heatmap)
+- *_score_map_thresh.png and *_overlay_thresh.png (same heatmap thresholded at thr)
+"""
+
+
+
 # -----------------------------
 # Parsing utils
 # -----------------------------

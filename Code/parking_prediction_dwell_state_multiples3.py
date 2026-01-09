@@ -9,6 +9,45 @@ try:
 except:
     def tqdm(x, **k): return x
 
+"""
+This script builds a single parking heatmap from multiple detection folders by registering every view to a
+reference image, then applying a weighted “gap filling” boost along likely parking-line directions.
+
+Main steps:
+1) Multi-view registration:
+   - image_paths[0] is the reference view.
+   - For each other view, a homography H_k (image_k → image_ref) is estimated with SIFT (ORB fallback) + RANSAC.
+   - Optional debug outputs save warped images and overlays to verify alignment.
+
+2) Stop/move accumulation in the reference frame:
+   - Each TXT detection is parsed into (vehicle_id, 4-corner OBB polygon, confidence, state).
+   - Polygons are warped into the reference frame with cv2.perspectiveTransform(H_k), rasterized on a coarse grid
+     (cell pixels per cell), and accumulated:
+       STOP  → dwell_stop += dt seconds
+       MOVE  → move_hits  += 1 hit (can be changed to += dt if needed)
+
+3) Scoring and visualization:
+   - A signed score is computed: score = w_stop * dwell_stop − w_move * move_hits.
+   - The score is normalized to [0,1] using 2–98% percentiles, upsampled to full resolution, optionally smoothed,
+     and saved as a JET heatmap + overlay on the reference image.
+
+4) Gap-weighted boosting (parking-line completion):
+   - A permissive seed mask is created from the score (score >= thr - 0.10).
+   - HoughLinesP detects line segments on the seed edges; segments are grouped by angle and merged with a PCA fit.
+   - For each merged segment, a “bridge” boost is computed using:
+       • context_stop: mean score near the segment endpoints
+       • move_penalty: mean move activity along the segment (discourages roads)
+       • dist_weight: depends on how much seed support exists along the segment
+   - The resulting boost map is blurred, normalized, and added to the score to fill gaps between aligned segments.
+   - Debug images for bridges and boost maps are saved.
+
+5) Final outputs:
+   - Thresholded heatmap/overlay (score >= thr)
+   - A binary parking_location_mask.png derived from the boosted score map
+   - Additional debug files from registration and gap boosting
+"""
+
+
 # -----------------------------
 # Parsing utils (inchangé)
 # -----------------------------

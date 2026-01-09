@@ -6,6 +6,34 @@ from sklearn.mixture import GaussianMixture
 from sklearn.preprocessing import StandardScaler
 from tqdm import tqdm
 
+"""
+This script estimates a parking-probability heatmap using an EM Gaussian Mixture Model (GMM) on grid-based
+features extracted from STOP/MOVE detections.
+
+It parses semicolon-separated TXT detections into (vehicle_id, 4-corner OBB polygon, confidence, state). For each
+frame, polygons are rasterized onto a coarse grid (cell pixels per cell), but in an optimized way:
+- all STOP polygons are drawn at once into a temporary stop_mask
+- all MOVE polygons are drawn at once into a temporary move_mask
+This avoids per-vehicle full-image masks and keeps the loop fast.
+
+From these masks it accumulates per-cell statistics over time:
+- G: weighted STOP “presence” count (stop_mask * stop_weight)
+- R: MOVE presence count (move_mask)
+- D: STOP dwell time in seconds (stop_mask * dt)
+- U (optional, centroid mode): approximate unique-vehicle count per cell based on vehicle centroid visits
+
+For every visited cell (G+R > 0), a feature vector is built (counts, dwell, ratios, log terms). Features are
+standardized and a 2-component GaussianMixture is fit (EM). The component representing “parking” is selected as
+the one with higher average stop_ratio + log(dwell). The per-cell parking probability is then mapped back to an
+image-sized heatmap, colored with JET, and overlaid on the reference image.
+
+Outputs:
+- *_prediction_map.png: JET heatmap of parking probability
+- *_overlay.png: heatmap overlay on the image
+The function returns the probability map (float32), overlay, and colormap image.
+"""
+
+
 # ---------- parsing identique ----------
 def parse_line_semicolon(line):
     parts = [p.strip() for p in line.strip().split(';') if p.strip() != ""]
@@ -221,7 +249,7 @@ def run_parking_em_gmm_fast(
     return P_img, overlay_img, cmap_img
 
 if __name__ == "__main__":
-    txt_folder = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT12"
+    txt_folder = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0004"
     image_path = r"C:/Users/makss/Git/Galatsi-Semester-Project/first_frame_static.png"
 
     run_parking_em_gmm_fast(
@@ -229,10 +257,10 @@ if __name__ == "__main__":
         image_path=image_path,
         fps=25.0,
         cell=4,
-        conf_min=0.0,
+        conf_min=0.8,
         alpha=0.6,
-        stop_weight=0.25,
-        out_prefix="Results/parking_detection/GMM_EM_fast/test4/parking_result_fast",
+        stop_weight=3.00,
+        out_prefix="Results/parking_detection/GMM_EM_fast/test5/parking_result_fast",
         compute_U="centroid"   # "none" (plus rapide) ou "centroid" (approx U)
     )
 

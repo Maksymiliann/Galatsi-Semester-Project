@@ -8,6 +8,43 @@ try:
 except:
     def tqdm(x, **k): return x
 
+
+"""
+This script builds a single parking heatmap from multiple detection folders by first registering all views into
+one reference image, then optionally “boosting” long parking-line structures.
+
+Pipeline:
+1) Registration (multi-view -> reference):
+   - image_paths[0] is the reference view.
+   - For each other view, a homography H_k (image_k → image_ref) is estimated using SIFT (ORB fallback) + RANSAC.
+   - Optional debug images save the warped view and an overlay with the reference to verify alignment.
+
+2) Stop/move accumulation in the reference frame:
+   - Each detection line is parsed (vehicle_id, 4-corner OBB polygon, confidence, state).
+   - Polygons are reprojected into the reference frame with cv2.perspectiveTransform(H_k).
+   - Polygons are rasterized onto a coarse grid (cell pixels per cell).
+   - STOP adds +dt seconds to dwell_stop; MOVE adds +1 hit to move_hits (can be changed to +dt if desired).
+
+3) Scoring + visualization:
+   - A signed score is computed: score = w_stop * dwell_stop − w_move * move_hits.
+   - The score is normalized to [0,1] using robust percentiles (2–98%), upsampled to full resolution,
+     optionally smoothed, and saved as a JET heatmap + overlay.
+   - A thresholded heatmap/overlay and a binary parking_location_mask (score >= thr) are also saved.
+
+4) Parking-line boosting (post-processing):
+   - From the thresholded mask, edges are extracted (Canny) and long line segments are detected (HoughLinesP).
+   - These segments create a “boost map” (thick lines + Gaussian blur) which is added to the score image
+     (boost_gain), then clipped back to [0,1].
+   - The boosted score/heatmap/overlay and a boosted binary mask are saved for inspection.
+
+Outputs (with out_prefix):
+- *_score_map.png, *_overlay.png
+- *_score_map_thresh.png, *_overlay_thresh.png
+- *_parking_location_mask.png
+- *_lines_*.png files for the line detection / boost diagnostics (lines, boostmap, boosted heatmap, boosted mask)
+"""
+
+
 # -----------------------------
 # Parsing utils (inchangé)
 # -----------------------------

@@ -9,6 +9,31 @@ try:
 except:
     def tqdm(x, **k): return x  # fallback silencieux
 
+
+"""
+This script builds a parking heatmap from detection TXT files by accumulating STOP dwell time and penalizing MOVE activity.
+
+It parses semicolon-separated lines to extract (vehicle_id, 4-corner OBB polygon, confidence, state). Each polygon
+is rasterized onto a coarse grid (cell pixels per grid cell) for speed. For every frame:
+- STOP detections add +dt seconds to dwell_stop on the covered cells
+- MOVE detections add +1 “hit” to move_hits on the covered cells
+
+Before normalization, both accumulators can be clipped to avoid extreme values dominating the map:
+- stop_cap_sec caps dwell time per cell
+- move_cap_hits caps the number of move hits per cell
+A signed score is then computed: score = w_stop * dwell_capped - w_move * move_capped
+(optionally clipped again with score_cap_abs), and robustly normalized to [0,1] using 2–98% percentiles.
+
+The score map is upsampled back to image resolution, optionally smoothed with a Gaussian blur, converted to a JET
+colormap, and overlaid on the reference image. A thresholded version (thr) is also saved, keeping the same colors
+and overlay opacity but masking out values below the threshold.
+
+Outputs:
+- *_score_map.png and *_overlay.png (continuous heatmap)
+- *_score_map_thresh.png and *_overlay_thresh.png (thresholded heatmap)
+"""
+
+
 # -----------------------------
 # Parsing utils
 # -----------------------------

@@ -5,6 +5,21 @@ import numpy as np
 from pathlib import Path
 import random
 
+"""
+Splits a binary parking mask into individual “zones” and exports zone IDs + metadata.
+
+The mask is optionally cleaned (opening, hole filling, small-component removal), then segmented into zone labels
+using either connected components (default) or watershed. Each zone gets an integer ID in a label map.
+
+Outputs:
+- zones_id.png: per-pixel zone IDs
+- zones_color.png + zones_overlay.png: colored visualization
+- zones_polys.json: polygon contour + basic geometry for each zone (area, centroid, angle, size, solidity)
+- zones_stats.csv: same zone stats in tabular form
+"""
+
+
+
 # ========= CONFIG =========
 INPUT_MASK = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/zone/mask_closed_cleaned.png"   # binaire 0/255 (ton image)
 OUT_PREFIX = "Results/parking_detection/zone/test2/mask"

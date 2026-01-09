@@ -1,6 +1,30 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
+"""
+This script loads and visualizes parking occupancy results exported as CSV files.
+
+It reads three outputs:
+1) per_zone_per_frame.csv: number of vehicles detected in each parking zone for each frame
+2) per_zone_summary.csv: aggregated statistics per zone (e.g., average vehicles, estimated capacity)
+3) global_results.csv: global occupancy metric per frame (percentage of vehicles/area inside the parking mask)
+
+Because CSV files are sometimes exported incorrectly (e.g., Excel putting everything into a single column),
+the script includes a safe reader (read_csv_safely) that detects this case and re-splits the data by commas.
+
+After loading, frame filenames like "0001.txt" are converted into integer indices to enable clean time-series plots.
+The script then:
+- prints an estimated number of parking places per zone (from the summary file)
+- plots occupancy over time for one selected zone
+- plots occupancy over time for all zones on the same figure
+- plots the global parking percentage over time
+- shows a bar chart of the average number of vehicles per zone
+
+All plots are generated with Matplotlib and displayed interactively.
+"""
+
+
 # =========================
 # CONFIG – CHANGE PATHS HERE
 # =========================

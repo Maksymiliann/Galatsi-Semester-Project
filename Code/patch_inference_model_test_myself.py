@@ -3,6 +3,33 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 
+
+"""
+This script runs tiled (patch-based) YOLO inference on a video to improve detection of small objects, then merges
+duplicate detections coming from overlapping tiles and optionally writes an annotated output video.
+
+Pipeline:
+1) Split each frame into a grid of tiles (tiles_x × tiles_y) with a configurable overlap_ratio so that objects near
+   tile borders are still fully visible in at least one tile.
+
+2) Run Ultralytics YOLO on each tile:
+   - Supports standard detection (AABB boxes) and OBB models (oriented boxes).
+   - Tile detections are converted back into full-frame coordinates using (x_offset, y_offset).
+   - For OBB, polygon corners are used if available; an AABB envelope is computed for NMS.
+
+3) Merge detections across tiles:
+   A simple class-wise NMS is applied using IoU on axis-aligned boxes (det['xyxy']) to remove duplicates caused by
+   overlapping tiles, keeping the highest-confidence detection.
+
+4) Visualization/output:
+   Detections (and OBB polygons if present) are drawn on the frame, and the annotated frames can be saved to a new
+   video file. Processing can be sped up by skipping frames with stride, and max_frames can limit runtime for tests.
+
+Main output:
+- annotated.mp4 (optional): the input video with merged detections drawn on top.
+"""
+
+
 # ----------------------------
 # Tiling utilities
 # ----------------------------

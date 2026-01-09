@@ -3,6 +3,26 @@
 
 import cv2, numpy as np, os
 
+"""
+This script aligns two time-synchronized videos by estimating a frame-by-frame homography (VID2 → VID1).
+
+For each processed frame (optionally skipping frames with PROCESS_EVERY), it detects features in both frames
+(SIFT if available, otherwise ORB), matches them with a k-NN matcher + Lowe ratio test, and estimates a robust
+homography using RANSAC (or MAGSAC if available). If RESIZE_WIDTH is set, homography is estimated on resized
+frames for speed and then rescaled back to the original resolution.
+
+The estimated homography is used to warp each frame of VID2 into VID1’s coordinate system, and an overlay video
+is also produced for quick visual verification. If homography estimation fails for a frame, the script can reuse
+the previous frame’s homography (FALLBACK_PREV_H) as a fallback.
+
+Outputs:
+- OUT_WARP: warped version of VID2 in VID1’s view
+- OUT_OVER: blended overlay of VID1 and warped VID2
+- OUT_MATCH (optional): video showing inlier matches used for each homography estimate
+"""
+
+
+
 # ========= Chemins =========
 VID1 = r"C:/Users/makss/Git/Galatsi-Semester-Project/Dataset/Galatsi_Data_Semester_Project_processing/aligned_outputs\DJI_0004_aligned.mp4"   # vidéo RÉFÉRENCE (vue plus haute)
 VID2 = r"C:/Users/makss/Git/Galatsi-Semester-Project/Dataset/Galatsi_Data_Semester_Project_processing/aligned_outputs\DJI_0808_aligned.mp4"   # vidéo à REPROJETER sur VID1

@@ -2,6 +2,17 @@ import cv2
 import numpy as np
 import os
 
+"""
+Explores how morphological closing affects zone connectivity in a binary mask.
+
+The script loads a binary mask, computes connected components on the raw image,
+then applies morphological closing with multiple kernel sizes to progressively
+bridge gaps. For each kernel size, it saves the closed mask and a color-coded
+connected-components visualization, allowing easy comparison of how zones merge
+as the closing strength increases.
+"""
+
+
 # -------- CONFIG ---------
 IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/dwell_mult_4/test5_thr_0.85/parking_dwell_state_MULTI_REG_zones_mask.png"
 OUT_DIR  = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/zones4/test3/"

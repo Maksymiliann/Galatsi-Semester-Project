@@ -8,6 +8,35 @@ try:
 except:
     def tqdm(x, **k): return x
 
+"""
+This script builds a single parking “dwell vs move” heatmap by aggregating multiple video/detection folders
+after registering them into one common reference view.
+
+Inputs:
+- Several TXT directories containing per-frame detections (vehicle id, 4-point OBB polygon, confidence, state)
+- One representative image per directory, where image_paths[0] is the reference view
+
+Pipeline:
+1) Estimate a homography H_k (image_k → image_ref) for each non-reference view using SIFT (ORB fallback) + RANSAC.
+   Optional debug outputs save each warped image and an overlay with the reference to visually verify registration.
+2) For every detection file in each directory:
+   - read detections and filter by conf_min
+   - warp each OBB polygon into the reference coordinate system with cv2.perspectiveTransform(H_k)
+   - rasterize the warped polygon onto a coarse grid (cell pixels per cell)
+   - accumulate STOP as dwell time (+dt seconds) and MOVE as activity (+1 hit, or +dt if desired)
+3) Compute a signed score grid: score = w_stop * dwell_stop − w_move * move_hits, then normalize it to [0,1]
+   using robust percentiles (2–98%) for visualization.
+4) Upsample to full image resolution, optionally smooth, convert to a JET heatmap, and overlay on the reference.
+   A thresholded version is also saved, and a binary parking_location_mask is exported from score_img >= thr.
+
+Outputs (with out_prefix):
+- *_score_map.png, *_overlay.png
+- *_score_map_thresh.png, *_overlay_thresh.png
+- *_parking_location_mask.png
+The function also returns the final score image, overlays, the list of homographies, and the raw (unnormalized) score.
+"""
+
+
 # -----------------------------
 # Parsing utils (inchangé)
 # -----------------------------

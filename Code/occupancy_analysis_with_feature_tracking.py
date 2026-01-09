@@ -6,6 +6,24 @@ from tqdm import tqdm
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
+"""
+This script computes parking occupancy for a detection dataset whose frames are not in the same viewpoint as the
+reference parking mask.
+
+It loads a reference image (IMG_REF) and an “active” image (IMG_ACT), estimates a homography ACT→REF using
+SIFT (ORB fallback) with RANSAC, then inverts it to warp the reference parking mask into the active image
+coordinate system (nearest-neighbor). Optional debug images are saved to visually verify the warp.
+
+With the warped mask (now matching the TXT detections), the script processes all per-frame detection files in
+parallel. For each vehicle polygon, it uses ROI rasterization to compute the overlap ratio with parking pixels
+and counts the vehicle as “parked” if overlap > OVERLAP_THR. A union footprint of parked polygons is used to
+estimate parking surface usage (pixels and %).
+
+Finally, it prints average occupancy metrics and the most/least occupied frames based on % parking area used.
+"""
+
+
+
 ###########################################################
 # CONFIG (EDIT THESE PATHS)
 ###########################################################

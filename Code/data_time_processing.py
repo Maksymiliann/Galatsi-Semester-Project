@@ -2,23 +2,28 @@
 # -*- coding: utf-8 -*-
 
 """
-Time-align two videos using per-frame timestamps contained in companion text files.
+This script time-aligns two videos using per-frame timestamps stored in companion metadata files.
+
+Each video has a text-based metadata file (e.g., SRT or TXT) that contains a timestamp for each frame.
+The script parses these timestamps into Python datetime objects (supporting two formats:
+- "YYYY-MM-DD HH:MM:SS,mmm,uuu" (milliseconds + extra microseconds)
+- "YYYY-MM-DD HH:MM:SS,mmm"     (milliseconds only, fallback)
+
+After parsing, it computes the temporal overlap between the two videos (latest start time to earliest end time).
+Inside this overlap window, it matches frames from video1 to the closest frame in video2 using a two-pointer
+nearest-neighbor approach, keeping only pairs whose time difference is within a user-defined tolerance
+(tolerance_ms). The result is a list of aligned frame pairs:
+(idx1, idx2, t1, t2, dt_ms).
 
 Outputs:
-  - CSV with matched frames (idx1, idx2, t1, t2, dt_ms)
-  - two trimmed, time-aligned video files
+- An SRT file (aligned_pairs.SRT) that records the alignment mapping and the timestamp difference per pair.
+- Optionally, two trimmed video files containing only the matched frames, written in sync so that both outputs
+  have the same number of frames and are aligned in time.
 
-Usage:
-  python align_videos_by_time.py \
-      --video1 path/to/videoA.mp4 --meta1 path/to/videoA_meta.txt \
-      --video2 path/to/videoB.mp4 --meta2 path/to/videoB_meta.txt \
-      --out_csv aligned_pairs.csv \
-      --tolerance_ms 25 \
-      --write_trimmed \
-      --out_dir ./aligned_outputs
-
-Place this file in: code/data_time_processing/ (or wherever you prefer)
+This is useful for synchronizing two recordings of the same scene (e.g., different cameras) when exact frame
+alignment must be recovered from recorded timestamps.
 """
+
 
 import argparse
 import os

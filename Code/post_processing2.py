@@ -2,10 +2,30 @@ import cv2
 import numpy as np
 from pathlib import Path
 
+"""
+This script post-processes a binary parking zones mask to improve connectivity by filling small gaps.
+
+It loads a 0/255 mask and converts it to {0,1}. Two optional gap-closing strategies are provided:
+1) Multi-angle morphological closing: applies closing with line-shaped kernels at several orientations
+   (ANGLES_DEG) and takes the union, which helps connect broken parking-line segments along likely directions.
+2) Hough bridging (optional): detects line segments on edges, merges nearby collinear segments, redraws them as
+   thicker lines, and adds them back to the mask.
+
+The final mask is the logical OR of the original mask, the multi-angle closed mask, and the (optional) Hough
+bridging result. A debug overlay is also saved where pixels added by post-processing are highlighted in green.
+
+Outputs:
+- *_closed.png (if enabled)
+- *_hough_bridged.png (if enabled)
+- *_combined.png (final mask)
+- *_overlay_postproc.png (added pixels in green)
+"""
+
+
 # =========================
 # Config utilisateur
 # =========================
-# Mets ici le chemin de ton zone_mask binaire (0/255) :
+# chemin du zone_mask binaire (0/255) :
 INPUT_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/post_processing2/parking_dwell_state_MULTI_REG_zones_mask.png"
 OUT_PREFIX = "Results/parking_detection/post_processing2/test4/mask"
 

@@ -7,6 +7,27 @@ import numpy as np
 import cv2
 from tqdm import tqdm
 
+"""
+This script generates a parking “likelihood” map from detection TXT files using oriented Gaussian splatting.
+
+It parses each detection line (semicolon-separated) to extract a vehicle id, a 4-corner oriented bounding box
+polygon, a confidence score, and a motion state (defaulting to "stop" if missing). For each detection, the OBB
+is converted into a rotated rectangle (center, length, width, angle) using cv2.minAreaRect.
+
+Instead of hard rasterizing polygons, the script “splats” an anisotropic rotated Gaussian kernel onto a coarse
+grid (downsampled by cell):
+- STOP detections add a positive Gaussian (+w_stop)
+- MOVE detections subtract a Gaussian (-w_move)
+The Gaussian is elongated along the vehicle’s main axis (extend_long) and its spread is controlled by sigma_*_ratio.
+Rotated kernels are cached (LRU cache) to avoid regenerating similar kernels repeatedly.
+
+All contributions are accumulated into a signed score grid, which is then robustly normalized to [0,1] using
+percentiles (2–98%) and upsampled back to full image resolution. The resulting probability-like map is saved as
+a JET heatmap and an overlay on the reference image. A thresholded binary map (thr) is also produced and saved
+with a colored overlay for quick visual inspection.
+"""
+
+
 # -----------------------------
 # Parsing .txt
 # -----------------------------

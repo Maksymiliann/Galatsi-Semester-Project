@@ -1,6 +1,13 @@
 import cv2
 import numpy as np
 
+"""
+Converts an ID-based mask into a colored visualization.
+Each non-zero ID is mapped to a deterministic pseudo-random color,
+making different labeled regions easy to distinguish visually.
+"""
+
+
 # -----------------
 # PATHS
 # -----------------

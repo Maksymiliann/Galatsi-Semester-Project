@@ -5,6 +5,25 @@ from collections import defaultdict
 import pandas as pd
 from tqdm import tqdm
 
+"""
+This script “pads” missing detections in a sequence of per-frame TXT files by interpolating vehicle bounding boxes.
+
+It loads all frame files from INPUT_DIR (CSV with ';' separator), cleans column names/types, and builds a track
+for each vehicle_id by collecting its detections across frames. For each vehicle track, it looks for gaps where:
+- the vehicle is missing for one or more intermediate frames, and
+- the vehicle is labeled "stop" at both the start and end of the gap
+
+For those gaps, it generates synthetic detections in the missing frames by linearly interpolating the 4-corner
+bounding-box coordinates (veh_bb_x1..y4) and the confidence score between the two surrounding detections.
+Interpolated rows are forced to state="stop" and keep the original det_class.
+
+Finally, the script writes a new set of TXT files to OUTPUT_DIR, inserting the interpolated rows into the
+corresponding frames, sorting by vehicle_id, and preserving the original file names. It prints how many padded
+rows were added in total.
+"""
+
+
+
 
 # =========================
 # CONFIG

@@ -1,6 +1,17 @@
 import cv2
 import numpy as np
 
+"""
+Post-processes a binary parking zones mask to produce uniform-width rectangular zones.
+Steps:
+- Thins the mask to a 1-pixel skeleton
+- Cleans and reconnects small gaps
+- Fits a minimum-area rectangle to each skeleton segment
+- Redraws each segment with a fixed width and filtered length
+Result is a clean, standardized rectangular mask for downstream analysis.
+"""
+
+
 # -----------------
 # PATHS
 # -----------------

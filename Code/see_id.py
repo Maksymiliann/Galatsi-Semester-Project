@@ -3,6 +3,13 @@ import cv2
 import numpy as np
 import random
 
+"""
+Visualizes a zone ID mask by assigning a random bright color to each zone.
+Draws zone contours and overlays large, readable zone ID labels at centroids.
+Outputs a colored, annotated image for easy visual inspection of zone masks.
+"""
+
+
 # =========================
 # CONFIG
 # =========================

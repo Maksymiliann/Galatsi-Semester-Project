@@ -1,6 +1,27 @@
 import cv2
 import numpy as np
 
+
+"""
+This script compares a predicted binary parking mask against a ground-truth mask and reports segmentation metrics.
+
+It loads the ground truth (GT) and the predicted mask as grayscale images, converts them to boolean masks
+(optionally treating any non-zero GT value as “parking”, and optionally inverting either mask). If the two masks
+have different sizes, the predicted mask is resized to match the GT using nearest-neighbor interpolation.
+
+It then computes pixel-level counts:
+- TP: pixels correctly predicted as parking
+- FP: pixels predicted as parking but not in GT (over-detection)
+- FN: parking pixels missed by the prediction
+and derives IoU, Dice, Precision, and Recall from these counts.
+
+Finally, it generates a visualization overlay highlighting:
+- FP in red, FN in blue, and (optionally) TP in green
+blended over either a provided RGB background image or a grayscale GT-based background, and saves it to disk.
+"""
+
+
+
 # -----------------
 # PATHS
 # -----------------
@@ -9,8 +30,7 @@ MASK_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_anal
 #MASK_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/dwell_mult_4/test4_thr_0.85/parking_dwell_state_MULTI_REG_zones_mask.png"
 
 # (optionnel) image de fond pour visualiser (satellite / frame)
-# Mets None si tu n’en as pas
-RGB_PATH  = None  # ex: r"C:/Users/makss/.../satellite.png"
+RGB_PATH  = None  # None
 
 OUT_OVERLAY = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/overlay_fp_fn.png"
 
@@ -21,7 +41,7 @@ THRESH = 127
 INVERT_GT = False
 INVERT_MASK = False
 
-# Si ton GT est un mask "zones ID" (valeurs 0..N), tu veux souvent :
+# Si GT est un mask "zones ID" (valeurs 0..N),
 # parking = (valeur > 0)
 GT_NONZERO_IS_PARKING = True
 

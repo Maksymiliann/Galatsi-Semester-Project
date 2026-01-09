@@ -1,10 +1,23 @@
 # lg_minimal_img2_to_img1.py
 import cv2, numpy as np, torch
-from lightglue import LightGlue, SuperPoint, match_pair  # (tu peux garder DISK/SIFT/ALIKED importés si tu veux)
+from lightglue import LightGlue, SuperPoint, match_pair
 from lightglue.utils import load_image
 
+"""
+Minimal LightGlue-based pipeline to estimate a homography (img2 → img1) and warp img2 onto img1.
+
+The script extracts SuperPoint keypoints, matches them with LightGlue, and estimates a RANSAC
+homography from img2 to img1. The warped result is produced at the original image resolution.
+
+Outputs:
+- *_warped.png: img2 warped into img1’s coordinate frame
+- *_overlay.png: blended overlay for quick alignment check
+- *_matches.png: visualization of inlier matches (LightGlue resolution)
+"""
+
+
 IMG1 = r"C:/Users/makss/Git/Galatsi-Semester-Project/first_frame_static_aligned.png"
-IMG2 = r"C:/Users/makss/Git/Galatsi-Semester-Project/first_frame_moving_aligned.png"
+IMG2 = r"C:/Users/makss/Git/Galatsi-Semester-Project/another_video.png"
 OUT  = "lg_out"
 
 device   = "cuda" if torch.cuda.is_available() else "cpu"
@@ -35,7 +48,7 @@ h1, w1 = img1.shape[:2]
 warped  = cv2.warpPerspective(img2, H, (w1, h1))
 overlay = cv2.addWeighted(img1, 0.5, warped, 0.5, 0)
 
-# === (NOUVEAU) Sauvegarde des matches (inliers) ===
+# === Sauvegarde des matches (inliers) ===
 def to_bgr(t):
     t = t[0] if t.ndim == 4 else t      # (3,H,W)
     a = (t.permute(1,2,0).cpu().numpy()*255).astype(np.uint8)  # RGB

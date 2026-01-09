@@ -5,7 +5,33 @@ import numpy as np
 import cv2
 from sklearn.mixture import GaussianMixture
 from sklearn.preprocessing import StandardScaler
-from tqdm import tqdm  # <-- ajoute ceci en haut du fichier (si pas déjà)
+from tqdm import tqdm 
+
+"""
+This script builds a parking-probability heatmap using an EM Gaussian Mixture Model (GMM) trained on grid-based
+features extracted from STOP/MOVE detections.
+
+It reads semicolon-separated TXT detections and extracts (vehicle_id, 4-corner OBB polygon, confidence, state).
+Polygons are rasterized onto a coarse grid (cell pixels per grid cell). Over all frames it accumulates:
+- G: STOP presence count per cell
+- R: MOVE presence count per cell
+- D: STOP dwell time in seconds per cell (adds dt for each frame where STOP covers the cell)
+- U: approximate unique vehicle count per cell (number of distinct vehicle_id values that stopped in the cell)
+
+For every visited cell (G+R > 0), it builds a feature vector including counts, dwell, unique ids, ratios, and log
+transforms. Features are standardized and a 2-component GaussianMixture is fitted (EM). The “parking” component is
+chosen as the cluster with higher average stop_ratio + log(dwell), and the corresponding posterior probability is
+written back into a grid map.
+
+The probability grid is upsampled to full image resolution, converted to a JET colormap, and overlaid on the
+reference image. The heatmap and overlay are saved to disk.
+
+Outputs:
+- *_prediction_map.png: JET heatmap of parking probability
+- *_overlay.png: heatmap overlay on the image
+The function returns (P_img, overlay_img, cmap_img).
+"""
+
 
 # -----------------------------
 # Parsing utils

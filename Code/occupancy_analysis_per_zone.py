@@ -5,6 +5,23 @@ import glob, os
 from pathlib import Path
 from tqdm import tqdm
 from concurrent.futures import ProcessPoolExecutor
+"""
+This script computes global and per-zone parking occupancy over a sequence of frames using detection polygons.
+
+It loads a binary parking mask and a zone-id mask (or builds zones from connected components), optionally removes
+very small zones, and then processes every detection file (.txt) in the folder. For each vehicle polygon, it uses
+a quick center check + ROI rasterization to compute the overlap ratio with the parking mask; the vehicle is counted
+as “parked” if overlap > OVERLAP_THR. A union footprint of parked vehicles is used to estimate parking surface usage.
+
+For each frame it outputs:
+- global metrics (vehicles, parked vehicles, % parked, % area used, pixels covered)
+- per-zone counts and per-zone covered area (% of each zone)
+
+Processing can run sequentially or in parallel (ProcessPoolExecutor). Results are exported to three CSV files
+(global_results, per_zone_per_frame, per_zone_summary) and two heatmaps are generated (average and max zone occupancy).
+"""
+
+
 
 ###########################################################
 # CONFIG

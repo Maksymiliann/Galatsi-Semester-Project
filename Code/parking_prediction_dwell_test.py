@@ -8,6 +8,30 @@ try:
 except:
     def tqdm(x, **k): return x  # fallback silencieux
 
+
+"""
+This script builds a parking heatmap from one detection folder by accumulating STOP dwell time and penalizing MOVE,
+then applies an absolute threshold on the *raw* score to create a binary parking mask.
+
+It parses semicolon-separated TXT detections to extract (vehicle_id, 4-corner OBB polygon, confidence, state).
+Each polygon is rasterized onto a downsampled grid (cell pixels per cell). Over all frames:
+- STOP detections add +dt seconds to dwell_stop on covered cells
+- MOVE detections add +1 hit to move_hits on covered cells (can be changed to +dt to penalize in seconds)
+
+A raw (non-normalized) score is computed per cell:
+    score_brut = w_stop * dwell_stop - w_move * move_hits
+This raw score is used for the final decision: a cell is “parking” if score_brut >= score_min_abs.
+
+For visualization only, score_brut is also robustly normalized (2–98% percentiles) to [0,1], upsampled to the
+original image size, optionally smoothed, and rendered as a JET heatmap + overlay. The absolute-threshold mask is
+upsampled with nearest-neighbor and used to mask the heatmap/overlay, producing thresholded outputs.
+
+Outputs:
+- *_score_map.png and *_overlay.png: normalized heatmap for visual inspection
+- *_score_map_thresh.png and *_overlay_thresh.png: heatmap/overlay masked by (score_brut >= score_min_abs)
+"""
+
+
 # -----------------------------
 # Parsing utils
 # -----------------------------

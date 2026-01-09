@@ -2,6 +2,20 @@ import cv2
 import numpy as np
 from pathlib import Path
 
+"""
+This script detects straight line structures in a binary mask using an iterative RANSAC procedure.
+
+It loads a grayscale mask image, binarizes it (0/255), and applies a small morphological close to reduce gaps.
+All white pixels are treated as candidate points (optionally subsampled with sample_stride). RANSAC repeatedly
+fits a line from two random points, counts inliers within a distance threshold, keeps the best line if it has
+enough inliers, then removes those inliers and searches for additional lines (up to max_lines).
+
+Each accepted line is refined with SVD/PCA on its inlier points and converted to endpoints for drawing. The
+detected lines are finally drawn on top of the mask and saved as an output image.
+"""
+
+
+
 # ===============================================================
 #                RANSAC LINE DETECTION FUNCTIONS
 # ===============================================================

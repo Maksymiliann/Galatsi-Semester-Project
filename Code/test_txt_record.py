@@ -2,6 +2,15 @@ import cv2
 import numpy as np
 from pathlib import Path
 
+"""
+Draws vehicle detections from a single TXT file onto a reference image for quick visual debugging.
+
+It parses each detection line (vehicle_id, 4 polygon corners, class, confidence, state), draws the oriented
+bounding-box polygon on the image, and optionally annotates each box with its vehicle ID. The resulting overlay
+is saved to disk and can also be displayed in an OpenCV window.
+"""
+
+
 # ------------------------
 # CONFIGURATION À MODIFIER
 # ------------------------

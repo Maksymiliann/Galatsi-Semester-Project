@@ -5,6 +5,22 @@
 import cv2, numpy as np, torch
 from pathlib import Path
 
+"""
+This script uses SuperPoint + LightGlue to match features between two images, estimate a homography
+(img2 -> img1), and warp img2 into img1’s coordinate system.
+
+It loads img2 as image0 and img1 as image1 (so matches are img2→img1), extracts keypoints with SuperPoint,
+matches them with LightGlue, and fits a robust homography with RANSAC. If feature extraction was done on
+resized images, the homography is rescaled back to the original image resolution.
+
+Outputs:
+- *_matches.png: visualization of inlier matches (on the resized images used by LightGlue)
+- *_warped_img2_on_img1.png: img2 warped onto img1 (original resolution)
+- *_overlay.png: blended overlay for quick visual inspection
+It also prints the homography matrix, inlier ratio, and mean reprojection error (px).
+"""
+
+
 from lightglue import LightGlue, SuperPoint  # (ou DISK/ALIKED/SIFT)
 from lightglue.utils import load_image, rbd  # rbd = remove batch dimension
 

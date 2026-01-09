@@ -1,6 +1,18 @@
 from ultralytics import YOLO
 import cv2, math, numpy as np
 
+"""
+Runs tiled YOLO-OBB inference on a large image and merges detections across tiles.
+
+The image is split into overlapping square tiles, YOLO OBB detections are run on each tile, and detections are
+mapped back to global coordinates. To avoid double-counting objects seen in overlapping tiles, an optional
+global class-wise NMS is applied using the AABB envelope of each oriented box (approx IoU for OBB).
+
+Finally, the kept OBBs are drawn on the original image, the annotated image is saved, and the script reports the
+total number of objects and counts per class (optionally mapped to class names).
+"""
+
+
 def tile_coords(W, H, tile=1280, overlap=0.2):
     step = int(tile * (1 - overlap))
     xs = list(range(0, max(W - tile, 0) + 1, step)) or [0]
