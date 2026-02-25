@@ -45,9 +45,9 @@ MAX_WORKERS  = None      # None -> os.cpu_count(); sinon mets un int (ex: 4)
 
 ### chemins images pour l’homographie ###
 # Image de référence (celle qui correspond au MASK)
-REF_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/frame_1_0004.png"
+REF_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/Images/needed for script/frame_1_0004.png"
 # Image sur laquelle sont basés les TXT du dossier FOLDER
-SRC_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/frame_1_0314.png"
+SRC_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/Images/needed for script/frame_1_0314.png"
 
 ###########################################################
 # GLOBALS FOR WORKERS
