@@ -1,36 +1,37 @@
 # Galatsi-Semester-Project
+This project aims to automatically analyze parking availability and traffic dynamics from drone video footage. By leveraging the wide field of view provided by drones, the system detects and tracks vehicles over time to understand both road usage and parking behavior in complex urban environments.
+
+The pipeline processes raw drone videos using deep learning–based vehicle detection, multi-object tracking, and spatial–temporal analysis. Vehicle trajectories are reconstructed to compensate for drone motion and maintain consistent identities across frames. These trajectories are then analyzed to infer parking regions, estimate occupancy, and study the temporal evolution of parking demand.
+
+The ultimate objective is to identify occupied and available parking spaces, highlight high-demand zones, and analyze parking inflow and outflow patterns. Such insights can support smarter parking management, reduce congestion caused by parking search, and potentially assist autonomous or connected vehicles in navigating toward optimal parking areas.
 
 ## Project structure
 
 <!-- TREE_START -->
 
 ```text
-Galatsi-Semester-Project/
-├── .github/
-├── Dataset/
-│   ├── Galatsi_Data_Semester_Project_archive/
-│   ├── Galatsi_Data_Semester_Project_processing/
-│   └── Galatsi_Data_Semester_Project_archive.zip
-├── LightGlue/
-├── Main code/
-│   ├── 1_tracking.py
-│   ├── 2_parking_prediction_dwell_state_multiples4.py
-│   ├── 3_post_processing2.py
-│   ├── 4_cleaning.py
-│   ├── 4_post_processing3.py
-│   ├── 5_zones3.py
-│   ├── 6_1_optional_padding.py
-│   ├── 6_zones.py
-│   ├── 7_occupancy_analysis_per_zone3.py
-│   ├── 8_csv_reader.py
-│   └── EPFL_Report_Semester_Project_2_compressed.pdf
-├── Results/
-│   ├── feature_matching/
-│   ├── Ground_truth/
-│   ├── Images/
-│   ├── occupancy_analysis/
-│   ├── parking_detection/
-│   ├── TXT/
+Galatsi-Semester-Project/                                      
+├── .github/                                                  # Folder for the workflow
+├── LightGlue/                                                # LightGlue git
+├── Main code/                                                # Scripts used in the pipeline, they represent all the necessaries scripts of this project
+│   ├── 1_tracking.py                                         # Detects and tracks vehicles
+│   ├── 2_parking_prediction_dwell_state_multiples4.py        # Predicts the parking locations and already does a bit of processing 
+│   ├── 3_post_processing2.py                                 # More processing, mostly gaps filling
+│   ├── 4_cleaning.py                                         # Removes small parking places
+│   ├── 4_post_processing3.py                                 # Removes small and isolated parking places
+│   ├── 5_zones3.py                                           # Defines the zones
+│   ├── 6_1_optional_padding.py                               # can be used to do padding on the TXT folders
+│   ├── 6_zones.py                                            # Associates an ID to each zone
+│   ├── 7_occupancy_analysis_per_zone3.py                     # Analyses a video based on parking zones
+│   ├── 8_csv_reader.py                                       # Reads the analysis
+│   └── EPFL_Report_Semester_Project_2_compressed.pdf         # Compressed report
+├── Results/                                                  # Here are all the results obtained troughout the project
+│   ├── feature_matching/                                     # Results for the feature matching
+│   ├── Ground_truth/                                         # Ground truth used for analysis
+│   ├── Images/                                               # Images needed for some scripts or given as an output for visualization
+│   ├── occupancy_analysis/                                   # Results for the occupancy analysis
+│   ├── parking_detection/                                    # Results for the parking detection, inside, each algorithm as it's own result folder
+│   ├── TXT/                                                  # Converted video into TXt files
 │   ├── TXT10/
 │   ├── TXT_0004/
 │   ├── TXT_0004_padded/
@@ -43,32 +44,29 @@ Galatsi-Semester-Project/
 │   ├── TXT_0314_D2_S4_S1/
 │   ├── TXT_0314_D2_S4_S1_padded/
 │   ├── TXT_0319_D2_S5_S1/
-│   ├── TXT_0319_D2_S5_S1_padded/
-│   └── Video/
-├── runs/
-├── scripts/
-├── Src/
+│   └── TXT_0319_D2_S5_S1_padded/
+├── runs/                                                    # Some tests done with the tracking
+├── scripts/                                                 # Script to automate the update of this beautiful tree
+├── Src/                                                     # Every script that was used or only tested for this project
 ├── .gitattributes
 ├── .gitignore
-├── EPFL_Report_Semester_Project_2_compressed.pdf
-├── logs.txt
+├── EPFL_Report_Semester_Project_2_compressed.pdf            # Compressed report
+├── logs.txt                                                 # Logs I forgot about...
 ├── README.md
-├── requirements.txt
-├── yolo11l-obb.pt
-├── yolo11m-obb.pt
-├── yolo11n-obb.pt
-├── yolo11x-obb.pt
-└── yolo11x.pt
+└── requirements.txt
 ```
 
 <!-- TREE_END -->
 
+## Main Code
+
+### This is the main pipeline of the project. You can start from any image or video and run the different scripts in the following order:
 1) tracking.py
-  - takes a video or image as input as well as the desired YOLO model 
-  - stabilizes the video
-  - detects and track the different vehicles
-  - assignes their state (parked, driving)
-  - exports a txt file with the OBB position, state, class, confidence score and ID
+    - takes a video or image as input as well as the desired YOLO model 
+    - stabilizes the video
+    - detects and track the different vehicles
+    - assignes their state (parked, driving)
+    - exports a txt file with the OBB position, state, class, confidence score and ID
 
 2) parking_prediction_dwell_state_multiples4.py
    - takes txt files and first frame as input as well as some parameters
@@ -81,8 +79,7 @@ Galatsi-Semester-Project/
 3) post_precessing2.py
    - takes the mask as input
    - close the small gaps
-   - 
-4) cleaning.py
+4) cleaning.py or post_processing3
    - takes the mask as input and removes the small parking locations
 
 5) zones3.py
@@ -95,8 +92,8 @@ Galatsi-Semester-Project/
 
 (Optional) 
   Padding.py
-  - takes the txt files as input
-  - does a padding on parked vehicles to have a better analysis later
+   - takes the txt files as input
+   - does a padding on parked vehicles to have a better analysis later
 
 7) occupancy_analysis_per_zones3.py
    - takes the txt files as well as the mask and the ID mask, and a reference frame and the first frame on the analyzed video
@@ -107,3 +104,46 @@ Galatsi-Semester-Project/
 8) csv_reader.py
    - takes the csv as input
    - read them and plot some graphs
+
+## Results
+In the `Results` folder, you will find all outputs generated throughout the project. 
+The folder is organized by project components, such as feature matching, parking detection, 
+and occupancy analysis. Each component contains separate subfolders for the different 
+algorithms that were tested.
+
+The `Results` folder also includes images produced by the scripts, as well as images 
+required as inputs for certain processing steps. In addition, it contains the manually 
+created ground truth data and the transcription of all videos used in the project, stored 
+as TXT files.
+
+## Src
+The `Src` folder contains all scripts used throughout the project. If you want to test 
+scripts that are not part of the main pipeline, a short description explaining their usage 
+is provided at the beginning of each script.
+
+## Report
+The report presents the complete story of the project, explaining not only what was done, 
+but also why each decision was made. It guides the reader through the motivation behind the 
+work, the challenges encountered along the way, and the results that were ultimately achieved.
+
+Beyond the technical implementation, the report discusses the reasoning behind key design 
+choices, highlights the strengths and limitations of the different algorithms explored, and 
+reflects on the trade-offs involved. Together, these elements provide a coherent narrative 
+that connects raw drone footage to meaningful insights about parking behavior and urban mobility.
+
+## Acknowledgements
+I would like to sincerely thank Yura Tak, my project supervisor, for giving me the opportunity to work on this project and for her constant support throughout the semester. Her guidance and insightful feedback were invaluable at every stage of the project, from defining the initial direction to refining the final results. Working under her supervision was both motivating and enriching.
+
+## Third-Party Code
+
+This repository uses and builds upon several open-source projects. Some parts of the codebase, models, or algorithms **do not originate from this repository** and are included or adapted in accordance with their respective licenses. Full credit is given to the original authors.
+
+The following third-party projects are used in this work:
+
+- **Stabilo** — https://github.com/rfonod/stabilo  
+- **Ultralytics (YOLO)** — https://github.com/ultralytics/ultralytics  
+- **ByteTrack** — https://github.com/FoundationVision/ByteTrack  
+- **LightGlue** — https://github.com/cvg/LightGlue  
+
+All third-party code remains the property of its respective authors. Please refer to the original repositories for license information and detailed documentation.
+
