@@ -52,7 +52,6 @@ Outputs (with out_prefix):
 - *_overlay_zones.png: visualization of the final zones mask on top of the heatmap overlay
 """
 
-
 # -----------------------------
 # Parsing utils (inchangé)
 # -----------------------------
@@ -286,8 +285,17 @@ def run_parking_dwell_state_multi_registered(
     print(f"[OK] Saved thresholded map & overlay.")
 
     # 8) mask for parking location
-    mask_img = (score_img >= thr).astype(np.uint8)
-    cv2.imwrite(f"{out_prefix}_parking_location_mask.png", (mask_img*255).astype(np.uint8))
+    # mask_img = (score_img >= thr).astype(np.uint8)
+    # cv2.imwrite(f"{out_prefix}_parking_location_mask.png", (mask_img*255).astype(np.uint8))
+    step = 0.005
+
+    for thr in np.arange(0.0, 1.0 + step, step):
+        
+        mask_img = (score_img >= thr).astype(np.uint8)
+        
+        filename = f"{out_prefix}_parking_location_mask_thr_{thr:.3f}.png"
+        
+        cv2.imwrite(filename, (mask_img * 255).astype(np.uint8))
 
     # === 9) combler les "trous entre places" et créer des zones de parking ===
     # Idées clés:
@@ -431,12 +439,12 @@ if __name__ == "__main__":
         r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0319_D2_S5_S1",
     ]
     IMG_PATHS = [
-        r"C:/Users/makss/Git/Galatsi-Semester-Project/frame_1_0004.png",  # REF
-        r"C:/Users/makss/Git/Galatsi-Semester-Project/frame_1_0005.png",
-        r"C:/Users/makss/Git/Galatsi-Semester-Project/frame_1_0006.png",
-        r"C:/Users/makss/Git/Galatsi-Semester-Project/frame_1_0312.png",
-        r"C:/Users/makss/Git/Galatsi-Semester-Project/frame_1_0314.png",
-        r"C:/Users/makss/Git/Galatsi-Semester-Project/frame_1_0319.png",
+        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0004.png",  # REF
+        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0005.png",
+        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0006.png",
+        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0312.png",
+        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0314.png",
+        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0319.png",
     ]
     FPS = [25.0, 25.0, 25.0, 25.0, 25.0, 25.0]  # ou une valeur unique
 
@@ -451,6 +459,6 @@ if __name__ == "__main__":
         gaussian_sigma=1.5, #1.5
         alpha_overlay=0.6,  #0.6
         thr=0.85,   #0.9
-        out_prefix="Results/parking_detection/dwell_mult_4/test6_thr_0.85/parking_dwell_state_MULTI_REG",
+        out_prefix="Results/parking_detection/dwell_mult_4/test8_thr_0.85/parking_dwell_state_MULTI_REG",
         save_reg_debug=True
     )

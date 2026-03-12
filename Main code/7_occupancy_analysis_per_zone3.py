@@ -144,7 +144,7 @@ def rasterize_poly(poly_xy):
 
 
 ###########################################################
-# ESTIMATION HOMOGRAPHIE (repris / simplifié de ton 2e code)
+# ESTIMATION HOMOGRAPHIE
 ###########################################################
 def estimate_homography(img_ref_bgr, img_bgr,
                         ratio=0.75, ransac_thr=3.0, max_kpts=4000):
