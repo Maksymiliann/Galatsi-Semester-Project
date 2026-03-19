@@ -27,14 +27,14 @@ and plots results (optionally with rolling-mean smoothing).
 # CONFIG
 ###########################################################
 MASK_PATH   = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_closed_cleaned.png"
-FOLDER      = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0314_D2_S4_S1_padded"
+FOLDER      = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0314_D2_S4_S1_padded_state_corrected"
 ZONES_PATH  = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_zones_id_cleaned.png"
 
-OVERLAP_THR = 0.7
+OVERLAP_THR = 0.6
 MIN_ZONE_AREA = 5000
 
-USE_PARALLEL = False      # start False, then True if you want
-MAX_WORKERS  = None
+USE_PARALLEL = True      # start False, then True if you want
+MAX_WORKERS  = 4
 
 REF_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project//Results/Images/needed for script/frame_1_0004.png"
 SRC_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project//Results/Images/needed for script/frame_1_0314.png"

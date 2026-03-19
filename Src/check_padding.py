@@ -7,12 +7,12 @@ import random
 # -------------------------
 # PATH TO YOUR TXT FOLDER
 # -------------------------
-folder_path = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0312_D2_S3_S1"
+folder_path = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0312_D2_S3_S1_padded"
 
 # -------------------------
 # CHOOSE VEHICLE IDS HERE
 # -------------------------
-selected_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]   # put the IDs you want
+selected_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]   #
 
 # -------------------------
 # GET TXT FILES
