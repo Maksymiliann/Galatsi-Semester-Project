@@ -40,7 +40,7 @@ REF_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project//Results/Images/nee
 SRC_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project//Results/Images/needed for script/frame_1_0314.png"
 
 # --- NEW FILTER ---
-MIN_FRAMES_PRESENT = 6500  # keep vehicle_id if it appears in >= this many frames (among parked-candidates)
+MIN_FRAMES_PRESENT = 3500  # keep vehicle_id if it appears in >= this many frames (among parked-candidates)
 
 # --- Plot smoothing ---
 SMOOTH_WINDOWS = (50, 150)   # set () to disable smoothing

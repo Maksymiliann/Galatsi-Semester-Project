@@ -28,8 +28,8 @@ Outputs saved in OUT_DIR:
 # CONFIG (modifie ici)
 # ============================================================
 
-MASK_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/cleaned_bw.png"     # input mask binaire (0/255 ou non-zero)
-OUT_DIR   = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/post_processing3"      # dossier de sortie
+MASK_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/parking_dwell_state_MULTI_REG_parking_location_mask_cleaned_bw_2.png"     # input mask binaire (0/255 ou non-zero)
+OUT_DIR   = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/post_processing4"      # dossier de sortie
 
 # Dilation orientée
 GAP_PX    = 20     # longueur max à combler (pixels)

@@ -285,17 +285,17 @@ def run_parking_dwell_state_multi_registered(
     print(f"[OK] Saved thresholded map & overlay.")
 
     # 8) mask for parking location
-    # mask_img = (score_img >= thr).astype(np.uint8)
-    # cv2.imwrite(f"{out_prefix}_parking_location_mask.png", (mask_img*255).astype(np.uint8))
-    step = 0.005
+    mask_img = (score_img >= thr).astype(np.uint8)
+    cv2.imwrite(f"{out_prefix}_parking_location_mask.png", (mask_img*255).astype(np.uint8))
+    # step = 0.005
 
-    for thr in np.arange(0.0, 1.0 + step, step):
+    # for thr in np.arange(0.0, 1.0 + step, step):
         
-        mask_img = (score_img >= thr).astype(np.uint8)
+    #     mask_img = (score_img >= thr).astype(np.uint8)
         
-        filename = f"{out_prefix}_parking_location_mask_thr_{thr:.3f}.png"
+    #     filename = f"{out_prefix}_parking_location_mask_thr_{thr:.3f}.png"
         
-        cv2.imwrite(filename, (mask_img * 255).astype(np.uint8))
+    #     cv2.imwrite(filename, (mask_img * 255).astype(np.uint8))
 
     # === 9) combler les "trous entre places" et créer des zones de parking ===
     # Idées clés:
@@ -432,21 +432,25 @@ def run_parking_dwell_state_multi_registered(
 if __name__ == "__main__":
     TXT_DIRS = [
         r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0004",
-        r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0005",
-        r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0006",
+        r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0001_D1_S2_S1",
+        r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0003_D1_S3_S1",
+        r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0006_D1_S4_S1",
+        r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0009_D1_S5_S1",
         r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0312_D2_S3_S1",
         r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0314_D2_S4_S1",
         r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0319_D2_S5_S1",
     ]
     IMG_PATHS = [
         r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0004.png",  # REF
-        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0005.png",
-        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0006.png",
+        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0001.png",
+        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0003.png",
+        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0006_1.png",
+        r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0009.png",
         r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0312.png",
         r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0314.png",
         r"C:\Users\makss\Git\Galatsi-Semester-Project\Results\Images\needed for script\frame_1_0319.png",
     ]
-    FPS = [25.0, 25.0, 25.0, 25.0, 25.0, 25.0]  # ou une valeur unique
+    FPS = [25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0]  # ou une valeur unique
 
     run_parking_dwell_state_multi_registered(
         txt_dirs=TXT_DIRS,
@@ -459,6 +463,6 @@ if __name__ == "__main__":
         gaussian_sigma=1.5, #1.5
         alpha_overlay=0.6,  #0.6
         thr=0.85,   #0.9
-        out_prefix="Results/parking_detection/dwell_mult_4/test8_thr_0.85/parking_dwell_state_MULTI_REG",
+        out_prefix="Results/parking_detection/dwell_mult_4/test9_thr_0.85/parking_dwell_state_MULTI_REG",
         save_reg_debug=True
     )

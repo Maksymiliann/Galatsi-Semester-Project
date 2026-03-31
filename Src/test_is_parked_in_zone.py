@@ -30,14 +30,14 @@ the "state" column with "parked" or "moving".
 ###########################################################
 MASK_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_closed_cleaned.png"
 ZONES_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_zones_id_cleaned.png"
-FOLDER = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0314_D2_S4_S1_padded"
+FOLDER = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0314_D2_S4_S1_padded_state_corrected"
 
-OUT_FOLDER = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0314_filtered_zone_10"
+OUT_FOLDER = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0314_filtered_zone_11"
 
 REF_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/Images/needed for script/frame_1_0004.png"
 SRC_IMG_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/Images/needed for script/frame_1_0314.png"
 
-TARGET_ZONE_ID = 10
+TARGET_ZONE_ID = 11
 OVERLAP_THR = 0.7          # minimum overlap with parking mask to call it parked
 ZONE_OVERLAP_THR = 0.3     # minimum overlap with target zone to consider the vehicle in that zone
 MIN_ZONE_AREA = 5000

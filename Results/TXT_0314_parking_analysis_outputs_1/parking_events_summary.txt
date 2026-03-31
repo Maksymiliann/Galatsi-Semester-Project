@@ -1,0 +1,1351 @@
+Chronological parking events
+========================================
+
+Timestamp 0001, vehicle ID 10 parked in zone 6
+Timestamp 0001, vehicle ID 110 parked in zone 13
+Timestamp 0001, vehicle ID 111 parked in zone 9
+Timestamp 0001, vehicle ID 112 parked in zone 9
+Timestamp 0001, vehicle ID 114 parked in zone 6
+Timestamp 0001, vehicle ID 117 parked in zone 16
+Timestamp 0001, vehicle ID 119 parked in zone 2
+Timestamp 0001, vehicle ID 120 parked in zone 7
+Timestamp 0001, vehicle ID 124 parked in zone 9
+Timestamp 0001, vehicle ID 126 parked in zone 6
+Timestamp 0001, vehicle ID 130 parked in zone 11
+Timestamp 0001, vehicle ID 131 parked in zone 6
+Timestamp 0001, vehicle ID 132 parked in zone 7
+Timestamp 0001, vehicle ID 133 parked in zone 7
+Timestamp 0001, vehicle ID 135 parked in zone 6
+Timestamp 0001, vehicle ID 136 parked in zone 10
+Timestamp 0001, vehicle ID 142 parked in zone 1
+Timestamp 0001, vehicle ID 148 parked in zone 12
+Timestamp 0001, vehicle ID 15 parked in zone 11
+Timestamp 0001, vehicle ID 150 parked in zone 11
+Timestamp 0001, vehicle ID 152 parked in zone 9
+Timestamp 0001, vehicle ID 153 parked in zone 10
+Timestamp 0001, vehicle ID 159 parked in zone 13
+Timestamp 0001, vehicle ID 160 parked in zone 12
+Timestamp 0001, vehicle ID 161 parked in zone 10
+Timestamp 0001, vehicle ID 163 parked in zone 13
+Timestamp 0001, vehicle ID 166 parked in zone 8
+Timestamp 0001, vehicle ID 167 parked in zone 12
+Timestamp 0001, vehicle ID 171 parked in zone 12
+Timestamp 0001, vehicle ID 172 parked in zone 6
+Timestamp 0001, vehicle ID 176 parked in zone 6
+Timestamp 0001, vehicle ID 177 parked in zone 6
+Timestamp 0001, vehicle ID 179 parked in zone 11
+Timestamp 0001, vehicle ID 180 parked in zone 11
+Timestamp 0001, vehicle ID 181 parked in zone 14
+Timestamp 0001, vehicle ID 183 parked in zone 7
+Timestamp 0001, vehicle ID 184 parked in zone 10
+Timestamp 0001, vehicle ID 185 parked in zone 11
+Timestamp 0001, vehicle ID 188 parked in zone 6
+Timestamp 0001, vehicle ID 19 parked in zone 9
+Timestamp 0001, vehicle ID 190 parked in zone 8
+Timestamp 0001, vehicle ID 191 parked in zone 6
+Timestamp 0001, vehicle ID 192 parked in zone 12
+Timestamp 0001, vehicle ID 195 parked in zone 12
+Timestamp 0001, vehicle ID 196 parked in zone 11
+Timestamp 0001, vehicle ID 197 parked in zone 11
+Timestamp 0001, vehicle ID 198 parked in zone 11
+Timestamp 0001, vehicle ID 203 parked in zone 1
+Timestamp 0001, vehicle ID 204 parked in zone 2
+Timestamp 0001, vehicle ID 205 parked in zone 6
+Timestamp 0001, vehicle ID 21 parked in zone 11
+Timestamp 0001, vehicle ID 210 parked in zone 11
+Timestamp 0001, vehicle ID 211 parked in zone 16
+Timestamp 0001, vehicle ID 212 parked in zone 1
+Timestamp 0001, vehicle ID 213 parked in zone 7
+Timestamp 0001, vehicle ID 214 parked in zone 10
+Timestamp 0001, vehicle ID 217 parked in zone 14
+Timestamp 0001, vehicle ID 218 parked in zone 14
+Timestamp 0001, vehicle ID 22 parked in zone 9
+Timestamp 0001, vehicle ID 220 parked in zone 1
+Timestamp 0001, vehicle ID 222 parked in zone 1
+Timestamp 0001, vehicle ID 223 parked in zone 10
+Timestamp 0001, vehicle ID 228 parked in zone 12
+Timestamp 0001, vehicle ID 230 parked in zone 6
+Timestamp 0001, vehicle ID 231 parked in zone 14
+Timestamp 0001, vehicle ID 232 parked in zone 16
+Timestamp 0001, vehicle ID 233 parked in zone 1
+Timestamp 0001, vehicle ID 234 parked in zone 7
+Timestamp 0001, vehicle ID 235 parked in zone 10
+Timestamp 0001, vehicle ID 236 parked in zone 11
+Timestamp 0001, vehicle ID 237 parked in zone 2
+Timestamp 0001, vehicle ID 238 parked in zone 1
+Timestamp 0001, vehicle ID 239 parked in zone 8
+Timestamp 0001, vehicle ID 241 parked in zone 10
+Timestamp 0001, vehicle ID 242 parked in zone 10
+Timestamp 0001, vehicle ID 245 parked in zone 13
+Timestamp 0001, vehicle ID 246 parked in zone 18
+Timestamp 0001, vehicle ID 247 parked in zone 18
+Timestamp 0001, vehicle ID 248 parked in zone 14
+Timestamp 0001, vehicle ID 250 parked in zone 7
+Timestamp 0001, vehicle ID 251 parked in zone 6
+Timestamp 0001, vehicle ID 254 parked in zone 13
+Timestamp 0001, vehicle ID 255 parked in zone 14
+Timestamp 0001, vehicle ID 256 parked in zone 11
+Timestamp 0001, vehicle ID 257 parked in zone 8
+Timestamp 0001, vehicle ID 258 parked in zone 10
+Timestamp 0001, vehicle ID 26 parked in zone 9
+Timestamp 0001, vehicle ID 261 parked in zone 13
+Timestamp 0001, vehicle ID 262 parked in zone 7
+Timestamp 0001, vehicle ID 263 parked in zone 6
+Timestamp 0001, vehicle ID 264 parked in zone 10
+Timestamp 0001, vehicle ID 265 parked in zone 10
+Timestamp 0001, vehicle ID 267 parked in zone 11
+Timestamp 0001, vehicle ID 27 parked in zone 11
+Timestamp 0001, vehicle ID 271 parked in zone 6
+Timestamp 0001, vehicle ID 273 parked in zone 18
+Timestamp 0001, vehicle ID 276 parked in zone 11
+Timestamp 0001, vehicle ID 277 parked in zone 11
+Timestamp 0001, vehicle ID 278 parked in zone 7
+Timestamp 0001, vehicle ID 280 parked in zone 10
+Timestamp 0001, vehicle ID 282 parked in zone 6
+Timestamp 0001, vehicle ID 283 parked in zone 4
+Timestamp 0001, vehicle ID 285 parked in zone 11
+Timestamp 0001, vehicle ID 286 parked in zone 15
+Timestamp 0001, vehicle ID 288 parked in zone 12
+Timestamp 0001, vehicle ID 289 parked in zone 6
+Timestamp 0001, vehicle ID 290 parked in zone 11
+Timestamp 0001, vehicle ID 291 parked in zone 13
+Timestamp 0001, vehicle ID 293 parked in zone 1
+Timestamp 0001, vehicle ID 296 parked in zone 14
+Timestamp 0001, vehicle ID 298 parked in zone 6
+Timestamp 0001, vehicle ID 3 parked in zone 11
+Timestamp 0001, vehicle ID 300 parked in zone 10
+Timestamp 0001, vehicle ID 301 parked in zone 1
+Timestamp 0001, vehicle ID 302 parked in zone 7
+Timestamp 0001, vehicle ID 303 parked in zone 7
+Timestamp 0001, vehicle ID 304 parked in zone 10
+Timestamp 0001, vehicle ID 308 parked in zone 12
+Timestamp 0001, vehicle ID 309 parked in zone 11
+Timestamp 0001, vehicle ID 310 parked in zone 14
+Timestamp 0001, vehicle ID 311 parked in zone 11
+Timestamp 0001, vehicle ID 312 parked in zone 7
+Timestamp 0001, vehicle ID 313 parked in zone 12
+Timestamp 0001, vehicle ID 315 parked in zone 13
+Timestamp 0001, vehicle ID 316 parked in zone 7
+Timestamp 0001, vehicle ID 318 parked in zone 6
+Timestamp 0001, vehicle ID 32 parked in zone 6
+Timestamp 0001, vehicle ID 320 parked in zone 7
+Timestamp 0001, vehicle ID 321 parked in zone 8
+Timestamp 0001, vehicle ID 324 parked in zone 7
+Timestamp 0001, vehicle ID 325 parked in zone 7
+Timestamp 0001, vehicle ID 326 parked in zone 7
+Timestamp 0001, vehicle ID 328 parked in zone 6
+Timestamp 0001, vehicle ID 330 parked in zone 2
+Timestamp 0001, vehicle ID 331 parked in zone 6
+Timestamp 0001, vehicle ID 332 parked in zone 7
+Timestamp 0001, vehicle ID 333 parked in zone 7
+Timestamp 0001, vehicle ID 334 parked in zone 10
+Timestamp 0001, vehicle ID 336 parked in zone 14
+Timestamp 0001, vehicle ID 338 parked in zone 1
+Timestamp 0001, vehicle ID 339 parked in zone 6
+Timestamp 0001, vehicle ID 340 parked in zone 10
+Timestamp 0001, vehicle ID 343 parked in zone 14
+Timestamp 0001, vehicle ID 344 parked in zone 6
+Timestamp 0001, vehicle ID 346 parked in zone 14
+Timestamp 0001, vehicle ID 348 parked in zone 4
+Timestamp 0001, vehicle ID 350 parked in zone 1
+Timestamp 0001, vehicle ID 351 parked in zone 7
+Timestamp 0001, vehicle ID 352 parked in zone 7
+Timestamp 0001, vehicle ID 354 parked in zone 15
+Timestamp 0001, vehicle ID 355 parked in zone 7
+Timestamp 0001, vehicle ID 357 parked in zone 12
+Timestamp 0001, vehicle ID 358 parked in zone 12
+Timestamp 0001, vehicle ID 359 parked in zone 6
+Timestamp 0001, vehicle ID 360 parked in zone 1
+Timestamp 0001, vehicle ID 362 parked in zone 6
+Timestamp 0001, vehicle ID 367 parked in zone 6
+Timestamp 0001, vehicle ID 369 parked in zone 10
+Timestamp 0001, vehicle ID 37 parked in zone 6
+Timestamp 0001, vehicle ID 371 parked in zone 10
+Timestamp 0001, vehicle ID 374 parked in zone 14
+Timestamp 0001, vehicle ID 375 parked in zone 7
+Timestamp 0001, vehicle ID 376 parked in zone 13
+Timestamp 0001, vehicle ID 378 parked in zone 13
+Timestamp 0001, vehicle ID 379 parked in zone 6
+Timestamp 0001, vehicle ID 380 parked in zone 11
+Timestamp 0001, vehicle ID 381 parked in zone 15
+Timestamp 0001, vehicle ID 384 parked in zone 4
+Timestamp 0001, vehicle ID 386 parked in zone 14
+Timestamp 0001, vehicle ID 387 parked in zone 14
+Timestamp 0001, vehicle ID 388 parked in zone 18
+Timestamp 0001, vehicle ID 389 parked in zone 11
+Timestamp 0001, vehicle ID 391 parked in zone 6
+Timestamp 0001, vehicle ID 392 parked in zone 6
+Timestamp 0001, vehicle ID 395 parked in zone 12
+Timestamp 0001, vehicle ID 396 parked in zone 12
+Timestamp 0001, vehicle ID 397 parked in zone 16
+Timestamp 0001, vehicle ID 40 parked in zone 9
+Timestamp 0001, vehicle ID 400 parked in zone 9
+Timestamp 0001, vehicle ID 401 parked in zone 4
+Timestamp 0001, vehicle ID 403 parked in zone 18
+Timestamp 0001, vehicle ID 405 parked in zone 6
+Timestamp 0001, vehicle ID 406 parked in zone 7
+Timestamp 0001, vehicle ID 407 parked in zone 10
+Timestamp 0001, vehicle ID 408 parked in zone 12
+Timestamp 0001, vehicle ID 409 parked in zone 10
+Timestamp 0001, vehicle ID 410 parked in zone 7
+Timestamp 0001, vehicle ID 412 parked in zone 18
+Timestamp 0001, vehicle ID 413 parked in zone 6
+Timestamp 0001, vehicle ID 415 parked in zone 12
+Timestamp 0001, vehicle ID 416 parked in zone 13
+Timestamp 0001, vehicle ID 418 parked in zone 6
+Timestamp 0001, vehicle ID 420 parked in zone 6
+Timestamp 0001, vehicle ID 421 parked in zone 13
+Timestamp 0001, vehicle ID 423 parked in zone 6
+Timestamp 0001, vehicle ID 425 parked in zone 6
+Timestamp 0001, vehicle ID 426 parked in zone 12
+Timestamp 0001, vehicle ID 427 parked in zone 14
+Timestamp 0001, vehicle ID 428 parked in zone 12
+Timestamp 0001, vehicle ID 429 parked in zone 15
+Timestamp 0001, vehicle ID 433 parked in zone 18
+Timestamp 0001, vehicle ID 434 parked in zone 16
+Timestamp 0001, vehicle ID 435 parked in zone 4
+Timestamp 0001, vehicle ID 436 parked in zone 7
+Timestamp 0001, vehicle ID 439 parked in zone 13
+Timestamp 0001, vehicle ID 44 parked in zone 6
+Timestamp 0001, vehicle ID 440 parked in zone 11
+Timestamp 0001, vehicle ID 441 parked in zone 18
+Timestamp 0001, vehicle ID 442 parked in zone 1
+Timestamp 0001, vehicle ID 443 parked in zone 12
+Timestamp 0001, vehicle ID 444 parked in zone 13
+Timestamp 0001, vehicle ID 445 parked in zone 7
+Timestamp 0001, vehicle ID 446 parked in zone 10
+Timestamp 0001, vehicle ID 449 parked in zone 4
+Timestamp 0001, vehicle ID 450 parked in zone 10
+Timestamp 0001, vehicle ID 451 parked in zone 7
+Timestamp 0001, vehicle ID 453 parked in zone 14
+Timestamp 0001, vehicle ID 454 parked in zone 16
+Timestamp 0001, vehicle ID 455 parked in zone 15
+Timestamp 0001, vehicle ID 456 parked in zone 6
+Timestamp 0001, vehicle ID 457 parked in zone 6
+Timestamp 0001, vehicle ID 459 parked in zone 18
+Timestamp 0001, vehicle ID 46 parked in zone 14
+Timestamp 0001, vehicle ID 460 parked in zone 18
+Timestamp 0001, vehicle ID 463 parked in zone 14
+Timestamp 0001, vehicle ID 465 parked in zone 14
+Timestamp 0001, vehicle ID 466 parked in zone 12
+Timestamp 0001, vehicle ID 468 parked in zone 15
+Timestamp 0001, vehicle ID 469 parked in zone 16
+Timestamp 0001, vehicle ID 471 parked in zone 14
+Timestamp 0001, vehicle ID 474 parked in zone 6
+Timestamp 0001, vehicle ID 475 parked in zone 15
+Timestamp 0001, vehicle ID 476 parked in zone 14
+Timestamp 0001, vehicle ID 479 parked in zone 14
+Timestamp 0001, vehicle ID 480 parked in zone 4
+Timestamp 0001, vehicle ID 481 parked in zone 6
+Timestamp 0001, vehicle ID 483 parked in zone 7
+Timestamp 0001, vehicle ID 484 parked in zone 10
+Timestamp 0001, vehicle ID 485 parked in zone 6
+Timestamp 0001, vehicle ID 489 parked in zone 18
+Timestamp 0001, vehicle ID 49 parked in zone 10
+Timestamp 0001, vehicle ID 490 parked in zone 14
+Timestamp 0001, vehicle ID 494 parked in zone 18
+Timestamp 0001, vehicle ID 495 parked in zone 14
+Timestamp 0001, vehicle ID 498 parked in zone 1
+Timestamp 0001, vehicle ID 499 parked in zone 12
+Timestamp 0001, vehicle ID 501 parked in zone 14
+Timestamp 0001, vehicle ID 504 parked in zone 6
+Timestamp 0001, vehicle ID 505 parked in zone 14
+Timestamp 0001, vehicle ID 506 parked in zone 11
+Timestamp 0001, vehicle ID 507 parked in zone 11
+Timestamp 0001, vehicle ID 508 parked in zone 17
+Timestamp 0001, vehicle ID 510 parked in zone 10
+Timestamp 0001, vehicle ID 512 parked in zone 10
+Timestamp 0001, vehicle ID 513 parked in zone 14
+Timestamp 0001, vehicle ID 514 parked in zone 13
+Timestamp 0001, vehicle ID 515 parked in zone 13
+Timestamp 0001, vehicle ID 516 parked in zone 14
+Timestamp 0001, vehicle ID 518 parked in zone 13
+Timestamp 0001, vehicle ID 520 parked in zone 12
+Timestamp 0001, vehicle ID 521 parked in zone 6
+Timestamp 0001, vehicle ID 522 parked in zone 13
+Timestamp 0001, vehicle ID 523 parked in zone 18
+Timestamp 0001, vehicle ID 526 parked in zone 6
+Timestamp 0001, vehicle ID 528 parked in zone 14
+Timestamp 0001, vehicle ID 53 parked in zone 6
+Timestamp 0001, vehicle ID 531 parked in zone 6
+Timestamp 0001, vehicle ID 536 parked in zone 10
+Timestamp 0001, vehicle ID 539 parked in zone 4
+Timestamp 0001, vehicle ID 542 parked in zone 10
+Timestamp 0001, vehicle ID 543 parked in zone 18
+Timestamp 0001, vehicle ID 546 parked in zone 6
+Timestamp 0001, vehicle ID 548 parked in zone 12
+Timestamp 0001, vehicle ID 549 parked in zone 18
+Timestamp 0001, vehicle ID 550 parked in zone 14
+Timestamp 0001, vehicle ID 553 parked in zone 16
+Timestamp 0001, vehicle ID 556 parked in zone 15
+Timestamp 0001, vehicle ID 558 parked in zone 18
+Timestamp 0001, vehicle ID 559 parked in zone 7
+Timestamp 0001, vehicle ID 56 parked in zone 11
+Timestamp 0001, vehicle ID 562 parked in zone 16
+Timestamp 0001, vehicle ID 564 parked in zone 4
+Timestamp 0001, vehicle ID 566 parked in zone 14
+Timestamp 0001, vehicle ID 567 parked in zone 13
+Timestamp 0001, vehicle ID 568 parked in zone 7
+Timestamp 0001, vehicle ID 569 parked in zone 6
+Timestamp 0001, vehicle ID 57 parked in zone 1
+Timestamp 0001, vehicle ID 570 parked in zone 14
+Timestamp 0001, vehicle ID 575 parked in zone 14
+Timestamp 0001, vehicle ID 576 parked in zone 4
+Timestamp 0001, vehicle ID 580 parked in zone 6
+Timestamp 0001, vehicle ID 583 parked in zone 6
+Timestamp 0001, vehicle ID 584 parked in zone 10
+Timestamp 0001, vehicle ID 586 parked in zone 12
+Timestamp 0001, vehicle ID 587 parked in zone 12
+Timestamp 0001, vehicle ID 588 parked in zone 6
+Timestamp 0001, vehicle ID 59 parked in zone 13
+Timestamp 0001, vehicle ID 590 parked in zone 14
+Timestamp 0001, vehicle ID 591 parked in zone 18
+Timestamp 0001, vehicle ID 592 parked in zone 1
+Timestamp 0001, vehicle ID 595 parked in zone 18
+Timestamp 0001, vehicle ID 597 parked in zone 14
+Timestamp 0001, vehicle ID 602 parked in zone 13
+Timestamp 0001, vehicle ID 603 parked in zone 4
+Timestamp 0001, vehicle ID 607 parked in zone 11
+Timestamp 0001, vehicle ID 608 parked in zone 14
+Timestamp 0001, vehicle ID 610 parked in zone 18
+Timestamp 0001, vehicle ID 611 parked in zone 6
+Timestamp 0001, vehicle ID 613 parked in zone 11
+Timestamp 0001, vehicle ID 614 parked in zone 1
+Timestamp 0001, vehicle ID 615 parked in zone 6
+Timestamp 0001, vehicle ID 616 parked in zone 2
+Timestamp 0001, vehicle ID 617 parked in zone 12
+Timestamp 0001, vehicle ID 620 parked in zone 8
+Timestamp 0001, vehicle ID 622 parked in zone 14
+Timestamp 0001, vehicle ID 625 parked in zone 18
+Timestamp 0001, vehicle ID 626 parked in zone 18
+Timestamp 0001, vehicle ID 627 parked in zone 18
+Timestamp 0001, vehicle ID 628 parked in zone 14
+Timestamp 0001, vehicle ID 631 parked in zone 17
+Timestamp 0001, vehicle ID 632 parked in zone 7
+Timestamp 0001, vehicle ID 633 parked in zone 12
+Timestamp 0001, vehicle ID 634 parked in zone 18
+Timestamp 0001, vehicle ID 64 parked in zone 14
+Timestamp 0001, vehicle ID 66 parked in zone 11
+Timestamp 0001, vehicle ID 67 parked in zone 9
+Timestamp 0001, vehicle ID 68 parked in zone 6
+Timestamp 0001, vehicle ID 71 parked in zone 6
+Timestamp 0001, vehicle ID 72 parked in zone 6
+Timestamp 0001, vehicle ID 74 parked in zone 6
+Timestamp 0001, vehicle ID 76 parked in zone 11
+Timestamp 0001, vehicle ID 79 parked in zone 8
+Timestamp 0001, vehicle ID 80 parked in zone 6
+Timestamp 0001, vehicle ID 84 parked in zone 1
+Timestamp 0001, vehicle ID 86 parked in zone 7
+Timestamp 0001, vehicle ID 90 parked in zone 6
+Timestamp 0001, vehicle ID 91 parked in zone 15
+Timestamp 0001, vehicle ID 92 parked in zone 10
+Timestamp 0001, vehicle ID 93 parked in zone 10
+Timestamp 0001, vehicle ID 97 parked in zone 9
+Timestamp 0001, vehicle ID 98 parked in zone 7
+Timestamp 0003, vehicle ID 642 parked in zone 6
+Timestamp 0005, vehicle ID 653 parked in zone 10
+Timestamp 0006, vehicle ID 657 parked in zone 6
+Timestamp 0006, vehicle ID 658 parked in zone 4
+Timestamp 0013, vehicle ID 693 parked in zone 14
+Timestamp 0021, vehicle ID 718 parked in zone 17
+Timestamp 0381, vehicle ID 1465 parked in zone 4
+Timestamp 0445, vehicle ID 1653 parked in zone 11
+Timestamp 0602, vehicle ID 1981 parked in zone 4
+Timestamp 0621, vehicle ID 2017 parked in zone 4
+Timestamp 0631, vehicle ID 2038 parked in zone 4
+Timestamp 0632, vehicle ID 2047 parked in zone 17
+Timestamp 0643, vehicle ID 2067 parked in zone 4
+Timestamp 0647, vehicle ID 2081 parked in zone 4
+Timestamp 0647, vehicle ID 2082 parked in zone 11
+Timestamp 0889, vehicle ID 2491 parked in zone 12
+Timestamp 0955, vehicle ID 2617 parked in zone 14
+Timestamp 1004, vehicle ID 2705 parked in zone 13
+Timestamp 1021, vehicle ID 191 left zone 6
+Timestamp 1074, vehicle ID 620 left zone 8
+Timestamp 1096, vehicle ID 192 left zone 12
+Timestamp 1148, vehicle ID 2990 parked in zone 8
+Timestamp 1203, vehicle ID 330 left zone 2
+Timestamp 1214, vehicle ID 3107 parked in zone 15
+Timestamp 1216, vehicle ID 550 left zone 14
+Timestamp 1226, vehicle ID 587 left zone 12
+Timestamp 1250, vehicle ID 3188 parked in zone 14
+Timestamp 1284, vehicle ID 3259 parked in zone 12
+Timestamp 1313, vehicle ID 71 left zone 6
+Timestamp 1320, vehicle ID 642 left zone 6
+Timestamp 1341, vehicle ID 616 left zone 2
+Timestamp 1512, vehicle ID 3723 parked in zone 14
+Timestamp 1539, vehicle ID 214 left zone 10
+Timestamp 1589, vehicle ID 3880 parked in zone 10
+Timestamp 1599, vehicle ID 622 left zone 14
+Timestamp 1669, vehicle ID 4033 parked in zone 14
+Timestamp 1708, vehicle ID 4121 parked in zone 2
+Timestamp 1950, vehicle ID 576 left zone 4
+Timestamp 1982, vehicle ID 657 left zone 6
+Timestamp 2003, vehicle ID 4599 parked in zone 18
+Timestamp 2003, vehicle ID 586 left zone 12
+Timestamp 2008, vehicle ID 474 left zone 6
+Timestamp 2017, vehicle ID 4625 parked in zone 6
+Timestamp 2080, vehicle ID 2491 left zone 12
+Timestamp 2182, vehicle ID 2082 left zone 11
+Timestamp 2235, vehicle ID 5032 parked in zone 17
+Timestamp 2294, vehicle ID 2617 left zone 14
+Timestamp 2310, vehicle ID 2705 left zone 13
+Timestamp 2316, vehicle ID 5177 parked in zone 12
+Timestamp 2342, vehicle ID 277 left zone 11
+Timestamp 2379, vehicle ID 5312 parked in zone 11
+Timestamp 2385, vehicle ID 540 parked in zone 6
+Timestamp 2392, vehicle ID 614 left zone 1
+Timestamp 2438, vehicle ID 5448 parked in zone 12
+Timestamp 2439, vehicle ID 5451 parked in zone 1
+Timestamp 2652, vehicle ID 167 left zone 12
+Timestamp 2655, vehicle ID 167 parked in zone 12
+Timestamp 2656, vehicle ID 5902 parked in zone 14
+Timestamp 2735, vehicle ID 597 left zone 14
+Timestamp 2751, vehicle ID 2990 left zone 8
+Timestamp 2768, vehicle ID 521 left zone 6
+Timestamp 2775, vehicle ID 6130 parked in zone 6
+Timestamp 2792, vehicle ID 6158 parked in zone 13
+Timestamp 2825, vehicle ID 3723 left zone 14
+Timestamp 2844, vehicle ID 3259 left zone 12
+Timestamp 2856, vehicle ID 3880 left zone 10
+Timestamp 2857, vehicle ID 429 left zone 15
+Timestamp 2871, vehicle ID 6339 parked in zone 14
+Timestamp 2885, vehicle ID 528 left zone 14
+Timestamp 2920, vehicle ID 853 parked in zone 9
+Timestamp 2942, vehicle ID 6518 parked in zone 10
+Timestamp 2945, vehicle ID 405 left zone 6
+Timestamp 2952, vehicle ID 405 parked in zone 6
+Timestamp 3019, vehicle ID 6648 parked in zone 14
+Timestamp 3060, vehicle ID 610 left zone 18
+Timestamp 3062, vehicle ID 693 left zone 14
+Timestamp 3063, vehicle ID 359 left zone 6
+Timestamp 3065, vehicle ID 359 parked in zone 6
+Timestamp 3069, vehicle ID 590 left zone 14
+Timestamp 3085, vehicle ID 453 left zone 14
+Timestamp 3089, vehicle ID 4121 left zone 2
+Timestamp 3095, vehicle ID 602 left zone 13
+Timestamp 3111, vehicle ID 6864 parked in zone 18
+Timestamp 3128, vehicle ID 6898 parked in zone 2
+Timestamp 3193, vehicle ID 7050 parked in zone 6
+Timestamp 3198, vehicle ID 6537 parked in zone 6
+Timestamp 3242, vehicle ID 246 left zone 18
+Timestamp 3253, vehicle ID 282 left zone 6
+Timestamp 3260, vehicle ID 282 parked in zone 6
+Timestamp 3309, vehicle ID 608 left zone 14
+Timestamp 3331, vehicle ID 632 left zone 7
+Timestamp 3333, vehicle ID 5032 left zone 17
+Timestamp 3350, vehicle ID 387 left zone 14
+Timestamp 3389, vehicle ID 7538 parked in zone 2
+Timestamp 3424, vehicle ID 7610 parked in zone 13
+Timestamp 3503, vehicle ID 7763 parked in zone 8
+Timestamp 3521, vehicle ID 5177 left zone 12
+Timestamp 3524, vehicle ID 7806 parked in zone 12
+Timestamp 3549, vehicle ID 3188 left zone 14
+Timestamp 3556, vehicle ID 7781 parked in zone 10
+Timestamp 3614, vehicle ID 540 left zone 6
+Timestamp 3713, vehicle ID 514 left zone 13
+Timestamp 3717, vehicle ID 8181 parked in zone 13
+Timestamp 3740, vehicle ID 498 left zone 1
+Timestamp 3743, vehicle ID 658 left zone 4
+Timestamp 3777, vehicle ID 8305 parked in zone 4
+Timestamp 3790, vehicle ID 5448 left zone 12
+Timestamp 3812, vehicle ID 8317 parked in zone 6
+Timestamp 3834, vehicle ID 8452 parked in zone 14
+Timestamp 3851, vehicle ID 8500 parked in zone 6
+Timestamp 3862, vehicle ID 8513 parked in zone 6
+Timestamp 3911, vehicle ID 8595 parked in zone 7
+Timestamp 4083, vehicle ID 435 left zone 4
+Timestamp 4089, vehicle ID 6130 left zone 6
+Timestamp 4125, vehicle ID 633 left zone 12
+Timestamp 4161, vehicle ID 9074 parked in zone 12
+Timestamp 4207, vehicle ID 9184 parked in zone 7
+Timestamp 4275, vehicle ID 631 left zone 17
+Timestamp 4288, vehicle ID 84 left zone 1
+Timestamp 4291, vehicle ID 2047 left zone 17
+Timestamp 4321, vehicle ID 9402 parked in zone 17
+Timestamp 4380, vehicle ID 4033 left zone 14
+Timestamp 4480, vehicle ID 9744 parked in zone 4
+Timestamp 4553, vehicle ID 9878 parked in zone 14
+Timestamp 4586, vehicle ID 6898 left zone 2
+Timestamp 4624, vehicle ID 10002 parked in zone 2
+Timestamp 4669, vehicle ID 66 left zone 11
+Timestamp 4704, vehicle ID 10152 parked in zone 17
+Timestamp 4712, vehicle ID 6158 left zone 13
+Timestamp 4770, vehicle ID 634 left zone 18
+Timestamp 4772, vehicle ID 7806 left zone 12
+Timestamp 4774, vehicle ID 10263 parked in zone 12
+Timestamp 4841, vehicle ID 588 left zone 6
+Timestamp 4866, vehicle ID 8452 left zone 14
+Timestamp 4867, vehicle ID 7781 left zone 10
+Timestamp 4871, vehicle ID 10442 parked in zone 10
+Timestamp 4900, vehicle ID 450 left zone 10
+Timestamp 4909, vehicle ID 450 parked in zone 10
+Timestamp 4924, vehicle ID 10515 parked in zone 14
+Timestamp 4932, vehicle ID 141 parked in zone 11
+Timestamp 4947, vehicle ID 3040 parked in zone 2
+Timestamp 4952, vehicle ID 10594 parked in zone 14
+Timestamp 5011, vehicle ID 607 left zone 11
+Timestamp 5018, vehicle ID 205 left zone 6
+Timestamp 5021, vehicle ID 453 parked in zone 14
+Timestamp 5030, vehicle ID 185 left zone 11
+Timestamp 5060, vehicle ID 10780 parked in zone 11
+Timestamp 5102, vehicle ID 513 left zone 14
+Timestamp 5141, vehicle ID 718 left zone 17
+Timestamp 5151, vehicle ID 475 left zone 15
+Timestamp 5184, vehicle ID 10980 parked in zone 15
+Timestamp 5188, vehicle ID 407 left zone 10
+Timestamp 5232, vehicle ID 617 left zone 12
+Timestamp 5248, vehicle ID 11108 parked in zone 13
+Timestamp 5255, vehicle ID 11119 parked in zone 17
+Timestamp 5272, vehicle ID 510 left zone 10
+Timestamp 5328, vehicle ID 9184 left zone 7
+Timestamp 5352, vehicle ID 44 left zone 6
+Timestamp 5613, vehicle ID 360 left zone 1
+Timestamp 5617, vehicle ID 8513 left zone 6
+Timestamp 5633, vehicle ID 2081 left zone 4
+Timestamp 5635, vehicle ID 11869 parked in zone 6
+Timestamp 5639, vehicle ID 11930 parked in zone 1
+Timestamp 5641, vehicle ID 4625 left zone 6
+Timestamp 5654, vehicle ID 10722 parked in zone 1
+Timestamp 5668, vehicle ID 11998 parked in zone 4
+Timestamp 5709, vehicle ID 395 left zone 12
+Timestamp 5711, vehicle ID 395 parked in zone 12
+Timestamp 5716, vehicle ID 12070 parked in zone 6
+Timestamp 5737, vehicle ID 282 left zone 6
+Timestamp 5761, vehicle ID 10152 left zone 17
+Timestamp 5762, vehicle ID 595 left zone 18
+Timestamp 5762, vehicle ID 9402 left zone 17
+Timestamp 5765, vehicle ID 8317 left zone 6
+Timestamp 5801, vehicle ID 12235 parked in zone 13
+Timestamp 5808, vehicle ID 7538 left zone 2
+Timestamp 5875, vehicle ID 12364 parked in zone 10
+Timestamp 5882, vehicle ID 12386 parked in zone 2
+Timestamp 5901, vehicle ID 12427 parked in zone 6
+Timestamp 5940, vehicle ID 12507 parked in zone 18
+Timestamp 5946, vehicle ID 4599 left zone 18
+Timestamp 5962, vehicle ID 10594 left zone 14
+Timestamp 5966, vehicle ID 12566 parked in zone 12
+Timestamp 5992, vehicle ID 12616 parked in zone 18
+Timestamp 6054, vehicle ID 8595 left zone 7
+Timestamp 6071, vehicle ID 203 left zone 1
+Timestamp 6111, vehicle ID 12851 parked in zone 6
+Timestamp 6116, vehicle ID 1653 left zone 11
+Timestamp 6147, vehicle ID 12922 parked in zone 11
+Timestamp 6295, vehicle ID 13178 parked in zone 7
+Timestamp 6316, vehicle ID 10263 left zone 12
+Timestamp 6318, vehicle ID 13210 parked in zone 12
+Timestamp 6349, vehicle ID 13264 parked in zone 10
+Timestamp 6356, vehicle ID 13176 parked in zone 6
+Timestamp 6364, vehicle ID 3107 left zone 15
+Timestamp 6384, vehicle ID 9744 left zone 4
+Timestamp 6394, vehicle ID 13357 parked in zone 15
+Timestamp 6420, vehicle ID 584 left zone 10
+Timestamp 6440, vehicle ID 11739 parked in zone 2
+Timestamp 6491, vehicle ID 13556 parked in zone 6
+Timestamp 6522, vehicle ID 8500 left zone 6
+Timestamp 6586, vehicle ID 628 left zone 14
+Timestamp 6705, vehicle ID 11119 left zone 17
+Timestamp 6732, vehicle ID 276 left zone 11
+Timestamp 6757, vehicle ID 10515 left zone 14
+Timestamp 6841, vehicle ID 10980 left zone 15
+Timestamp 6879, vehicle ID 8305 left zone 4
+Timestamp 6885, vehicle ID 2067 left zone 4
+Timestamp 7000, vehicle ID 12566 left zone 12
+Timestamp 7017, vehicle ID 12235 left zone 13
+Timestamp 7081, vehicle ID 8181 left zone 13
+Timestamp 7092, vehicle ID 12427 left zone 6
+Timestamp 7132, vehicle ID 57 left zone 1
+Timestamp 7185, vehicle ID 11108 left zone 13
+Timestamp 7191, vehicle ID 304 left zone 10
+Timestamp 7243, vehicle ID 499 left zone 12
+Timestamp 7408, vehicle ID 12507 left zone 18
+Timestamp 7450, vehicle ID 13178 left zone 7
+Timestamp 7517, vehicle ID 13556 left zone 6
+Timestamp 7517, vehicle ID 583 left zone 6
+Timestamp 7518, vehicle ID 10 left zone 6
+Timestamp 7518, vehicle ID 10002 left zone 2
+Timestamp 7518, vehicle ID 10442 left zone 10
+Timestamp 7518, vehicle ID 10722 left zone 1
+Timestamp 7518, vehicle ID 10780 left zone 11
+Timestamp 7518, vehicle ID 110 left zone 13
+Timestamp 7518, vehicle ID 111 left zone 9
+Timestamp 7518, vehicle ID 112 left zone 9
+Timestamp 7518, vehicle ID 114 left zone 6
+Timestamp 7518, vehicle ID 117 left zone 16
+Timestamp 7518, vehicle ID 11739 left zone 2
+Timestamp 7518, vehicle ID 11869 left zone 6
+Timestamp 7518, vehicle ID 119 left zone 2
+Timestamp 7518, vehicle ID 11930 left zone 1
+Timestamp 7518, vehicle ID 11998 left zone 4
+Timestamp 7518, vehicle ID 120 left zone 7
+Timestamp 7518, vehicle ID 12070 left zone 6
+Timestamp 7518, vehicle ID 12364 left zone 10
+Timestamp 7518, vehicle ID 12386 left zone 2
+Timestamp 7518, vehicle ID 124 left zone 9
+Timestamp 7518, vehicle ID 126 left zone 6
+Timestamp 7518, vehicle ID 12616 left zone 18
+Timestamp 7518, vehicle ID 12851 left zone 6
+Timestamp 7518, vehicle ID 12922 left zone 11
+Timestamp 7518, vehicle ID 130 left zone 11
+Timestamp 7518, vehicle ID 131 left zone 6
+Timestamp 7518, vehicle ID 13176 left zone 6
+Timestamp 7518, vehicle ID 132 left zone 7
+Timestamp 7518, vehicle ID 13210 left zone 12
+Timestamp 7518, vehicle ID 13264 left zone 10
+Timestamp 7518, vehicle ID 133 left zone 7
+Timestamp 7518, vehicle ID 13357 left zone 15
+Timestamp 7518, vehicle ID 135 left zone 6
+Timestamp 7518, vehicle ID 136 left zone 10
+Timestamp 7518, vehicle ID 141 left zone 11
+Timestamp 7518, vehicle ID 142 left zone 1
+Timestamp 7518, vehicle ID 1465 left zone 4
+Timestamp 7518, vehicle ID 148 left zone 12
+Timestamp 7518, vehicle ID 15 left zone 11
+Timestamp 7518, vehicle ID 150 left zone 11
+Timestamp 7518, vehicle ID 152 left zone 9
+Timestamp 7518, vehicle ID 153 left zone 10
+Timestamp 7518, vehicle ID 159 left zone 13
+Timestamp 7518, vehicle ID 160 left zone 12
+Timestamp 7518, vehicle ID 161 left zone 10
+Timestamp 7518, vehicle ID 163 left zone 13
+Timestamp 7518, vehicle ID 166 left zone 8
+Timestamp 7518, vehicle ID 167 left zone 12
+Timestamp 7518, vehicle ID 171 left zone 12
+Timestamp 7518, vehicle ID 172 left zone 6
+Timestamp 7518, vehicle ID 176 left zone 6
+Timestamp 7518, vehicle ID 177 left zone 6
+Timestamp 7518, vehicle ID 179 left zone 11
+Timestamp 7518, vehicle ID 180 left zone 11
+Timestamp 7518, vehicle ID 181 left zone 14
+Timestamp 7518, vehicle ID 183 left zone 7
+Timestamp 7518, vehicle ID 184 left zone 10
+Timestamp 7518, vehicle ID 188 left zone 6
+Timestamp 7518, vehicle ID 19 left zone 9
+Timestamp 7518, vehicle ID 190 left zone 8
+Timestamp 7518, vehicle ID 195 left zone 12
+Timestamp 7518, vehicle ID 196 left zone 11
+Timestamp 7518, vehicle ID 197 left zone 11
+Timestamp 7518, vehicle ID 198 left zone 11
+Timestamp 7518, vehicle ID 1981 left zone 4
+Timestamp 7518, vehicle ID 2017 left zone 4
+Timestamp 7518, vehicle ID 2038 left zone 4
+Timestamp 7518, vehicle ID 204 left zone 2
+Timestamp 7518, vehicle ID 21 left zone 11
+Timestamp 7518, vehicle ID 210 left zone 11
+Timestamp 7518, vehicle ID 211 left zone 16
+Timestamp 7518, vehicle ID 212 left zone 1
+Timestamp 7518, vehicle ID 213 left zone 7
+Timestamp 7518, vehicle ID 217 left zone 14
+Timestamp 7518, vehicle ID 218 left zone 14
+Timestamp 7518, vehicle ID 22 left zone 9
+Timestamp 7518, vehicle ID 220 left zone 1
+Timestamp 7518, vehicle ID 222 left zone 1
+Timestamp 7518, vehicle ID 223 left zone 10
+Timestamp 7518, vehicle ID 228 left zone 12
+Timestamp 7518, vehicle ID 230 left zone 6
+Timestamp 7518, vehicle ID 231 left zone 14
+Timestamp 7518, vehicle ID 232 left zone 16
+Timestamp 7518, vehicle ID 233 left zone 1
+Timestamp 7518, vehicle ID 234 left zone 7
+Timestamp 7518, vehicle ID 235 left zone 10
+Timestamp 7518, vehicle ID 236 left zone 11
+Timestamp 7518, vehicle ID 237 left zone 2
+Timestamp 7518, vehicle ID 238 left zone 1
+Timestamp 7518, vehicle ID 239 left zone 8
+Timestamp 7518, vehicle ID 241 left zone 10
+Timestamp 7518, vehicle ID 242 left zone 10
+Timestamp 7518, vehicle ID 245 left zone 13
+Timestamp 7518, vehicle ID 247 left zone 18
+Timestamp 7518, vehicle ID 248 left zone 14
+Timestamp 7518, vehicle ID 250 left zone 7
+Timestamp 7518, vehicle ID 251 left zone 6
+Timestamp 7518, vehicle ID 254 left zone 13
+Timestamp 7518, vehicle ID 255 left zone 14
+Timestamp 7518, vehicle ID 256 left zone 11
+Timestamp 7518, vehicle ID 257 left zone 8
+Timestamp 7518, vehicle ID 258 left zone 10
+Timestamp 7518, vehicle ID 26 left zone 9
+Timestamp 7518, vehicle ID 261 left zone 13
+Timestamp 7518, vehicle ID 262 left zone 7
+Timestamp 7518, vehicle ID 263 left zone 6
+Timestamp 7518, vehicle ID 264 left zone 10
+Timestamp 7518, vehicle ID 265 left zone 10
+Timestamp 7518, vehicle ID 267 left zone 11
+Timestamp 7518, vehicle ID 27 left zone 11
+Timestamp 7518, vehicle ID 271 left zone 6
+Timestamp 7518, vehicle ID 273 left zone 18
+Timestamp 7518, vehicle ID 278 left zone 7
+Timestamp 7518, vehicle ID 280 left zone 10
+Timestamp 7518, vehicle ID 283 left zone 4
+Timestamp 7518, vehicle ID 285 left zone 11
+Timestamp 7518, vehicle ID 286 left zone 15
+Timestamp 7518, vehicle ID 288 left zone 12
+Timestamp 7518, vehicle ID 289 left zone 6
+Timestamp 7518, vehicle ID 290 left zone 11
+Timestamp 7518, vehicle ID 291 left zone 13
+Timestamp 7518, vehicle ID 293 left zone 1
+Timestamp 7518, vehicle ID 296 left zone 14
+Timestamp 7518, vehicle ID 298 left zone 6
+Timestamp 7518, vehicle ID 3 left zone 11
+Timestamp 7518, vehicle ID 300 left zone 10
+Timestamp 7518, vehicle ID 301 left zone 1
+Timestamp 7518, vehicle ID 302 left zone 7
+Timestamp 7518, vehicle ID 303 left zone 7
+Timestamp 7518, vehicle ID 3040 left zone 2
+Timestamp 7518, vehicle ID 308 left zone 12
+Timestamp 7518, vehicle ID 309 left zone 11
+Timestamp 7518, vehicle ID 310 left zone 14
+Timestamp 7518, vehicle ID 311 left zone 11
+Timestamp 7518, vehicle ID 312 left zone 7
+Timestamp 7518, vehicle ID 313 left zone 12
+Timestamp 7518, vehicle ID 315 left zone 13
+Timestamp 7518, vehicle ID 316 left zone 7
+Timestamp 7518, vehicle ID 318 left zone 6
+Timestamp 7518, vehicle ID 32 left zone 6
+Timestamp 7518, vehicle ID 320 left zone 7
+Timestamp 7518, vehicle ID 321 left zone 8
+Timestamp 7518, vehicle ID 324 left zone 7
+Timestamp 7518, vehicle ID 325 left zone 7
+Timestamp 7518, vehicle ID 326 left zone 7
+Timestamp 7518, vehicle ID 328 left zone 6
+Timestamp 7518, vehicle ID 331 left zone 6
+Timestamp 7518, vehicle ID 332 left zone 7
+Timestamp 7518, vehicle ID 333 left zone 7
+Timestamp 7518, vehicle ID 334 left zone 10
+Timestamp 7518, vehicle ID 336 left zone 14
+Timestamp 7518, vehicle ID 338 left zone 1
+Timestamp 7518, vehicle ID 339 left zone 6
+Timestamp 7518, vehicle ID 340 left zone 10
+Timestamp 7518, vehicle ID 343 left zone 14
+Timestamp 7518, vehicle ID 344 left zone 6
+Timestamp 7518, vehicle ID 346 left zone 14
+Timestamp 7518, vehicle ID 348 left zone 4
+Timestamp 7518, vehicle ID 350 left zone 1
+Timestamp 7518, vehicle ID 351 left zone 7
+Timestamp 7518, vehicle ID 352 left zone 7
+Timestamp 7518, vehicle ID 354 left zone 15
+Timestamp 7518, vehicle ID 355 left zone 7
+Timestamp 7518, vehicle ID 357 left zone 12
+Timestamp 7518, vehicle ID 358 left zone 12
+Timestamp 7518, vehicle ID 359 left zone 6
+Timestamp 7518, vehicle ID 362 left zone 6
+Timestamp 7518, vehicle ID 367 left zone 6
+Timestamp 7518, vehicle ID 369 left zone 10
+Timestamp 7518, vehicle ID 37 left zone 6
+Timestamp 7518, vehicle ID 371 left zone 10
+Timestamp 7518, vehicle ID 374 left zone 14
+Timestamp 7518, vehicle ID 375 left zone 7
+Timestamp 7518, vehicle ID 376 left zone 13
+Timestamp 7518, vehicle ID 378 left zone 13
+Timestamp 7518, vehicle ID 379 left zone 6
+Timestamp 7518, vehicle ID 380 left zone 11
+Timestamp 7518, vehicle ID 381 left zone 15
+Timestamp 7518, vehicle ID 384 left zone 4
+Timestamp 7518, vehicle ID 386 left zone 14
+Timestamp 7518, vehicle ID 388 left zone 18
+Timestamp 7518, vehicle ID 389 left zone 11
+Timestamp 7518, vehicle ID 391 left zone 6
+Timestamp 7518, vehicle ID 392 left zone 6
+Timestamp 7518, vehicle ID 395 left zone 12
+Timestamp 7518, vehicle ID 396 left zone 12
+Timestamp 7518, vehicle ID 397 left zone 16
+Timestamp 7518, vehicle ID 40 left zone 9
+Timestamp 7518, vehicle ID 400 left zone 9
+Timestamp 7518, vehicle ID 401 left zone 4
+Timestamp 7518, vehicle ID 403 left zone 18
+Timestamp 7518, vehicle ID 405 left zone 6
+Timestamp 7518, vehicle ID 406 left zone 7
+Timestamp 7518, vehicle ID 408 left zone 12
+Timestamp 7518, vehicle ID 409 left zone 10
+Timestamp 7518, vehicle ID 410 left zone 7
+Timestamp 7518, vehicle ID 412 left zone 18
+Timestamp 7518, vehicle ID 413 left zone 6
+Timestamp 7518, vehicle ID 415 left zone 12
+Timestamp 7518, vehicle ID 416 left zone 13
+Timestamp 7518, vehicle ID 418 left zone 6
+Timestamp 7518, vehicle ID 420 left zone 6
+Timestamp 7518, vehicle ID 421 left zone 13
+Timestamp 7518, vehicle ID 423 left zone 6
+Timestamp 7518, vehicle ID 425 left zone 6
+Timestamp 7518, vehicle ID 426 left zone 12
+Timestamp 7518, vehicle ID 427 left zone 14
+Timestamp 7518, vehicle ID 428 left zone 12
+Timestamp 7518, vehicle ID 433 left zone 18
+Timestamp 7518, vehicle ID 434 left zone 16
+Timestamp 7518, vehicle ID 436 left zone 7
+Timestamp 7518, vehicle ID 439 left zone 13
+Timestamp 7518, vehicle ID 440 left zone 11
+Timestamp 7518, vehicle ID 441 left zone 18
+Timestamp 7518, vehicle ID 442 left zone 1
+Timestamp 7518, vehicle ID 443 left zone 12
+Timestamp 7518, vehicle ID 444 left zone 13
+Timestamp 7518, vehicle ID 445 left zone 7
+Timestamp 7518, vehicle ID 446 left zone 10
+Timestamp 7518, vehicle ID 449 left zone 4
+Timestamp 7518, vehicle ID 450 left zone 10
+Timestamp 7518, vehicle ID 451 left zone 7
+Timestamp 7518, vehicle ID 453 left zone 14
+Timestamp 7518, vehicle ID 454 left zone 16
+Timestamp 7518, vehicle ID 455 left zone 15
+Timestamp 7518, vehicle ID 456 left zone 6
+Timestamp 7518, vehicle ID 457 left zone 6
+Timestamp 7518, vehicle ID 459 left zone 18
+Timestamp 7518, vehicle ID 46 left zone 14
+Timestamp 7518, vehicle ID 460 left zone 18
+Timestamp 7518, vehicle ID 463 left zone 14
+Timestamp 7518, vehicle ID 465 left zone 14
+Timestamp 7518, vehicle ID 466 left zone 12
+Timestamp 7518, vehicle ID 468 left zone 15
+Timestamp 7518, vehicle ID 469 left zone 16
+Timestamp 7518, vehicle ID 471 left zone 14
+Timestamp 7518, vehicle ID 476 left zone 14
+Timestamp 7518, vehicle ID 479 left zone 14
+Timestamp 7518, vehicle ID 480 left zone 4
+Timestamp 7518, vehicle ID 481 left zone 6
+Timestamp 7518, vehicle ID 483 left zone 7
+Timestamp 7518, vehicle ID 484 left zone 10
+Timestamp 7518, vehicle ID 485 left zone 6
+Timestamp 7518, vehicle ID 489 left zone 18
+Timestamp 7518, vehicle ID 49 left zone 10
+Timestamp 7518, vehicle ID 490 left zone 14
+Timestamp 7518, vehicle ID 494 left zone 18
+Timestamp 7518, vehicle ID 495 left zone 14
+Timestamp 7518, vehicle ID 501 left zone 14
+Timestamp 7518, vehicle ID 504 left zone 6
+Timestamp 7518, vehicle ID 505 left zone 14
+Timestamp 7518, vehicle ID 506 left zone 11
+Timestamp 7518, vehicle ID 507 left zone 11
+Timestamp 7518, vehicle ID 508 left zone 17
+Timestamp 7518, vehicle ID 512 left zone 10
+Timestamp 7518, vehicle ID 515 left zone 13
+Timestamp 7518, vehicle ID 516 left zone 14
+Timestamp 7518, vehicle ID 518 left zone 13
+Timestamp 7518, vehicle ID 520 left zone 12
+Timestamp 7518, vehicle ID 522 left zone 13
+Timestamp 7518, vehicle ID 523 left zone 18
+Timestamp 7518, vehicle ID 526 left zone 6
+Timestamp 7518, vehicle ID 53 left zone 6
+Timestamp 7518, vehicle ID 531 left zone 6
+Timestamp 7518, vehicle ID 5312 left zone 11
+Timestamp 7518, vehicle ID 536 left zone 10
+Timestamp 7518, vehicle ID 539 left zone 4
+Timestamp 7518, vehicle ID 542 left zone 10
+Timestamp 7518, vehicle ID 543 left zone 18
+Timestamp 7518, vehicle ID 5451 left zone 1
+Timestamp 7518, vehicle ID 546 left zone 6
+Timestamp 7518, vehicle ID 548 left zone 12
+Timestamp 7518, vehicle ID 549 left zone 18
+Timestamp 7518, vehicle ID 553 left zone 16
+Timestamp 7518, vehicle ID 556 left zone 15
+Timestamp 7518, vehicle ID 558 left zone 18
+Timestamp 7518, vehicle ID 559 left zone 7
+Timestamp 7518, vehicle ID 56 left zone 11
+Timestamp 7518, vehicle ID 562 left zone 16
+Timestamp 7518, vehicle ID 564 left zone 4
+Timestamp 7518, vehicle ID 566 left zone 14
+Timestamp 7518, vehicle ID 567 left zone 13
+Timestamp 7518, vehicle ID 568 left zone 7
+Timestamp 7518, vehicle ID 569 left zone 6
+Timestamp 7518, vehicle ID 570 left zone 14
+Timestamp 7518, vehicle ID 575 left zone 14
+Timestamp 7518, vehicle ID 580 left zone 6
+Timestamp 7518, vehicle ID 59 left zone 13
+Timestamp 7518, vehicle ID 5902 left zone 14
+Timestamp 7518, vehicle ID 591 left zone 18
+Timestamp 7518, vehicle ID 592 left zone 1
+Timestamp 7518, vehicle ID 603 left zone 4
+Timestamp 7518, vehicle ID 611 left zone 6
+Timestamp 7518, vehicle ID 613 left zone 11
+Timestamp 7518, vehicle ID 615 left zone 6
+Timestamp 7518, vehicle ID 625 left zone 18
+Timestamp 7518, vehicle ID 626 left zone 18
+Timestamp 7518, vehicle ID 627 left zone 18
+Timestamp 7518, vehicle ID 6339 left zone 14
+Timestamp 7518, vehicle ID 64 left zone 14
+Timestamp 7518, vehicle ID 6518 left zone 10
+Timestamp 7518, vehicle ID 653 left zone 10
+Timestamp 7518, vehicle ID 6537 left zone 6
+Timestamp 7518, vehicle ID 6648 left zone 14
+Timestamp 7518, vehicle ID 67 left zone 9
+Timestamp 7518, vehicle ID 68 left zone 6
+Timestamp 7518, vehicle ID 6864 left zone 18
+Timestamp 7518, vehicle ID 7050 left zone 6
+Timestamp 7518, vehicle ID 72 left zone 6
+Timestamp 7518, vehicle ID 74 left zone 6
+Timestamp 7518, vehicle ID 76 left zone 11
+Timestamp 7518, vehicle ID 7610 left zone 13
+Timestamp 7518, vehicle ID 7763 left zone 8
+Timestamp 7518, vehicle ID 79 left zone 8
+Timestamp 7518, vehicle ID 80 left zone 6
+Timestamp 7518, vehicle ID 853 left zone 9
+Timestamp 7518, vehicle ID 86 left zone 7
+Timestamp 7518, vehicle ID 90 left zone 6
+Timestamp 7518, vehicle ID 9074 left zone 12
+Timestamp 7518, vehicle ID 91 left zone 15
+Timestamp 7518, vehicle ID 92 left zone 10
+Timestamp 7518, vehicle ID 93 left zone 10
+Timestamp 7518, vehicle ID 97 left zone 9
+Timestamp 7518, vehicle ID 98 left zone 7
+Timestamp 7518, vehicle ID 9878 left zone 14
+
+========================================
+Summary:
+========================================
+
+vehicle ID 191 was already parked since the beginning in zone 6 but left at timestamp 1021
+vehicle ID 620 was already parked since the beginning in zone 8 but left at timestamp 1074
+vehicle ID 192 was already parked since the beginning in zone 12 but left at timestamp 1096
+vehicle ID 330 was already parked since the beginning in zone 2 but left at timestamp 1203
+vehicle ID 550 was already parked since the beginning in zone 14 but left at timestamp 1216
+vehicle ID 587 was already parked since the beginning in zone 12 but left at timestamp 1226
+vehicle ID 71 was already parked since the beginning in zone 6 but left at timestamp 1313
+vehicle ID 616 was already parked since the beginning in zone 2 but left at timestamp 1341
+vehicle ID 214 was already parked since the beginning in zone 10 but left at timestamp 1539
+vehicle ID 622 was already parked since the beginning in zone 14 but left at timestamp 1599
+vehicle ID 576 was already parked since the beginning in zone 4 but left at timestamp 1950
+vehicle ID 586 was already parked since the beginning in zone 12 but left at timestamp 2003
+vehicle ID 474 was already parked since the beginning in zone 6 but left at timestamp 2008
+vehicle ID 277 was already parked since the beginning in zone 11 but left at timestamp 2342
+vehicle ID 614 was already parked since the beginning in zone 1 but left at timestamp 2392
+vehicle ID 167 was already parked since the beginning in zone 12 but left at timestamp 2652
+vehicle ID 597 was already parked since the beginning in zone 14 but left at timestamp 2735
+vehicle ID 521 was already parked since the beginning in zone 6 but left at timestamp 2768
+vehicle ID 429 was already parked since the beginning in zone 15 but left at timestamp 2857
+vehicle ID 528 was already parked since the beginning in zone 14 but left at timestamp 2885
+vehicle ID 405 was already parked since the beginning in zone 6 but left at timestamp 2945
+vehicle ID 610 was already parked since the beginning in zone 18 but left at timestamp 3060
+vehicle ID 359 was already parked since the beginning in zone 6 but left at timestamp 3063
+vehicle ID 590 was already parked since the beginning in zone 14 but left at timestamp 3069
+vehicle ID 453 was already parked since the beginning in zone 14 but left at timestamp 3085
+vehicle ID 602 was already parked since the beginning in zone 13 but left at timestamp 3095
+vehicle ID 246 was already parked since the beginning in zone 18 but left at timestamp 3242
+vehicle ID 282 was already parked since the beginning in zone 6 but left at timestamp 3253
+vehicle ID 608 was already parked since the beginning in zone 14 but left at timestamp 3309
+vehicle ID 632 was already parked since the beginning in zone 7 but left at timestamp 3331
+vehicle ID 387 was already parked since the beginning in zone 14 but left at timestamp 3350
+vehicle ID 514 was already parked since the beginning in zone 13 but left at timestamp 3713
+vehicle ID 498 was already parked since the beginning in zone 1 but left at timestamp 3740
+vehicle ID 435 was already parked since the beginning in zone 4 but left at timestamp 4083
+vehicle ID 633 was already parked since the beginning in zone 12 but left at timestamp 4125
+vehicle ID 631 was already parked since the beginning in zone 17 but left at timestamp 4275
+vehicle ID 84 was already parked since the beginning in zone 1 but left at timestamp 4288
+vehicle ID 66 was already parked since the beginning in zone 11 but left at timestamp 4669
+vehicle ID 634 was already parked since the beginning in zone 18 but left at timestamp 4770
+vehicle ID 588 was already parked since the beginning in zone 6 but left at timestamp 4841
+vehicle ID 450 was already parked since the beginning in zone 10 but left at timestamp 4900
+vehicle ID 607 was already parked since the beginning in zone 11 but left at timestamp 5011
+vehicle ID 205 was already parked since the beginning in zone 6 but left at timestamp 5018
+vehicle ID 185 was already parked since the beginning in zone 11 but left at timestamp 5030
+vehicle ID 513 was already parked since the beginning in zone 14 but left at timestamp 5102
+vehicle ID 475 was already parked since the beginning in zone 15 but left at timestamp 5151
+vehicle ID 407 was already parked since the beginning in zone 10 but left at timestamp 5188
+vehicle ID 617 was already parked since the beginning in zone 12 but left at timestamp 5232
+vehicle ID 510 was already parked since the beginning in zone 10 but left at timestamp 5272
+vehicle ID 44 was already parked since the beginning in zone 6 but left at timestamp 5352
+vehicle ID 360 was already parked since the beginning in zone 1 but left at timestamp 5613
+vehicle ID 395 was already parked since the beginning in zone 12 but left at timestamp 5709
+vehicle ID 595 was already parked since the beginning in zone 18 but left at timestamp 5762
+vehicle ID 203 was already parked since the beginning in zone 1 but left at timestamp 6071
+vehicle ID 584 was already parked since the beginning in zone 10 but left at timestamp 6420
+vehicle ID 628 was already parked since the beginning in zone 14 but left at timestamp 6586
+vehicle ID 276 was already parked since the beginning in zone 11 but left at timestamp 6732
+vehicle ID 57 was already parked since the beginning in zone 1 but left at timestamp 7132
+vehicle ID 304 was already parked since the beginning in zone 10 but left at timestamp 7191
+vehicle ID 499 was already parked since the beginning in zone 12 but left at timestamp 7243
+vehicle ID 583 was already parked since the beginning in zone 6 but left at timestamp 7517
+vehicle ID 3 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 10 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 15 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 19 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 21 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 22 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 26 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 27 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 32 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 37 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 40 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 46 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 49 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 53 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 56 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 59 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 64 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 67 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 68 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 72 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 74 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 76 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 79 was already parked since the beginning in zone 8 and was still there at the end
+vehicle ID 80 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 86 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 90 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 91 was already parked since the beginning in zone 15 and was still there at the end
+vehicle ID 92 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 93 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 97 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 98 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 110 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 111 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 112 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 114 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 117 was already parked since the beginning in zone 16 and was still there at the end
+vehicle ID 119 was already parked since the beginning in zone 2 and was still there at the end
+vehicle ID 120 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 124 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 126 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 130 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 131 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 132 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 133 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 135 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 136 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 142 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 148 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 150 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 152 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 153 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 159 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 160 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 161 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 163 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 166 was already parked since the beginning in zone 8 and was still there at the end
+vehicle ID 171 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 172 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 176 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 177 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 179 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 180 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 181 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 183 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 184 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 188 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 190 was already parked since the beginning in zone 8 and was still there at the end
+vehicle ID 195 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 196 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 197 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 198 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 204 was already parked since the beginning in zone 2 and was still there at the end
+vehicle ID 210 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 211 was already parked since the beginning in zone 16 and was still there at the end
+vehicle ID 212 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 213 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 217 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 218 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 220 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 222 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 223 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 228 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 230 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 231 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 232 was already parked since the beginning in zone 16 and was still there at the end
+vehicle ID 233 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 234 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 235 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 236 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 237 was already parked since the beginning in zone 2 and was still there at the end
+vehicle ID 238 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 239 was already parked since the beginning in zone 8 and was still there at the end
+vehicle ID 241 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 242 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 245 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 247 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 248 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 250 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 251 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 254 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 255 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 256 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 257 was already parked since the beginning in zone 8 and was still there at the end
+vehicle ID 258 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 261 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 262 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 263 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 264 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 265 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 267 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 271 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 273 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 278 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 280 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 283 was already parked since the beginning in zone 4 and was still there at the end
+vehicle ID 285 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 286 was already parked since the beginning in zone 15 and was still there at the end
+vehicle ID 288 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 289 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 290 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 291 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 293 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 296 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 298 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 300 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 301 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 302 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 303 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 308 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 309 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 310 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 311 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 312 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 313 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 315 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 316 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 318 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 320 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 321 was already parked since the beginning in zone 8 and was still there at the end
+vehicle ID 324 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 325 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 326 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 328 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 331 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 332 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 333 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 334 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 336 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 338 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 339 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 340 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 343 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 344 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 346 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 348 was already parked since the beginning in zone 4 and was still there at the end
+vehicle ID 350 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 351 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 352 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 354 was already parked since the beginning in zone 15 and was still there at the end
+vehicle ID 355 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 357 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 358 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 362 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 367 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 369 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 371 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 374 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 375 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 376 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 378 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 379 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 380 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 381 was already parked since the beginning in zone 15 and was still there at the end
+vehicle ID 384 was already parked since the beginning in zone 4 and was still there at the end
+vehicle ID 386 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 388 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 389 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 391 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 392 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 396 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 397 was already parked since the beginning in zone 16 and was still there at the end
+vehicle ID 400 was already parked since the beginning in zone 9 and was still there at the end
+vehicle ID 401 was already parked since the beginning in zone 4 and was still there at the end
+vehicle ID 403 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 406 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 408 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 409 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 410 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 412 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 413 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 415 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 416 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 418 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 420 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 421 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 423 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 425 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 426 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 427 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 428 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 433 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 434 was already parked since the beginning in zone 16 and was still there at the end
+vehicle ID 436 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 439 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 440 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 441 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 442 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 443 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 444 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 445 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 446 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 449 was already parked since the beginning in zone 4 and was still there at the end
+vehicle ID 451 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 454 was already parked since the beginning in zone 16 and was still there at the end
+vehicle ID 455 was already parked since the beginning in zone 15 and was still there at the end
+vehicle ID 456 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 457 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 459 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 460 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 463 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 465 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 466 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 468 was already parked since the beginning in zone 15 and was still there at the end
+vehicle ID 469 was already parked since the beginning in zone 16 and was still there at the end
+vehicle ID 471 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 476 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 479 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 480 was already parked since the beginning in zone 4 and was still there at the end
+vehicle ID 481 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 483 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 484 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 485 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 489 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 490 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 494 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 495 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 501 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 504 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 505 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 506 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 507 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 508 was already parked since the beginning in zone 17 and was still there at the end
+vehicle ID 512 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 515 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 516 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 518 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 520 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 522 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 523 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 526 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 531 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 536 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 539 was already parked since the beginning in zone 4 and was still there at the end
+vehicle ID 542 was already parked since the beginning in zone 10 and was still there at the end
+vehicle ID 543 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 546 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 548 was already parked since the beginning in zone 12 and was still there at the end
+vehicle ID 549 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 553 was already parked since the beginning in zone 16 and was still there at the end
+vehicle ID 556 was already parked since the beginning in zone 15 and was still there at the end
+vehicle ID 558 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 559 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 562 was already parked since the beginning in zone 16 and was still there at the end
+vehicle ID 564 was already parked since the beginning in zone 4 and was still there at the end
+vehicle ID 566 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 567 was already parked since the beginning in zone 13 and was still there at the end
+vehicle ID 568 was already parked since the beginning in zone 7 and was still there at the end
+vehicle ID 569 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 570 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 575 was already parked since the beginning in zone 14 and was still there at the end
+vehicle ID 580 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 591 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 592 was already parked since the beginning in zone 1 and was still there at the end
+vehicle ID 603 was already parked since the beginning in zone 4 and was still there at the end
+vehicle ID 611 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 613 was already parked since the beginning in zone 11 and was still there at the end
+vehicle ID 615 was already parked since the beginning in zone 6 and was still there at the end
+vehicle ID 625 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 626 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 627 was already parked since the beginning in zone 18 and was still there at the end
+vehicle ID 642 parked in zone 6 at timestamp 0003 and left at 1320
+vehicle ID 653 parked in zone 10 at timestamp 0005 but did not leave
+vehicle ID 657 parked in zone 6 at timestamp 0006 and left at 1982
+vehicle ID 658 parked in zone 4 at timestamp 0006 and left at 3743
+vehicle ID 693 parked in zone 14 at timestamp 0013 and left at 3062
+vehicle ID 718 parked in zone 17 at timestamp 0021 and left at 5141
+vehicle ID 1465 parked in zone 4 at timestamp 0381 but did not leave
+vehicle ID 1653 parked in zone 11 at timestamp 0445 and left at 6116
+vehicle ID 1981 parked in zone 4 at timestamp 0602 but did not leave
+vehicle ID 2017 parked in zone 4 at timestamp 0621 but did not leave
+vehicle ID 2038 parked in zone 4 at timestamp 0631 but did not leave
+vehicle ID 2047 parked in zone 17 at timestamp 0632 and left at 4291
+vehicle ID 2067 parked in zone 4 at timestamp 0643 and left at 6885
+vehicle ID 2082 parked in zone 11 at timestamp 0647 and left at 2182
+vehicle ID 2081 parked in zone 4 at timestamp 0647 and left at 5633
+vehicle ID 2491 parked in zone 12 at timestamp 0889 and left at 2080
+vehicle ID 2617 parked in zone 14 at timestamp 0955 and left at 2294
+vehicle ID 2705 parked in zone 13 at timestamp 1004 and left at 2310
+vehicle ID 2990 parked in zone 8 at timestamp 1148 and left at 2751
+vehicle ID 3107 parked in zone 15 at timestamp 1214 and left at 6364
+vehicle ID 3188 parked in zone 14 at timestamp 1250 and left at 3549
+vehicle ID 3259 parked in zone 12 at timestamp 1284 and left at 2844
+vehicle ID 3723 parked in zone 14 at timestamp 1512 and left at 2825
+vehicle ID 3880 parked in zone 10 at timestamp 1589 and left at 2856
+vehicle ID 4033 parked in zone 14 at timestamp 1669 and left at 4380
+vehicle ID 4121 parked in zone 2 at timestamp 1708 and left at 3089
+vehicle ID 4599 parked in zone 18 at timestamp 2003 and left at 5946
+vehicle ID 4625 parked in zone 6 at timestamp 2017 and left at 5641
+vehicle ID 5032 parked in zone 17 at timestamp 2235 and left at 3333
+vehicle ID 5177 parked in zone 12 at timestamp 2316 and left at 3521
+vehicle ID 5312 parked in zone 11 at timestamp 2379 but did not leave
+vehicle ID 540 parked in zone 6 at timestamp 2385 and left at 3614
+vehicle ID 5448 parked in zone 12 at timestamp 2438 and left at 3790
+vehicle ID 5451 parked in zone 1 at timestamp 2439 but did not leave
+vehicle ID 167 parked in zone 12 at timestamp 2655 but did not leave
+vehicle ID 5902 parked in zone 14 at timestamp 2656 but did not leave
+vehicle ID 6130 parked in zone 6 at timestamp 2775 and left at 4089
+vehicle ID 6158 parked in zone 13 at timestamp 2792 and left at 4712
+vehicle ID 6339 parked in zone 14 at timestamp 2871 but did not leave
+vehicle ID 853 parked in zone 9 at timestamp 2920 but did not leave
+vehicle ID 6518 parked in zone 10 at timestamp 2942 but did not leave
+vehicle ID 405 parked in zone 6 at timestamp 2952 but did not leave
+vehicle ID 6648 parked in zone 14 at timestamp 3019 but did not leave
+vehicle ID 359 parked in zone 6 at timestamp 3065 but did not leave
+vehicle ID 6864 parked in zone 18 at timestamp 3111 but did not leave
+vehicle ID 6898 parked in zone 2 at timestamp 3128 and left at 4586
+vehicle ID 7050 parked in zone 6 at timestamp 3193 but did not leave
+vehicle ID 6537 parked in zone 6 at timestamp 3198 but did not leave
+vehicle ID 282 parked in zone 6 at timestamp 3260 and left at 5737
+vehicle ID 7538 parked in zone 2 at timestamp 3389 and left at 5808
+vehicle ID 7610 parked in zone 13 at timestamp 3424 but did not leave
+vehicle ID 7763 parked in zone 8 at timestamp 3503 but did not leave
+vehicle ID 7806 parked in zone 12 at timestamp 3524 and left at 4772
+vehicle ID 7781 parked in zone 10 at timestamp 3556 and left at 4867
+vehicle ID 8181 parked in zone 13 at timestamp 3717 and left at 7081
+vehicle ID 8305 parked in zone 4 at timestamp 3777 and left at 6879
+vehicle ID 8317 parked in zone 6 at timestamp 3812 and left at 5765
+vehicle ID 8452 parked in zone 14 at timestamp 3834 and left at 4866
+vehicle ID 8500 parked in zone 6 at timestamp 3851 and left at 6522
+vehicle ID 8513 parked in zone 6 at timestamp 3862 and left at 5617
+vehicle ID 8595 parked in zone 7 at timestamp 3911 and left at 6054
+vehicle ID 9074 parked in zone 12 at timestamp 4161 but did not leave
+vehicle ID 9184 parked in zone 7 at timestamp 4207 and left at 5328
+vehicle ID 9402 parked in zone 17 at timestamp 4321 and left at 5762
+vehicle ID 9744 parked in zone 4 at timestamp 4480 and left at 6384
+vehicle ID 9878 parked in zone 14 at timestamp 4553 but did not leave
+vehicle ID 10002 parked in zone 2 at timestamp 4624 but did not leave
+vehicle ID 10152 parked in zone 17 at timestamp 4704 and left at 5761
+vehicle ID 10263 parked in zone 12 at timestamp 4774 and left at 6316
+vehicle ID 10442 parked in zone 10 at timestamp 4871 but did not leave
+vehicle ID 450 parked in zone 10 at timestamp 4909 but did not leave
+vehicle ID 10515 parked in zone 14 at timestamp 4924 and left at 6757
+vehicle ID 141 parked in zone 11 at timestamp 4932 but did not leave
+vehicle ID 3040 parked in zone 2 at timestamp 4947 but did not leave
+vehicle ID 10594 parked in zone 14 at timestamp 4952 and left at 5962
+vehicle ID 453 parked in zone 14 at timestamp 5021 but did not leave
+vehicle ID 10780 parked in zone 11 at timestamp 5060 but did not leave
+vehicle ID 10980 parked in zone 15 at timestamp 5184 and left at 6841
+vehicle ID 11108 parked in zone 13 at timestamp 5248 and left at 7185
+vehicle ID 11119 parked in zone 17 at timestamp 5255 and left at 6705
+vehicle ID 11869 parked in zone 6 at timestamp 5635 but did not leave
+vehicle ID 11930 parked in zone 1 at timestamp 5639 but did not leave
+vehicle ID 10722 parked in zone 1 at timestamp 5654 but did not leave
+vehicle ID 11998 parked in zone 4 at timestamp 5668 but did not leave
+vehicle ID 395 parked in zone 12 at timestamp 5711 but did not leave
+vehicle ID 12070 parked in zone 6 at timestamp 5716 but did not leave
+vehicle ID 12235 parked in zone 13 at timestamp 5801 and left at 7017
+vehicle ID 12364 parked in zone 10 at timestamp 5875 but did not leave
+vehicle ID 12386 parked in zone 2 at timestamp 5882 but did not leave
+vehicle ID 12427 parked in zone 6 at timestamp 5901 and left at 7092
+vehicle ID 12507 parked in zone 18 at timestamp 5940 and left at 7408
+vehicle ID 12566 parked in zone 12 at timestamp 5966 and left at 7000
+vehicle ID 12616 parked in zone 18 at timestamp 5992 but did not leave
+vehicle ID 12851 parked in zone 6 at timestamp 6111 but did not leave
+vehicle ID 12922 parked in zone 11 at timestamp 6147 but did not leave
+vehicle ID 13178 parked in zone 7 at timestamp 6295 and left at 7450
+vehicle ID 13210 parked in zone 12 at timestamp 6318 but did not leave
+vehicle ID 13264 parked in zone 10 at timestamp 6349 but did not leave
+vehicle ID 13176 parked in zone 6 at timestamp 6356 but did not leave
+vehicle ID 13357 parked in zone 15 at timestamp 6394 but did not leave
+vehicle ID 11739 parked in zone 2 at timestamp 6440 but did not leave
+vehicle ID 13556 parked in zone 6 at timestamp 6491 and left at 7517
+
+========================================
+Additional statistics:
+========================================
+
+Global statistics:
+- First timestamp: 0001
+- Last timestamp: 7518
+- Number of parking episodes: 443
+- Number of unique vehicles that parked: 436
+- Mean parking duration: 5897.86
+- Median parking duration: 7518.00
+- Max parking duration: 7518
+- Peak observed zone occupancy: zone 6 had 64 parked vehicles at timestamp 3862

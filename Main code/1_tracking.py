@@ -670,9 +670,9 @@ def patch_infer_video(
 if __name__ == "__main__":
     # VIDEO example
     patch_infer_video(
-        video_path="Dataset/Galatsi_Data_Semester_Project_archive/DJI_0319_D2_S5_S1.MP4",
+        video_path="Dataset/Galatsi_Data_Semester_Project_archive/DJI_0003_D1_S3_S1.MP4",
         model_path="yolo11m-obb.pt",
-        output_path="Results/Video/tracking_color_0319_D2_S5_S1.mp4",
+        output_path= None, #"Results/Video/tracking_color_0319_D2_S5_S1.mp4",
         imgsz=1280,
         conf=0.35,
         tiles=(4, 3),
@@ -698,7 +698,73 @@ if __name__ == "__main__":
         use_hysteresis = True,    # activer l’hystérèse
         ema_alpha = 0.8,          # 0.0=off ; >0 pour lisser la vitesse (EMA), 1 pour pas de lissage
         # ---- export TXT par frame ----
-        export_txt_dir = "Results/TXT_0319_D2_S5_S1",   
+        export_txt_dir = "Results/TXT_0003_D1_S3_S1",   
+        export_txt = True      # <--- interrupteur global on/off
+    )
+
+    patch_infer_video(
+        video_path="Dataset/Galatsi_Data_Semester_Project_archive/DJI_0006_D1_S4_S1.MP4",
+        model_path="yolo11m-obb.pt",
+        output_path= None, #"Results/Video/tracking_color_0319_D2_S5_S1.mp4",
+        imgsz=1280,
+        conf=0.35,
+        tiles=(4, 3),
+        overlap_ratio=0.25,
+        nms_iou=0.4,
+        stride=1,
+        obb=True,
+        classes=[9, 10],
+        show_text=False,             # True to see "ID <id> <class> <conf>"
+        use_stabilization=True,
+        reset_ref_every=0,
+        device="0",
+        do_tracking=True,
+        draw_traces=False,
+        # ByteTrack tuning
+        track_thresh=0.25,   # start tracks from this conf
+        match_thresh=0.8,    # association strictness
+        track_buffer=30,      # keep IDs this many frames when briefly lost
+        # ---- mouvement vs arrêt (fenêtre + hystérèse) ----
+        nb_frames_moving = 5,      # fenêtre de comparaison (frames)
+        stop_speed_thresh = 0.5, # px/frame : <= STOP (vert)
+        move_speed_thresh = 1.0, # px/frame : >= MOVING (rouge) ; doit être > stop_speed_thresh
+        use_hysteresis = True,    # activer l’hystérèse
+        ema_alpha = 0.8,          # 0.0=off ; >0 pour lisser la vitesse (EMA), 1 pour pas de lissage
+        # ---- export TXT par frame ----
+        export_txt_dir = "Results/TXT_0006_D1_S4_S1",   
+        export_txt = True      # <--- interrupteur global on/off
+    )
+
+    patch_infer_video(
+        video_path="Dataset/Galatsi_Data_Semester_Project_archive/DJI_0009_D1_S5_S1.MP4",
+        model_path="yolo11m-obb.pt",
+        output_path= None, #"Results/Video/tracking_color_0319_D2_S5_S1.mp4",
+        imgsz=1280,
+        conf=0.35,
+        tiles=(4, 3),
+        overlap_ratio=0.25,
+        nms_iou=0.4,
+        stride=1,
+        obb=True,
+        classes=[9, 10],
+        show_text=False,             # True to see "ID <id> <class> <conf>"
+        use_stabilization=True,
+        reset_ref_every=0,
+        device="0",
+        do_tracking=True,
+        draw_traces=False,
+        # ByteTrack tuning
+        track_thresh=0.25,   # start tracks from this conf
+        match_thresh=0.8,    # association strictness
+        track_buffer=30,      # keep IDs this many frames when briefly lost
+        # ---- mouvement vs arrêt (fenêtre + hystérèse) ----
+        nb_frames_moving = 5,      # fenêtre de comparaison (frames)
+        stop_speed_thresh = 0.5, # px/frame : <= STOP (vert)
+        move_speed_thresh = 1.0, # px/frame : >= MOVING (rouge) ; doit être > stop_speed_thresh
+        use_hysteresis = True,    # activer l’hystérèse
+        ema_alpha = 0.8,          # 0.0=off ; >0 pour lisser la vitesse (EMA), 1 pour pas de lissage
+        # ---- export TXT par frame ----
+        export_txt_dir = "Results/TXT_0009_D1_S5_S1",   
         export_txt = True      # <--- interrupteur global on/off
     )
 

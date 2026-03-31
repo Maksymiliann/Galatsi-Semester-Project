@@ -168,8 +168,8 @@ def process_video(video_path, txt_folder, output_path):
 if __name__ == "__main__":
     # ====== EDIT THESE PATHS ======
     video_path = r"C:/Users/makss/Git/Galatsi-Semester-Project/Dataset/Galatsi_Data_Semester_Project_stabilized/DJI_0314_D2_S4_S1.mp4"
-    txt_folder = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0314_filtered_zone_10"
-    output_path = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/Images/test/reconstructed_video_zone_10.mp4"
+    txt_folder = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/TXT_0314_filtered_zone_1"
+    output_path = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/Images/test/reconstructed_video_zone_11.mp4"
     # ===============================
 
     process_video(video_path, txt_folder, output_path)

@@ -26,8 +26,8 @@ Outputs:
 # Config utilisateur
 # =========================
 # chemin du zone_mask binaire (0/255) :
-INPUT_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/post_processing2/parking_dwell_state_MULTI_REG_zones_mask.png"
-OUT_PREFIX = "Results/parking_detection/post_processing2/test4/mask"
+INPUT_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/parking_detection/post_processing2/parking_dwell_state_MULTI_REG_zones_mask_2.png"
+OUT_PREFIX = "Results/parking_detection/post_processing2/test5/mask"
 
 # --- Stratégie 1 : fermeture multi-orientations
 DO_MULTI_ANGLE_CLOSING = True

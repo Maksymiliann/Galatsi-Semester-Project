@@ -8,9 +8,9 @@ Here, it grabs the first frame (index 0) and writes it to disk for later use
 
 
 # chemin de la vidéo
-video_path = "Dataset/Galatsi_Data_Semester_Project_archive/DJI_0319_D2_S5_S1.MP4"
+video_path = "Dataset/Galatsi_Data_Semester_Project_archive/DJI_0006_D1_S4_S1.MP4"
 # chemin de sortie pour l'image
-output_path = "frame_1_0319.png"
+output_path = "frame_1_0006_1.png"
 
 # ouvrir la vidéo
 cap = cv2.VideoCapture(video_path)

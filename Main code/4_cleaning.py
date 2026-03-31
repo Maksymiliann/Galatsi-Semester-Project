@@ -22,8 +22,8 @@ remain, and the filtered image is saved to disk.
 
 # ---------- PARAMETRES ----------
 MIN_AREA = 10000   # <-- min area in pixels 
-INPUT_PATH  = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_closed.png"
-OUTPUT_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/mask_closed_cleaned.png"
+INPUT_PATH  = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/parking_dwell_state_MULTI_REG_parking_location_mask.png"
+OUTPUT_PATH = r"C:/Users/makss/Git/Galatsi-Semester-Project/Results/occupancy_analysis/per_zones/parking_dwell_state_MULTI_REG_parking_location_mask_cleaned_3.png"
 
 # ---------- LECTURE + BINARISATION ----------
 # Lis en niveau de gris
